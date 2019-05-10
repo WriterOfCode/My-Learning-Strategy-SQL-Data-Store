@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MyLearningStrategyDatabase", "MyLearningStrategyDatabase.sqlproj", "{285972F9-5664-48C1-B8C6-14488FFD0467}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{285972F9-5664-48C1-B8C6-14488FFD0467}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{285972F9-5664-48C1-B8C6-14488FFD0467}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{285972F9-5664-48C1-B8C6-14488FFD0467}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{285972F9-5664-48C1-B8C6-14488FFD0467}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{285972F9-5664-48C1-B8C6-14488FFD0467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{285972F9-5664-48C1-B8C6-14488FFD0467}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {06A909E1-EFCE-43D8-B003-5C9164A4874E}
+	EndGlobalSection
+EndGlobal

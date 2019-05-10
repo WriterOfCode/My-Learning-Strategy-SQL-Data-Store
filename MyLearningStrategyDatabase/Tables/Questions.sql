@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[Questions]
+(
+	[QuestionId] INT IDENTITY (1, 1) NOT NULL , 
+    [BodyOfKnowledgeId] INT NOT NULL, 
+    [AppliedTaxonomyId] INT NULL, 
+	[OrderBy] INT NOT NULL, 
+    [Question] NVARCHAR(MAX) NULL, 
+    [ImageUrl] NVARCHAR(2083) NULL, 
+	[Hyperlink_1] VARCHAR(2083) NULL, 
+    [Hyperlink_2] VARCHAR(2083) NULL, 
+    [Hyperlink_3] VARCHAR(2083) NULL, 
+    CONSTRAINT [PK_Questions] PRIMARY KEY NONCLUSTERED ([QuestionId]),
+	CONSTRAINT [FK_Questions_BodyOfKnowledge] FOREIGN KEY ([BodyOfKnowledgeId]) REFERENCES [BodyOfKnowledge]([BodyOfKnowledgeId]), 
+    CONSTRAINT [FK_Questions_TaxonomyApplied] FOREIGN KEY ([AppliedTaxonomyId]) REFERENCES [Taxonomy]([TaxonomyId])
+)
+
+GO
+
+CREATE INDEX [IX_Questions_OrderBy] ON [dbo].[Questions] ([OrderBy])
+
+GO
+
+CREATE CLUSTERED INDEX [IX_Questions_BodyOfKnowledgeId] ON [dbo].[Questions] ([BodyOfKnowledgeId])
+
+GO
+
+CREATE INDEX [IX_Questions_AppliedTaxonomyId] ON [dbo].[Questions] ([BodyOfKnowledgeId],[AppliedTaxonomyId])

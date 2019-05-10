@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>MyLearningStrategyDatabase</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{285972f9-5664-48c1-b8c6-14488ffd0467}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>MyLearningStrategyDatabase</RootNamespace>
+    <AssemblyName>MyLearningStrategyDatabase</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunSqlCodeAnalysis>True</RunSqlCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="StoredProcedures" />
+    <Folder Include="Tables" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\AssessmentDefinitions.sql" />
+    <Build Include="Tables\AssessmentSortRule.sql" />
+    <Build Include="Tables\BodyOfKnowledge.sql" />
+    <Build Include="Tables\LearningPlanContent.sql" />
+    <Build Include="Tables\LearningPlanContentSelections.sql" />
+    <Build Include="Tables\LearningPlanDefinitions.sql" />
+    <Build Include="Tables\LearningPlanSortRule.sql" />
+    <Build Include="Tables\LearningPlanTableOfContents.sql" />
+    <Build Include="Tables\Questions.sql" />
+    <Build Include="Tables\Responses.sql" />
+    <Build Include="Tables\Taxonomy.sql" />
+    <Build Include="Tables\TaxonomyApplied.sql" />
+    <Build Include="Tables\UserPermissions.sql" />
+    <Build Include="Tables\UserProfiles.sql" />
+    <Build Include="StoredProcedures\dbo.AddAssessmentSortRule.sql" />
+    <Build Include="StoredProcedures\dbo.AddLearningPlanSortRule.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserAssessmentDefinitions.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserBodyOfKnowledge.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserLPContent.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserLPContentSelections.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserLPDefinitions.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserLPTableOfContent.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserPermissions.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserProfile.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserQuestions.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserResponses.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserTaxonomy.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserTaxonomyApplied.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteAssessmentSortRule.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteLearningPlanSortRule.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserAssessmentDefinitions.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserBodyOfKnowledge.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserLPContent.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserLPContentSelections.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserLPDefinitions.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserLPTableOfContents.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserPermissions.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserProfile.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserQuestions.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserResponses.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserTaxonomy.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserTaxonomyApplied.sql" />
+    <Build Include="StoredProcedures\dbo.GetAssessmentSortRule.sql" />
+    <Build Include="StoredProcedures\dbo.GetLearningPlanSortRule.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserAssessmentDefinitions.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserBodyOfKnowledge.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserByExternalID.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserLPContent.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserLPContentSelections.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserLPDefinitions.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserLPTableOfContents.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserPermissions.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserProfile.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserQuestions.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserResponses.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserTaxonomy.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserTaxonomyApplied.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateAssessmentSortRule.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateLearningPlanSortRule.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserAssessmentDefinitions.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserBodyOfKnowledge.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserLPContent.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserLPContentSelections.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserLPDefinitions.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserLPTableOfContent.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserPermissions.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserProfile.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserQuestions.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserResponses.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserTaxonomy.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserTaxonomyApplied.sql" />
+    <Build Include="dbo.BokWebApiCert.sql" />
+    <Build Include="dbo.BokWebApiSymmetricKey.sql" />
+    <Build Include="dbo.BokWebApiUser.sql" />
+    <Build Include="dbo.IsBokOriginator.sql" />
+    <Build Include="dbo.IsBokUsers.sql" />
+    <Build Include="dbo.IsLPDUsers.sql" />
+    <Build Include="dbo.IsOriginatorUsers.sql" />
+    <Build Include="dbo.IsQuestionOriginator.sql" />
+    <Build Include="dbo.IsTOCOriginator.sql" />
+    <Build Include="dbo.MasterKeyForBOK.sql" />
+    <Build Include="dbo.NextBaseTwentySix.sql" />
+    <Build Include="dbo.NumericToBase26.sql" />
+    <Build Include="dbo.OriginatorToUserId.sql" />
+    <Build Include="dbo.SeedBaseTwentySix.sql" />
+    <Build Include="dbo.SequenceForBase26.sql" />
+    <PostDeploy Include="GrantUserRights.sql" />
+  </ItemGroup>
+</Project>
