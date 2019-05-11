@@ -5,7 +5,7 @@
 GRANT CONNECT TO [BokWebApiUser]
 GO
 --ALTER USER [BokWebApiUser] WITH DEFAULT_SCHEMA=[dbo]
-GO
+--GO
 GRANT CONNECT TO [BokWebApiUser]
 GO
 GRANT EXECUTE ON SCHEMA::[dbo] TO [BokWebApiUser]
