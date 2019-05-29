@@ -7,6 +7,17 @@ trigger:
 - master
 
 pool:
+- task: SqlAzureDacpacDeployment@1
+  inputs:
+    azureSubscription: 'Pay-As-You-Go Dev/Test(50818585-4ee7-4015-a923-224cd84ca182)'
+    AuthenticationType: 'server'
+    ServerName: 'writerofcode'
+    DatabaseName: 'mylearningbodyofknowledge'
+    SqlUsername: 'woc-db-admin'
+    SqlPassword: 'My3id4me#'
+    deployType: 'DacpacTask'
+    DeploymentAction: 'Publish'
+    IpDetectionMethod: 'AutoDetect'
   vmImage: 'windows-latest'
 
 variables:
