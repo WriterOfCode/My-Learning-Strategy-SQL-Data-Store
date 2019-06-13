@@ -19,15 +19,11 @@ AS
 	IF (@LearningContentId IS NOT NULL)
 		BEGIN
 			SELECT
-			[LearningContentId], 
-			[TableOfContentId], 
-			[OrderBy], 
-			[Heading], 
-			[LearningContent], 
-			[ImageUrl], 
-			[Hyperlink_1], 
-			[Hyperlink_2], 
-			[Hyperlink_3] 
+			LearningContentId,TableOfContentId, 
+			OrderBy,Heading, LearningContent, 
+			ImageUrl, Hyperlink_1, 
+			Hyperlink_2, Hyperlink_3,
+			LastModifiedOffset,CloudRowId
 			FROM [dbo].[LearningPlanContent]
 			WHERE LearningContentId = @LearningContentId
 			AND TableOfContentId = @TableOfContentId
@@ -35,15 +31,11 @@ AS
 	ELSE
 		BEGIN
 			SELECT
-			[LearningContentId], 
-			[TableOfContentId], 
-			[OrderBy], 
-			[Heading], 
-			[LearningContent], 
-			[ImageUrl], 
-			[Hyperlink_1], 
-			[Hyperlink_2], 
-			[Hyperlink_3] 
+			LearningContentId,TableOfContentId, 
+			OrderBy,Heading, LearningContent, 
+			ImageUrl, Hyperlink_1, 
+			Hyperlink_2, Hyperlink_3,
+			LastModifiedOffset,CloudRowId
 			FROM [dbo].[LearningPlanContent]
 			WHERE TableOfContentId = @TableOfContentId
 		END

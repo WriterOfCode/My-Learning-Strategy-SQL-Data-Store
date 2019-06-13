@@ -9,6 +9,8 @@
     [Hyperlink_1] VARCHAR(2083) NULL, 
     [Hyperlink_2] VARCHAR(2083) NULL, 
     [Hyperlink_3] VARCHAR(2083) NULL, 
+	[LastModifiedOffset] DATETIMEOFFSET NULL, 
+    [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
     CONSTRAINT [FK_LearningContent_TableOfContents] FOREIGN KEY ([TableOfContentId]) REFERENCES [LearningPlanTableOfContents]([TableOfContentId]), 
     CONSTRAINT [PK_LearningContent] PRIMARY KEY NONCLUSTERED ([LearningContentId]) 
 )

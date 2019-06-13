@@ -10,6 +10,7 @@
 	@ContentsMin INT NULL,
 	@AppliedTaxonomyId INT NULL,
 	@Taxonomy BIT,
+	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @LearningPlanDefinitionId INT 
@@ -25,9 +26,9 @@ AS
 	BEGIN 
 		INSERT INTO [dbo].[LearningPlanDefinitions] (BodyOfKnowledgeId, Description, 
 		SortRuleId, TableOfContentsRandom,TableOfContentsMax, TableOfContentsMin,
-		ContentsRandom,ContentsMax,ContentsMin,AppliedTaxonomyId,Taxonomy)
+		ContentsRandom,ContentsMax,ContentsMin,AppliedTaxonomyId,Taxonomy, LastModifiedOffset )
 		VALUES (@BodyOfKnowledgeId,  @Description, @SortRuleId, @TableOfContentsRandom, @TableOfContentsMax, @TableOfContentsMin
-			,@ContentsRandom, @ContentsMax, @ContentsMin, @AppliedTaxonomyId, @Taxonomy);
+			,@ContentsRandom, @ContentsMax, @ContentsMin, @AppliedTaxonomyId, @Taxonomy, @LastModifiedOffset );
 
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS LearningPlanDefinitionId;
 	END

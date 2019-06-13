@@ -7,6 +7,7 @@
 	@Hyperlink_1 VARCHAR(2083) NULL, 
     @Hyperlink_2 VARCHAR(2083) NULL, 
     @Hyperlink_3 VARCHAR(2083) NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 
 AS
@@ -27,7 +28,8 @@ AS
 							ImageUrl, 
 							Hyperlink_1, 
 							Hyperlink_2, 
-							Hyperlink_3)
+							Hyperlink_3,
+							LastModifiedOffset)
 	VALUES (
 			@BodyOfKnowledgeId, 
 			@AppliedTaxonomyId, 
@@ -36,7 +38,8 @@ AS
 			@ImageUrl, 
 			@Hyperlink_1, 
 			@Hyperlink_2, 
-			@Hyperlink_3);
+			@Hyperlink_3,
+			@LastModifiedOffset);
  
 	SELECT CAST(SCOPE_IDENTITY() AS INT) AS QuestionId;
 	END

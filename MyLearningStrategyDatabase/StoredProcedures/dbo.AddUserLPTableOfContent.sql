@@ -3,6 +3,7 @@
 	@AppliedTaxonomyId INT,
 	@OrderBy INT, 
     @Heading NVARCHAR(50),
+	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 
 AS
@@ -16,8 +17,8 @@ AS
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
 	END
 	BEGIN 
-		INSERT INTO [dbo].[LearningPlanTableOfContents] (BodyOfKnowledgeId, AppliedTaxonomyId, OrderBy, Heading)
-		VALUES (@BodyOfKnowledgeId, @AppliedTaxonomyId, @OrderBy, @Heading );
+		INSERT INTO [dbo].[LearningPlanTableOfContents] (BodyOfKnowledgeId, AppliedTaxonomyId, OrderBy, Heading, LastModifiedOffset )
+		VALUES (@BodyOfKnowledgeId, @AppliedTaxonomyId, @OrderBy, @Heading, @LastModifiedOffset );
 
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS TableOfContentId;
 	END

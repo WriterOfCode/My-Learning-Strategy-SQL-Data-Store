@@ -9,6 +9,8 @@
 	[Hyperlink_1] VARCHAR(2083) NULL, 
     [Hyperlink_2] VARCHAR(2083) NULL, 
     [Hyperlink_3] VARCHAR(2083) NULL, 
+	[LastModifiedOffset] DATETIMEOFFSET NULL, 
+    [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
     CONSTRAINT [PK_Questions] PRIMARY KEY NONCLUSTERED ([QuestionId]),
 	CONSTRAINT [FK_Questions_BodyOfKnowledge] FOREIGN KEY ([BodyOfKnowledgeId]) REFERENCES [BodyOfKnowledge]([BodyOfKnowledgeId]), 
     CONSTRAINT [FK_Questions_TaxonomyApplied] FOREIGN KEY ([AppliedTaxonomyId]) REFERENCES [Taxonomy]([TaxonomyId])

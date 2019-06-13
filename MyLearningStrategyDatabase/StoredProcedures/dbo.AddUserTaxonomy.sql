@@ -3,7 +3,8 @@
 	@Originator UNIQUEIDENTIFIER,
 	@ParentId INT NULL,
 	@TaxonomyName NVARCHAR(50) NULL,
-    @ImageUrl NVARCHAR(2083) NULL
+    @ImageUrl NVARCHAR(2083) NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL
 
 AS
 	DECLARE @TaxonomyId INT;
@@ -19,8 +20,8 @@ AS
 	END
 
 	BEGIN
-		INSERT INTO [dbo].[Taxonomy] (ParentId,BodyOfKnowledgeId,TaxonomyName,ImageUrl )
-		VALUES(@ParentId,@BodyOfKnowledgeId,@TaxonomyName,@ImageUrl );
+		INSERT INTO [dbo].[Taxonomy] (ParentId,BodyOfKnowledgeId,TaxonomyName,ImageUrl,LastModifiedOffset )
+		VALUES(@ParentId,@BodyOfKnowledgeId,@TaxonomyName,@ImageUrl,@LastModifiedOffset );
 
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS TaxonomyId;
 	END

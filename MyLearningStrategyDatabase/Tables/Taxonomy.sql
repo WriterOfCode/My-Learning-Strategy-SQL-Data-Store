@@ -4,6 +4,8 @@
 	[BodyOfKnowledgeId] INT NOT NULL,
 	[TaxonomyName] [nvarchar](50) NOT NULL,
     [ImageUrl] NVARCHAR(2083) NULL, 
+	[LastModifiedOffset] DATETIMEOFFSET NULL, 
+    [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
     CONSTRAINT [FK_Taxonomy_BodyOfKnowledge] FOREIGN KEY ([BodyOfKnowledgeId]) REFERENCES [BodyOfKnowledge]([BodyOfKnowledgeId]), 
     CONSTRAINT [PK_Taxonomy] PRIMARY KEY ([TaxonomyId]), 
 ) ON [PRIMARY]

@@ -11,7 +11,8 @@ END
 
 IF @BodyOfKnowledgeId IS NULL
 BEGIN
-	SELECT BOK.BodyOfKnowledgeId,BOK.Name,BOK.Acronym, BOK.Keywords, BOK.IsShared, BOK.HasBeenShared
+	SELECT BOK.BodyOfKnowledgeId,BOK.Name,BOK.Acronym, BOK.Keywords,
+	BOK.IsShared, BOK.HasBeenShared, BOK.LastModifiedOffset, BOK.CloudRowId
 	FROM BodyOfKnowledge BOK
 	JOIN UserProfiles U ON U.UserProfileId = BOK.UserProfileId
 	WHERE U.Originator = @Originator;
@@ -23,7 +24,8 @@ ELSE
 			RAISERROR (13538,14,-1, 'User is not the owner!');   
 		END
 
-		SELECT BOK.BodyOfKnowledgeId,BOK.Name,BOK.Acronym, BOK.Keywords, BOK.IsShared, BOK.HasBeenShared
+		SELECT BOK.BodyOfKnowledgeId,BOK.Name,BOK.Acronym, BOK.Keywords, 
+		BOK.IsShared, BOK.HasBeenShared, BOK.LastModifiedOffset, BOK.CloudRowId
 		FROM [BodyOfKnowledge] BOK
 		JOIN UserProfiles U ON U.UserProfileId = BOK.UserProfileId
 		WHERE U.Originator = @Originator

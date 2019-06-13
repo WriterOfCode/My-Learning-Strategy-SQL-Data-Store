@@ -40,10 +40,10 @@ AS
 	IF (@LearningPlanContentSelectionsId IS NOT NULL)
 	BEGIN
 		SELECT 
-		[LearningPlanContentSelectionsId],
-		[LearningPlanDefinitionId],
-		[TableOfContentId],
-		[LearningContentId]
+		LearningPlanContentSelectionsId,
+		LearningPlanDefinitionId,
+		TableOfContentId,LearningContentId,
+		LastModifiedOffset,CloudRowId
 		FROM [dbo].[LearningPlanContentSelections]
 		WHERE LearningPlanContentSelectionsId = @LearningPlanContentSelectionsId
 		AND LearningPlanDefinitionId = @LearningPlanDefinitionId
@@ -51,10 +51,10 @@ AS
 	ELSE
 	BEGIN
 		SELECT 
-		[LearningPlanContentSelectionsId],
-		[LearningPlanDefinitionId],
-		[TableOfContentId],
-		[LearningContentId]
+		LearningPlanContentSelectionsId,
+		LearningPlanDefinitionId,
+		TableOfContentId,LearningContentId,
+		LastModifiedOffset,CloudRowId
 		FROM [dbo].[LearningPlanContentSelections]
 		WHERE LearningPlanDefinitionId = @LearningPlanDefinitionId
 	END

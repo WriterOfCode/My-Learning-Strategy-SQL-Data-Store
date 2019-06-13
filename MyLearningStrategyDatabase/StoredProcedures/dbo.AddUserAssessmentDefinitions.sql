@@ -12,6 +12,7 @@
     @ResponseMaxCorrect INT NULL, 
     @AppliedTaxonomyId INT NULL,
 	@Taxonomy BIT,
+	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator uniqueidentifier
 AS
 	DECLARE	@AssessmentDefinitionId INT; 
@@ -39,7 +40,8 @@ AS
 			ResponseMinCorrect, 
 			ResponseMaxCorrect, 
 			AppliedTaxonomyId,
-			Taxonomy)
+			Taxonomy,
+			LastModifiedOffset)
 		VALUES (@BodyOfKnowledgeId, 
 				@Description, 
 				@SortRuleId, 
@@ -52,7 +54,8 @@ AS
 				@ResponseMinCorrect, 
 				@ResponseMaxCorrect, 
 				@AppliedTaxonomyId,
-				@Taxonomy);
+				@Taxonomy,
+				@LastModifiedOffset);
 
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS AssessmentDefinitionId;
 	END

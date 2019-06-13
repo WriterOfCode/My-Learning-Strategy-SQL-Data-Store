@@ -7,6 +7,8 @@
     [Keywords] NVARCHAR(MAX) NULL, 
     [IsShared] BIT NOT NULL DEFAULT 0, 
     [HasBeenShared] BIT NOT NULL DEFAULT 0, 
+	[LastModifiedOffset] DATETIMEOFFSET NULL, 
+    [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
     CONSTRAINT [FK_BodyOfKnowledge_UserProfiles] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfiles]([UserProfileId]), 
     CONSTRAINT [PK_BodyOfKnowledge] PRIMARY KEY NONCLUSTERED ([BodyOfKnowledgeId]) 
 )

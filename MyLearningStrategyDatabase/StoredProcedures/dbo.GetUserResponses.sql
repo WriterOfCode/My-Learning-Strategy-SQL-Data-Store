@@ -13,30 +13,24 @@ AS
 	END
 IF (@ResponseId IS NOT NULL AND @QuestionId IS NOT NULL)
 	BEGIN
-	SELECT [ResponseId]
-		  ,[QuestionId]
-		  ,[OrderBy]
-		  ,[Response]
-		  ,[IsCorrect]
-		  ,[ImageUrl]
-		  ,[Hyperlink_1]
-		  ,[Hyperlink_2]
-		  ,[Hyperlink_3]
+	SELECT ResponseId
+      ,QuestionId,OrderBy
+      ,Response,IsCorrect
+      ,ImageUrl,Hyperlink_1
+      ,Hyperlink_2,Hyperlink_3
+	  ,LastModifiedOffset,CloudRowId
 	  FROM [dbo].[Responses]
 	  WHERE ResponseId= @ResponseId
 	  AND QuestionId= @QuestionId
 	END 
 ELSE IF (@QuestionId IS NOT NULL)
 BEGIN
-  SELECT [ResponseId]
-      ,[QuestionId]
-      ,[OrderBy]
-      ,[Response]
-      ,[IsCorrect]
-      ,[ImageUrl]
-      ,[Hyperlink_1]
-      ,[Hyperlink_2]
-      ,[Hyperlink_3]
+  SELECT ResponseId
+      ,QuestionId,OrderBy
+      ,Response,IsCorrect
+      ,ImageUrl,Hyperlink_1
+      ,Hyperlink_2,Hyperlink_3
+	  ,LastModifiedOffset,CloudRowId
   FROM [dbo].[Responses]
   WHERE QuestionId= @QuestionId
 END

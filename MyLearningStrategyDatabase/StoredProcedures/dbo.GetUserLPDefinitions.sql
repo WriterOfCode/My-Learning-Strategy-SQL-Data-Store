@@ -16,54 +16,39 @@ END
 
 	IF (@LearningPlanDefinitionId IS NOT NULL)
 		BEGIN
-			SELECT	[LearningPlanDefinitionId], 
-			[BodyOfKnowledgeId], 
-			[Description], 
-			[SortRuleId], 
-			[TableOfContentsRandom], 
-			[TableOfContentsMax], 
-			[TableOfContentsMin],
-			[ContentsRandom], 
-			[ContentsMax], 
-			[ContentsMin], 
-			[AppliedTaxonomyId], 
-			[Taxonomy]
+			SELECT	LearningPlanDefinitionId, 
+			BodyOfKnowledgeId, Description, 
+			SortRuleId, TableOfContentsRandom, 
+			TableOfContentsMax, TableOfContentsMin,
+			ContentsRandom, ContentsMax, ContentsMin,
+			AppliedTaxonomyId, Taxonomy,
+			LastModifiedOffset,CloudRowId
 			FROM [dbo].[LearningPlanDefinitions]
 			WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 			AND LearningPlanDefinitionId = @LearningPlanDefinitionId
 		END
 	ELSE IF(@AppliedTaxonomyId IS NOT NULL)
 		BEGIN
-			SELECT	[LearningPlanDefinitionId], 
-			[BodyOfKnowledgeId], 
-			[Description], 
-			[SortRuleId], 
-			[TableOfContentsRandom], 
-			[TableOfContentsMax], 
-			[TableOfContentsMin],
-			[ContentsRandom], 
-			[ContentsMax], 
-			[ContentsMin], 
-			[AppliedTaxonomyId], 
-			[Taxonomy] 
+			SELECT LearningPlanDefinitionId, 
+			BodyOfKnowledgeId, Description, 
+			SortRuleId, TableOfContentsRandom, 
+			TableOfContentsMax, TableOfContentsMin,
+			ContentsRandom, ContentsMax, ContentsMin,
+			AppliedTaxonomyId, Taxonomy,
+			LastModifiedOffset,CloudRowId
 			FROM [dbo].[LearningPlanDefinitions]
 			WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 			AND AppliedTaxonomyId =@AppliedTaxonomyId
 		END
 	ELSE
 		BEGIN
-			SELECT	[LearningPlanDefinitionId], 
-			[BodyOfKnowledgeId], 
-			[Description], 
-			[SortRuleId], 
-			[TableOfContentsRandom], 
-			[TableOfContentsMax], 
-			[TableOfContentsMin],
-			[ContentsRandom], 
-			[ContentsMax], 
-			[ContentsMin], 
-			[AppliedTaxonomyId], 
-			[Taxonomy] 
+			SELECT LearningPlanDefinitionId, 
+			BodyOfKnowledgeId, Description, 
+			SortRuleId, TableOfContentsRandom, 
+			TableOfContentsMax, TableOfContentsMin,
+			ContentsRandom, ContentsMax, ContentsMin,
+			AppliedTaxonomyId, Taxonomy,
+			LastModifiedOffset,CloudRowId
 			FROM [dbo].[LearningPlanDefinitions]
 			WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 		END

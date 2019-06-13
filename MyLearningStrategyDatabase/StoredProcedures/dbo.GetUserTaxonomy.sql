@@ -15,11 +15,9 @@ AS
 	IF(@TaxonomyId IS NOT NULL)
 	BEGIN
 		SELECT 
-		[TaxonomyId],
-		[ParentId],
-		[BodyOfKnowledgeId],
-		[TaxonomyName],
-		[ImageUrl]
+		TaxonomyId,ParentId,
+		BodyOfKnowledgeId,TaxonomyName,
+		ImageUrl,LastModifiedOffset,CloudRowId
 		FROM  [dbo].[Taxonomy]
 		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 		AND TaxonomyId = @TaxonomyId
@@ -27,11 +25,9 @@ AS
 	ELSE
 	BEGIN
 		SELECT 
-		[TaxonomyId],
-		[ParentId],
-		[BodyOfKnowledgeId],
-		[TaxonomyName],
-		[ImageUrl]
+		TaxonomyId,ParentId,
+		BodyOfKnowledgeId,TaxonomyName,
+		ImageUrl,LastModifiedOffset,CloudRowId
 		FROM  [dbo].[Taxonomy]
 		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 	END

@@ -2,6 +2,7 @@
 	@LearningPlanDefinitionId INT,
 	@TableOfContentId INT NULL,
 	@LearningContentId INT NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @LearningPlanContentSelectionsId AS INT
@@ -33,11 +34,13 @@ AS
 	INSERT INTO [dbo].[LearningPlanContentSelections]
 			   (LearningPlanDefinitionId
 			   ,TableOfContentId
-			   ,LearningContentId)
+			   ,LearningContentId
+			   ,LastModifiedOffset )
 		 VALUES
 			   (@LearningPlanDefinitionId
 			   ,@TableOfContentId
-			   ,@LearningContentId);
+			   ,@LearningContentId
+			   ,@LastModifiedOffset );
 
 			   SELECT CAST(SCOPE_IDENTITY() AS INT) AS LearningPlanContentSelectionsId;
 	END

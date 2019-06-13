@@ -9,7 +9,8 @@
 	@ImageUrl    NVARCHAR(2083) NULL, 
 	@HasLoggedIn BIT NULL,
     @IsLocked    BIT NULL, 
-    @IsDisabled  BIT NULL
+    @IsDisabled  BIT NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL
 AS	
 
 DECLARE @UserProfileId INT
@@ -22,10 +23,10 @@ BEGIN
 	INSERT INTO UserProfiles
 		(ExternalID,DisplayName,EmailAddress,FirstName,LastName
 		,PostalCode,IdentityProvider,ImageUrl,HasLoggedIn
-		,IsLocked,IsDisabled)
+		,IsLocked,IsDisabled,LastModifiedOffset)
 	VALUES (@ExternalID,@DisplayName,@EmailAddress,@FirstName,@LastName
 	,@PostalCode,@IdentityProvider,@ImageUrl,@HasLoggedIn,@IsLocked
-	,@IsDisabled);
+	,@IsDisabled,@LastModifiedOffset);
 
 	SET @UserProfileId = CAST(SCOPE_IDENTITY() AS INT);
 

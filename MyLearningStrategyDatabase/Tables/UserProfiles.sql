@@ -13,6 +13,7 @@
     [IsLocked]    BIT NULL DEFAULT 0, 
     [IsDisabled]  BIT NULL DEFAULT 0, 
     [IsDeleted] BIT NULL DEFAULT 0, 
+	[LastModifiedOffset] DATETIMEOFFSET NULL, 
     CONSTRAINT [PK_UserProfiles] PRIMARY KEY NONCLUSTERED ([UserProfileId] ASC)
 );
 GO

@@ -2,6 +2,7 @@
     @AppliedTaxonomyId INT NULL, 
 	@TaxonomyId INT NULL,
     @BodyOfKnowledgeId INT NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL, 
 	@UserProfileId INT 
 AS
 
@@ -16,10 +17,11 @@ END
 	DECLARE @rowsaffected INT 
 	BEGIN
 		UPDATE [dbo].[TaxonomyApplied] 
-		SET TaxonomyId =@TaxonomyId
+		SET TaxonomyId =@TaxonomyId,
+		LastModifiedOffset=@LastModifiedOffset
 		WHERE AppliedTaxonomyId=@AppliedTaxonomyId
-		AND BodyOfKnowledgeId=@BodyOfKnowledgeId
-		
+		AND BodyOfKnowledgeId=@BodyOfKnowledgeId;
+
 		SET @rowsaffected = @@ROWCOUNT
 	END
 RETURN @rowsaffected

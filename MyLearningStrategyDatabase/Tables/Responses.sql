@@ -9,6 +9,8 @@
 	[Hyperlink_1] VARCHAR(2083) NULL, 
     [Hyperlink_2] VARCHAR(2083) NULL, 
     [Hyperlink_3] VARCHAR(2083) NULL, 
+	[LastModifiedOffset] DATETIMEOFFSET NULL, 
+    [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
     CONSTRAINT [PK_Responses] PRIMARY KEY ([ResponseId], [QuestionId]), 
     CONSTRAINT [FK_Responses_Questions] FOREIGN KEY ([QuestionId]) REFERENCES [Questions]([QuestionId])
 )

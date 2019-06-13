@@ -4,6 +4,7 @@
 	@AppliedTaxonomyId INT,
 	@OrderBy INT, 
     @Heading NVARCHAR(50),
+	@LastModifiedOffset DATETIMEOFFSET NULL, 
 	@Originator UNIQUEIDENTIFIER
 	
 AS
@@ -22,7 +23,8 @@ AS
 		SET BodyOfKnowledgeId=@BodyOfKnowledgeId,
 		AppliedTaxonomyId=@AppliedTaxonomyId, 
 		OrderBy=@OrderBy, 
-		Heading=@Heading
+		Heading=@Heading,
+		LastModifiedOffset=@LastModifiedOffset
 		WHERE TableOfContentId=@TableOfContentId
 		AND BodyOfKnowledgeId = @BodyOfKnowledgeId;
 

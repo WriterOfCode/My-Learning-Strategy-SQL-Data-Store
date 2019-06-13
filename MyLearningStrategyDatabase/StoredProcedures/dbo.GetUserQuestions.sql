@@ -19,15 +19,11 @@ AS
 --BodyOfKnowledgeId @QuestionId
 IF (@QuestionId IS NOT NULL)
 BEGIN
-	SELECT [QuestionId]
-      ,[BodyOfKnowledgeId]
-      ,[AppliedTaxonomyId]
-      ,[OrderBy]
-      ,[Question]
-      ,[ImageUrl]
-      ,[Hyperlink_1]
-      ,[Hyperlink_2]
-      ,[Hyperlink_3]
+	SELECT QuestionId,BodyOfKnowledgeId
+		  ,AppliedTaxonomyId,OrderBy
+		  ,Question,ImageUrl
+		  ,Hyperlink_1,Hyperlink_2
+		  ,Hyperlink_3,LastModifiedOffset,CloudRowId
 	FROM [Questions]
 	WHERE QuestionId = @QuestionId
 	AND BodyOfKnowledgeId = @BodyOfKnowledgeId;
@@ -35,30 +31,22 @@ END
 --BodyOfKnowledgeId
 IF (@QuestionId IS NULL AND @AppliedTaxonomyId IS NULL)
 	BEGIN 
-	SELECT [QuestionId]
-		  ,[BodyOfKnowledgeId]
-		  ,[AppliedTaxonomyId]
-		  ,[OrderBy]
-		  ,[Question]
-		  ,[ImageUrl]
-		  ,[Hyperlink_1]
-		  ,[Hyperlink_2]
-		  ,[Hyperlink_3]
+	SELECT QuestionId,BodyOfKnowledgeId
+		  ,AppliedTaxonomyId,OrderBy
+		  ,Question,ImageUrl
+		  ,Hyperlink_1,Hyperlink_2
+		  ,Hyperlink_3,LastModifiedOffset,CloudRowId
 	  FROM [Questions]
 	  WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId;
 	END
 --BodyOfKnowledgeId and @QuestionId
 ELSE IF (@QuestionId IS NULL AND @AppliedTaxonomyId IS NOT NULL)
 BEGIN
-SELECT [QuestionId]
-      ,[BodyOfKnowledgeId]
-      ,[AppliedTaxonomyId]
-      ,[OrderBy]
-      ,[Question]
-      ,[ImageUrl]
-      ,[Hyperlink_1]
-      ,[Hyperlink_2]
-      ,[Hyperlink_3]
+SELECT QuestionId,BodyOfKnowledgeId
+		  ,AppliedTaxonomyId,OrderBy
+		  ,Question,ImageUrl
+		  ,Hyperlink_1,Hyperlink_2
+		  ,Hyperlink_3,LastModifiedOffset,CloudRowId
   FROM [Questions]
   WHERE AppliedTaxonomyId = @AppliedTaxonomyId
   AND BodyOfKnowledgeId = @BodyOfKnowledgeId;

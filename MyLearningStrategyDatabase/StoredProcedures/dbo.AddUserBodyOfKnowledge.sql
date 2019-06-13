@@ -4,6 +4,7 @@
 	@Keywords NVARCHAR(MAX) NULL,
 	@IsShared BIT NULL,
 	@HasBeenShared BIT NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @UserProfileId INT
@@ -27,14 +28,16 @@ AS
 			   ,Acronym
 			   ,Keywords
 			   ,IsShared
-			   ,HasBeenShared)
+			   ,HasBeenShared
+			   ,LastModifiedOffset)
 		 VALUES
 			   (@UserProfileId
 			   ,@Name
 			   ,@Acronym
 			   ,@Keywords
 			   ,@IsShared
-			   ,@HasBeenShared);
+			   ,@HasBeenShared
+			   ,@LastModifiedOffset);
 
 	SELECT CAST(SCOPE_IDENTITY() AS INT) AS BodyOfKnowledgeId;
 

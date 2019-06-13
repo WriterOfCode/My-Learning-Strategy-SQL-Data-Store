@@ -7,6 +7,7 @@
 	@Hyperlink_1 VARCHAR(2083) NULL, 
 	@Hyperlink_2 VARCHAR(2083) NULL, 
 	@Hyperlink_3 VARCHAR(2083) NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @ResponseId INT 
@@ -25,8 +26,8 @@ AS
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
 	END
 	BEGIN 
-		INSERT INTO [dbo].[Responses] (QuestionId, OrderBy, Response, IsCorrect, ImageUrl, Hyperlink_1, Hyperlink_2, Hyperlink_3)
-		VALUES (@QuestionId, @OrderBy, @Response, @IsCorrect, @ImageUrl, @Hyperlink_1, @Hyperlink_2, @Hyperlink_3 );
+		INSERT INTO [dbo].[Responses] (QuestionId, OrderBy, Response, IsCorrect, ImageUrl, Hyperlink_1, Hyperlink_2, Hyperlink_3, LastModifiedOffset)
+		VALUES (@QuestionId, @OrderBy, @Response, @IsCorrect, @ImageUrl, @Hyperlink_1, @Hyperlink_2, @Hyperlink_3, @LastModifiedOffset );
 
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS ResponseId;
 	END

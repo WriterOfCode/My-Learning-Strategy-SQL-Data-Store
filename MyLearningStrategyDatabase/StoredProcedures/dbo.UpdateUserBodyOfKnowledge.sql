@@ -5,6 +5,7 @@
 	@Keywords NVARCHAR(MAX) NULL,
 	@IsShared BIT NULL,
 	@HasBeenShared BIT NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @rowsaffected INT 
@@ -31,7 +32,8 @@ AS
 			Acronym=@Acronym,
 			Keywords=@Keywords,
 			IsShared=@IsShared,
-			HasBeenShared=@HasBeenShared
+			HasBeenShared=@HasBeenShared,
+			LastModifiedOffset=@LastModifiedOffset
 		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 		AND UserProfileId=@UserProfileId
 		SET @rowsaffected = @@ROWCOUNT

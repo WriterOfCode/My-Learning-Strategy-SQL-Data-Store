@@ -13,6 +13,7 @@
     @ResponseMaxCorrect INT NULL, 
     @AppliedTaxonomyId INT NULL,
 	@Taxonomy BIT,
+	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @rowsaffected INT 
@@ -43,7 +44,8 @@ AS
 			ResponseMinCorrect=@ResponseMinCorrect, 
 			ResponseMaxCorrect=@ResponseMaxCorrect, 
 			AppliedTaxonomyId=@AppliedTaxonomyId,
-			@Taxonomy= @Taxonomy
+			LastModifiedOffset=@LastModifiedOffset,
+			Taxonomy= @Taxonomy
 		WHERE AssessmentDefinitionId=@AssessmentDefinitionId
 				AND BodyOfKnowledgeId = @BodyOfKnowledgeId
 

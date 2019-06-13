@@ -1,7 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserTaxonomyApplied]
     @BodyOfKnowledgeId INT NULL,
 	@UserProfileId INT,
-	@TaxonomyId INT NULL
+	@TaxonomyId INT NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL
 AS
 IF (@BodyOfKnowledgeId IS NULL)
 BEGIN
@@ -13,8 +14,8 @@ BEGIN
 END
 	DECLARE @AppliedTaxonomyId INT;
 	BEGIN
-		INSERT INTO [dbo].[TaxonomyApplied] (TaxonomyId,BodyOfKnowledgeId)
-		VALUES (@TaxonomyId,@BodyOfKnowledgeId)
+		INSERT INTO [dbo].[TaxonomyApplied] (TaxonomyId,BodyOfKnowledgeId,LastModifiedOffset)
+		VALUES (@TaxonomyId,@BodyOfKnowledgeId,@LastModifiedOffset)
 		SET @AppliedTaxonomyId = CAST(SCOPE_IDENTITY() AS INT)
 	END
 RETURN @AppliedTaxonomyId

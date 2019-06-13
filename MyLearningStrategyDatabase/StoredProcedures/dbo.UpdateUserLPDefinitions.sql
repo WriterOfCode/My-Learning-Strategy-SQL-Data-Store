@@ -11,6 +11,7 @@
 	@ContentsMin INT NULL,
 	@AppliedTaxonomyId INT NULL,
 	@Taxonomy BIT,
+	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @rowsaffected INT 
@@ -35,6 +36,7 @@ AS
 		ContentsMax=@ContentsMax, 
 		ContentsMin=@ContentsMin,
 		AppliedTaxonomyId=@AppliedTaxonomyId,
+		LastModifiedOffset=@LastModifiedOffset,
 		Taxonomy=@Taxonomy
 		WHERE LearningPlanDefinitionId=@LearningPlanDefinitionId
 		AND BodyOfKnowledgeId=@BodyOfKnowledgeId;

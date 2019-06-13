@@ -2,7 +2,8 @@
 	@LearningPlanContentSelectionsId INT,
 	@LearningPlanDefinitionId INT,
 	@TableOfContentId INT NULL,
-	@LearningContentId INT NULL
+	@LearningContentId INT NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL
 AS
 	DECLARE @rowsaffected INT 
 
@@ -15,7 +16,8 @@ AS
 		UPDATE [dbo].[LearningPlanContentSelections]
 		SET LearningPlanDefinitionId=@LearningPlanDefinitionId,
 			TableOfContentId=@TableOfContentId,
-			LearningContentId=@LearningContentId
+			LearningContentId=@LearningContentId,
+			LastModifiedOffset=@LastModifiedOffset
 		WHERE LearningPlanContentSelectionsId =@LearningPlanContentSelectionsId;
 		
 		SET @rowsaffected = @@ROWCOUNT

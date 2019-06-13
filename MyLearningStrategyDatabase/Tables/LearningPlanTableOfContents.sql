@@ -5,6 +5,8 @@
 	[AppliedTaxonomyId] INT NULL ,
 	[OrderBy] INT NOT NULL, 
     [Heading] NVARCHAR(50) NOT NULL, 
+	[LastModifiedOffset] DATETIMEOFFSET NULL, 
+    [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
     CONSTRAINT [FK_TableOfContents_BodyOfKnowledge] FOREIGN KEY ([BodyOfKnowledgeId]) REFERENCES [BodyOfKnowledge]([BodyOfKnowledgeId]), 
     CONSTRAINT [PK_TableOfContents] PRIMARY KEY ([TableOfContentId]), 
     CONSTRAINT [FK_LearningTableOfContents_TaxonomyApplied] FOREIGN KEY ([AppliedTaxonomyId]) REFERENCES [Taxonomy]([TaxonomyId])

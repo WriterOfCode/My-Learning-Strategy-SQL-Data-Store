@@ -9,7 +9,8 @@
 	@ImageUrl    NVARCHAR(2083) NULL, 
 	@HasLoggedIn BIT            NULL,
     @IsLocked    BIT NULL, 
-    @IsDisabled  BIT NULL
+    @IsDisabled  BIT NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL
 AS	
 IF (@ExternalID IS NULL)
 BEGIN
@@ -21,7 +22,7 @@ END
 		BEGIN
 			SELECT UserProfileId,ExternalID,DisplayName,EmailAddress
 			,FirstName,LastName,PostalCode,IdentityProvider,Originator
-			,ImageUrl,HasLoggedIn,IsLocked,IsDisabled
+			,ImageUrl,HasLoggedIn,IsLocked,IsDisabled,LastModifiedOffset
 			FROM UserProfiles 
 			WHERE ExternalID = @ExternalID;
 		END
@@ -30,14 +31,14 @@ END
 		INSERT INTO UserProfiles
 			(ExternalID,DisplayName,EmailAddress,FirstName,LastName
 			,PostalCode,IdentityProvider,ImageUrl,HasLoggedIn
-			,IsLocked,IsDisabled)
+			,IsLocked,IsDisabled,LastModifiedOffset)
 		VALUES (@ExternalID,@DisplayName,@EmailAddress,@FirstName,@LastName
 		,@PostalCode,@IdentityProvider,@ImageUrl,@HasLoggedIn,@IsLocked
-		,@IsDisabled)
+		,@IsDisabled,@LastModifiedOffset)
 
 		SELECT UserProfileId,ExternalID,DisplayName,EmailAddress
 		,FirstName,LastName,PostalCode,IdentityProvider,Originator
-		,ImageUrl,HasLoggedIn,IsLocked,IsDisabled
+		,ImageUrl,HasLoggedIn,IsLocked,IsDisabled,LastModifiedOffset
 		FROM UserProfiles 
 		WHERE ExternalID = @ExternalID;
 		END

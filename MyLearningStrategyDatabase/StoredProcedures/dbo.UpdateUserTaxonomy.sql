@@ -4,6 +4,7 @@
 	@BodyOfKnowledgeId INT,
 	@TaxonomyName NVARCHAR(50) NULL,
     @ImageUrl NVARCHAR(2083) NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 
@@ -22,9 +23,10 @@ AS
 		UPDATE [dbo].[Taxonomy] 
 		SET ParentId=@ParentId,
 		TaxonomyName=@TaxonomyName,
-		ImageUrl=@ImageUrl
+		ImageUrl=@ImageUrl,
+		LastModifiedOffset=@LastModifiedOffset
 		WHERE TaxonomyId = @TaxonomyId
-		AND BodyOfKnowledgeId=@BodyOfKnowledgeId
+		AND BodyOfKnowledgeId=@BodyOfKnowledgeId;
 		
 		SET @rowsaffected = @@ROWCOUNT
 	END

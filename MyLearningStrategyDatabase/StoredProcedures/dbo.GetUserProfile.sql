@@ -9,17 +9,19 @@ END
 
 IF (@Originator IS NOT NULL)
 	BEGIN
-		SELECT DisplayName,EmailAddress
+		SELECT UserProfileId,ExternalID,DisplayName,EmailAddress
 		,FirstName,LastName,PostalCode,Originator
 		,ImageUrl,HasLoggedIn,IsLocked,IsDisabled
+		,LastModifiedOffset
 		FROM UserProfiles 
 		WHERE Originator = @Originator;
 	END
 ELSE IF (@ExternalID IS NOT NULL)
 	BEGIN
-		SELECT DisplayName,EmailAddress
+		SELECT UserProfileId,ExternalID,DisplayName,EmailAddress
 		,FirstName,LastName,PostalCode,Originator
 		,ImageUrl,HasLoggedIn,IsLocked,IsDisabled
+		,LastModifiedOffset
 		FROM UserProfiles 
 		WHERE ExternalID = @ExternalID;
 	END

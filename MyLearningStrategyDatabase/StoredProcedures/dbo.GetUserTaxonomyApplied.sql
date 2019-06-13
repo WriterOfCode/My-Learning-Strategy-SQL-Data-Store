@@ -9,12 +9,14 @@ END
 	IF(@TaxonomyId IS NULL)
 	BEGIN
 		SELECT AppliedTaxonomyId,TaxonomyId,BodyOfKnowledgeId
+		,LastModifiedOffset,CloudRowId
 		FROM [dbo].[TaxonomyApplied]
 		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 	END
 	ELSE
 	BEGIN
-		SELECT AppliedTaxonomyId,TaxonomyId,BodyOfKnowledgeId 
+		SELECT AppliedTaxonomyId,TaxonomyId,BodyOfKnowledgeId
+		,LastModifiedOffset,CloudRowId
 		FROM  [dbo].[TaxonomyApplied]
 		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 		AND TaxonomyId = @TaxonomyId 

@@ -19,22 +19,22 @@ AS
 	IF (@TableOfContentId IS NULL AND @AppliedTaxonomyId IS NULL)
 		BEGIN
 			SELECT 
-			[TableOfContentId],
-			[BodyOfKnowledgeId],
-			[AppliedTaxonomyId],
-			[OrderBy], 
-			[Heading]
+			TableOfContentId,
+			BodyOfKnowledgeId,
+			AppliedTaxonomyId,
+			OrderBy,Heading,
+			LastModifiedOffset,CloudRowId
 			FROM [dbo].[LearningPlanTableOfContents]
 			WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId;
 		END
 	ELSE IF (@TableOfContentId IS NOT NULL)
 		BEGIN 
 			SELECT 
-			[TableOfContentId],
-			[BodyOfKnowledgeId],
-			[AppliedTaxonomyId],
-			[OrderBy], 
-			[Heading]
+			TableOfContentId,
+			BodyOfKnowledgeId,
+			AppliedTaxonomyId,
+			OrderBy,Heading,
+			LastModifiedOffset,CloudRowId
 			FROM [dbo].[LearningPlanTableOfContents]
 			WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 			AND TableOfContentId =	@TableOfContentId;

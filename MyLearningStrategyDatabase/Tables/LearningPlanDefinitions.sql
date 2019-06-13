@@ -12,6 +12,8 @@
     [ContentsMin] INT NULL, 
     [AppliedTaxonomyId] INT NULL, 
     [Taxonomy] BIT NULL, 
+	[LastModifiedOffset] DATETIMEOFFSET NULL, 
+    [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
     CONSTRAINT [PK_LearningPlans] PRIMARY KEY ([LearningPlanDefinitionId]), 
     CONSTRAINT [FK_LearningPlan_BodyOfKnowledge] FOREIGN KEY ([BodyOfKnowledgeId]) REFERENCES [BodyOfKnowledge]([BodyOfKnowledgeId]), 
     CONSTRAINT [FK_LearningPlan_SortOrderRule] FOREIGN KEY ([SortRuleId]) REFERENCES [LearningPlanSortRule]([SortRuleId]),

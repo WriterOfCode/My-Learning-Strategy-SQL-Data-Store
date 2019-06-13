@@ -8,7 +8,8 @@
 	@ImageUrl    NVARCHAR(2083) NULL, 
 	@HasLoggedIn BIT NULL,
     @IsLocked    BIT NULL, 
-    @IsDisabled  BIT NULL
+    @IsDisabled  BIT NULL,
+	@LastModifiedOffset DATETIMEOFFSET NULL
 AS	
 
 DECLARE @rowsaffected INT 
@@ -26,7 +27,9 @@ END
 	ImageUrl=@ImageUrl,
 	HasLoggedIn=@HasLoggedIn,
 	IsLocked=@IsLocked,
-	IsDisabled=@IsDisabled
+	IsDisabled=@IsDisabled,
+	LastModifiedOffset=@LastModifiedOffset
+
 	WHERE Originator =@Originator;
 	
 	SET @rowsaffected = @@ROWCOUNT
