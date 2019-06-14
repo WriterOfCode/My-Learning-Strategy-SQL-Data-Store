@@ -12,7 +12,7 @@
     [ResponseMin] INT NOT NULL DEFAULT 0, 
     [ResponseMinCorrect] INT NOT NULL DEFAULT 0, 
     [ResponseMaxCorrect] INT NOT NULL DEFAULT 0, 
-    [AppliedTaxonomyId] INT NOT NULL DEFAULT 0, 
+    [AppliedTaxonomyId] INT NULL DEFAULT 0, 
     [Taxonomy] BIT NOT NULL DEFAULT 0, 
     [LastModifiedOffset] DATETIMEOFFSET NULL, 
     [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
