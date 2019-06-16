@@ -1,21 +1,21 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteUserQuestions]
     @BodyOfKnowledgeId INT,
-	@UserProfileId INT,
-	@QuestionId INT NULL
+	@QuestionId INT NULL,
+	@Originator UNIQUEIDENTIFIER
 AS
-
+IF (@Originator IS NULL)
+BEGIN
+	RAISERROR (15600, 17,-1, 'DeleteUserQuestions.@Originator');   
+END
 IF (@BodyOfKnowledgeId IS NULL)
 BEGIN
-	RAISERROR (15600, 17,-1, '[DeleteUserQuestions].@BodyOfKnowledgeId');   
+	RAISERROR (15600, 17,-1, 'DeleteUserQuestions.@BodyOfKnowledgeId');   
 END
-IF (@UserProfileId IS NULL)
-BEGIN
-	RAISERROR (15600, 17,-1, 'GetUserLPTableOfContent.@UserProfileId');   
-END
-IF ([dbo].[IsBokUsers](@UserProfileId,@BodyOfKnowledgeId) =0)
+IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)=0)
 BEGIN
 	RAISERROR (13538,14,-1, 'User is not the owner!');   
 END
+
 
 IF (@QuestionId IS NULL)
 BEGIN
