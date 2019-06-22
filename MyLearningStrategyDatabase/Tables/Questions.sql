@@ -9,6 +9,7 @@
 	[Hyperlink_1] VARCHAR(2083) NULL, 
     [Hyperlink_2] VARCHAR(2083) NULL, 
     [Hyperlink_3] VARCHAR(2083) NULL, 
+	[Mnemonic] NVARCHAR(300) NULL, 
 	[LastModifiedOffset] DATETIMEOFFSET NULL, 
     [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
     CONSTRAINT [PK_Questions] PRIMARY KEY NONCLUSTERED ([QuestionId]),

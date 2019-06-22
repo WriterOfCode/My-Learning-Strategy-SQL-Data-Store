@@ -8,6 +8,7 @@
 	@Hyperlink_1 VARCHAR(2083) NULL, 
     @Hyperlink_2 VARCHAR(2083) NULL, 
     @Hyperlink_3 VARCHAR(2083) NULL,
+	@Mnemonic VARCHAR(300) NULL,
 	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 
@@ -31,6 +32,7 @@ AS
 		Hyperlink_1=@Hyperlink_1, 
 		Hyperlink_2=@Hyperlink_2, 
 		Hyperlink_3=@Hyperlink_3,
+		Mnemonic=@Mnemonic,
 		LastModifiedOffset=@LastModifiedOffset
 	WHERE QuestionId=@QuestionId
 		AND BodyOfKnowledgeId=@BodyOfKnowledgeId;

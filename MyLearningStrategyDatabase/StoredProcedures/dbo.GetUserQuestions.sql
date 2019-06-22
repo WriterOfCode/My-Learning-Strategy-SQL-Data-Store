@@ -19,11 +19,18 @@ AS
 --BodyOfKnowledgeId @QuestionId
 IF (@QuestionId IS NOT NULL)
 BEGIN
-	SELECT QuestionId,BodyOfKnowledgeId
-		  ,AppliedTaxonomyId,OrderBy
-		  ,Question,ImageUrl
-		  ,Hyperlink_1,Hyperlink_2
-		  ,Hyperlink_3,LastModifiedOffset,CloudRowId
+	SELECT QuestionId,
+		BodyOfKnowledgeId,
+		AppliedTaxonomyId,
+		OrderBy,
+		Question,
+		ImageUrl,
+		Hyperlink_1,
+		Hyperlink_2,
+		Hyperlink_3,
+		LastModifiedOffset,
+		CloudRowId,
+		Mnemonic
 	FROM [Questions]
 	WHERE QuestionId = @QuestionId
 	AND BodyOfKnowledgeId = @BodyOfKnowledgeId;
