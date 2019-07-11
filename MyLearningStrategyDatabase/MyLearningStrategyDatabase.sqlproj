@@ -64,11 +64,6 @@
     <Build Include="Tables\AssessmentDefinitions.sql" />
     <Build Include="Tables\AssessmentSortRule.sql" />
     <Build Include="Tables\BodyOfKnowledge.sql" />
-    <Build Include="Tables\LearningPlanContent.sql" />
-    <Build Include="Tables\LearningPlanContentSelections.sql" />
-    <Build Include="Tables\LearningPlanDefinitions.sql" />
-    <Build Include="Tables\LearningPlanSortRule.sql" />
-    <Build Include="Tables\LearningPlanTableOfContents.sql" />
     <Build Include="Tables\Questions.sql" />
     <Build Include="Tables\Responses.sql" />
     <Build Include="Tables\Taxonomy.sql" />
@@ -126,5 +121,15 @@
     <Build Include="dbo.SequenceForBase26.sql" />
     <PostDeploy Include="GrantUserRights.sql" />
     <Build Include="dbo.IsOriginatorAdmin.sql" />
+    <Build Include="StoredProcedures\dbo.GetSubjectsWithStats.sql" />
+    <Build Include="StoredProcedures\dbo.GetQuestionsWithRCount.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="dbo.AlterDataPreInstall.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </PreDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="MyLearningStrategyDatabase.refactorlog" />
   </ItemGroup>
 </Project>

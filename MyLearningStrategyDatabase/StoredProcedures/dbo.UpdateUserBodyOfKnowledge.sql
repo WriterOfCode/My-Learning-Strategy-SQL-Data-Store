@@ -6,6 +6,7 @@
 	@IsShared BIT NULL,
 	@HasBeenShared BIT NULL,
 	@LastModifiedOffset DATETIMEOFFSET NULL,
+	@CloudRowId UNIQUEIDENTIFIER,
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @rowsaffected INT 
@@ -36,6 +37,7 @@ AS
 			LastModifiedOffset=@LastModifiedOffset
 		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 		AND UserProfileId=@UserProfileId
+		AND CloudRowId=@CloudRowId;
 		SET @rowsaffected = @@ROWCOUNT
 	END
 RETURN @rowsaffected

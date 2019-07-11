@@ -29,7 +29,6 @@ END
 	IsLocked=@IsLocked,
 	IsDisabled=@IsDisabled,
 	LastModifiedOffset=@LastModifiedOffset
-
 	WHERE Originator =@Originator;
 	
 	SET @rowsaffected = @@ROWCOUNT

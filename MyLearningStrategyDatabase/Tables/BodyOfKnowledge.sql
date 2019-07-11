@@ -2,9 +2,9 @@
 (
 	[BodyOfKnowledgeId] INT NOT NULL IDENTITY, 
 	[UserProfileId] INT NOT NULL,
-    [Name] NVARCHAR(50) NULL, 
-    [Acronym] NVARCHAR(20) NULL, 
-    [Keywords] NVARCHAR(MAX) NULL, 
+    [Name] NVARCHAR(150) NULL, 
+    [Acronym] NVARCHAR(50) NULL, 
+    [Keywords] NVARCHAR(100) NULL, 
     [IsShared] BIT NOT NULL DEFAULT 0, 
     [HasBeenShared] BIT NOT NULL DEFAULT 0, 
 	[LastModifiedOffset] DATETIMEOFFSET NULL, 

@@ -24,7 +24,12 @@ BEGIN
 		AppliedTaxonomyId,
 		OrderBy,
 		Question,
-		ImageUrl,
+		Image_1_Device, 
+		Image_1_Cloud, 
+		Image_2_Device, 
+		Image_2_Cloud, 
+		Image_3_Device, 
+		Image_3_Cloud, 
 		Hyperlink_1,
 		Hyperlink_2,
 		Hyperlink_3,
@@ -38,22 +43,45 @@ END
 --BodyOfKnowledgeId
 IF (@QuestionId IS NULL AND @AppliedTaxonomyId IS NULL)
 	BEGIN 
-	SELECT QuestionId,BodyOfKnowledgeId
-		  ,AppliedTaxonomyId,OrderBy
-		  ,Question,ImageUrl
-		  ,Hyperlink_1,Hyperlink_2
-		  ,Hyperlink_3,LastModifiedOffset,CloudRowId
+	SELECT QuestionId,
+			BodyOfKnowledgeId,
+			AppliedTaxonomyId,
+			OrderBy,
+			Question,		
+			Image_1_Device, 
+			Image_1_Cloud, 
+			Image_2_Device, 
+			Image_2_Cloud, 
+			Image_3_Device, 
+			Image_3_Cloud, 
+			Hyperlink_1,
+			Hyperlink_2,
+			Hyperlink_3,
+			LastModifiedOffset,
+			CloudRowId,
+			Mnemonic
 	  FROM [Questions]
 	  WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId;
 	END
 --BodyOfKnowledgeId and @QuestionId
 ELSE IF (@QuestionId IS NULL AND @AppliedTaxonomyId IS NOT NULL)
 BEGIN
-SELECT QuestionId,BodyOfKnowledgeId
-		  ,AppliedTaxonomyId,OrderBy
-		  ,Question,ImageUrl
-		  ,Hyperlink_1,Hyperlink_2
-		  ,Hyperlink_3,LastModifiedOffset,CloudRowId
+SELECT QuestionId	BodyOfKnowledgeId,
+			AppliedTaxonomyId,
+			OrderBy,
+			Question,		
+			Image_1_Device, 
+			Image_1_Cloud, 
+			Image_2_Device, 
+			Image_2_Cloud, 
+			Image_3_Device, 
+			Image_3_Cloud, 
+			Hyperlink_1,
+			Hyperlink_2,
+			Hyperlink_3,
+			LastModifiedOffset,
+			CloudRowId,
+			Mnemonic
   FROM [Questions]
   WHERE AppliedTaxonomyId = @AppliedTaxonomyId
   AND BodyOfKnowledgeId = @BodyOfKnowledgeId;

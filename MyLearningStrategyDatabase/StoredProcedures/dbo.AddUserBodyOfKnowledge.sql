@@ -1,11 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserBodyOfKnowledge]
-	@Name NVARCHAR (50),
-	@Acronym NVARCHAR (20) NULL,
-	@Keywords NVARCHAR(MAX) NULL,
+	@Name NVARCHAR (150),
+	@Acronym NVARCHAR (50) NULL,
+	@Keywords NVARCHAR(100) NULL,
 	@IsShared BIT NULL,
 	@HasBeenShared BIT NULL,
 	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
+
 AS
 	DECLARE @UserProfileId INT
 	DECLARE @BodyOfKnowledgeId AS INT
