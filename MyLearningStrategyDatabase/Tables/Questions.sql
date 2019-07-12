@@ -3,7 +3,7 @@
 	[QuestionId] INT IDENTITY (1, 1) NOT NULL , 
     [BodyOfKnowledgeId] INT NOT NULL, 
     [AppliedTaxonomyId] INT NULL, 
-	[OrderBy] INT NOT NULL, 
+	[OrderBy] INT NOT NULL DEFAULT 1, 
     [Question] NVARCHAR(4000) NULL, 
 	[Image_1_Device] NVARCHAR(256) NULL, 
 	[Image_1_Cloud] NVARCHAR(2083) NULL, 

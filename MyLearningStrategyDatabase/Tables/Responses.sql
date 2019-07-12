@@ -2,7 +2,7 @@
 (
 	[ResponseId] INT IDENTITY (1, 1) NOT NULL , 
     [QuestionId] INT NOT NULL, 
-    [OrderBy] INT NOT NULL, 
+    [OrderBy] INT NOT NULL DEFAULT 1, 
 	[IsCorrect] BIT NULL, 
     [Response] NVARCHAR(2083) NULL,
 	[Image_1_Device] NVARCHAR(256) NULL, 

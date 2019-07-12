@@ -7,7 +7,7 @@ AS
 BEGIN
 	DECLARE @UserProfileId INT
 
-	SELECT @UserProfileId = MAX(UP.UserProfileId)
+	SELECT @UserProfileId = ISNULL(MAX(UP.UserProfileId), 0 )
 	FROM UserProfiles UP 
 	WHERE UP.Originator = @Originator
 

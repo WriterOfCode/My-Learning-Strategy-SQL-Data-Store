@@ -14,7 +14,7 @@ AS
 
 	IF (@Originator IS NULL)
 	BEGIN
-		RAISERROR (15600, 17,-1, '[UpdateUserAssessmentDefinitions].@Originator');   
+		RAISERROR (15600, 17,-1, '[AddUserBodyOfKnowledge].@Originator');   
 	END
 	SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
 	IF (@UserProfileId=0)

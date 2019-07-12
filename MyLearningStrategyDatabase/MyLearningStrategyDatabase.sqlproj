@@ -121,7 +121,9 @@
     <Build Include="dbo.SequenceForBase26.sql" />
     <PostDeploy Include="GrantUserRights.sql" />
     <Build Include="dbo.IsOriginatorAdmin.sql" />
-    <Build Include="StoredProcedures\dbo.GetSubjectsWithStats.sql" />
+    <Build Include="StoredProcedures\dbo.GetSubjectsWithStats.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Build>
     <Build Include="StoredProcedures\dbo.GetQuestionsWithRCount.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -131,5 +133,8 @@
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MyLearningStrategyDatabase.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MyLearningStrategyDatabase.publish.xml" />
   </ItemGroup>
 </Project>
