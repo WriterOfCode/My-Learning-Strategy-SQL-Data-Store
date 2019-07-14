@@ -1,32 +1,34 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserProfile]
-	@ExternalID  NVARCHAR (450) NULL,
+	@ExternalID  NVARCHAR (450),
 	@DisplayName  NVARCHAR (256) NULL,
-    @EmailAddress       NVARCHAR (500) NULL,
-    @FirstName   NVARCHAR (256) NULL,
-    @LastName    NVARCHAR (256) NULL,
-    @PostalCode NCHAR(10) NULL, 
-    @IdentityProvider NCHAR(10) NULL,
-	@ImageUrl    NVARCHAR(2083) NULL, 
+	@EmailAddress       NVARCHAR (500) NULL,
+	@FirstName   NVARCHAR (256) NULL,
+	@LastName    NVARCHAR (256) NULL,
+	@PostalCode NCHAR(10) NULL, 
+	@IdentityProvider NVARCHAR(2083) NULL, 
+	@Originator  UNIQUEIDENTIFIER, 
+	@ImageDevice NVARCHAR(256) NULL, 
+	@ImageCloud NVARCHAR(2083) NULL,
+	@ImageHash INT NULL, 
 	@HasLoggedIn BIT NULL,
-    @IsLocked    BIT NULL, 
-    @IsDisabled  BIT NULL,
-	@LastModifiedOffset DATETIMEOFFSET NULL
+	@IsLocked    BIT NULL, 
+	@IsDisabled  BIT NULL, 
+	@IsDeleted BIT NULL
 AS	
 
 DECLARE @UserProfileId INT
 
-IF (@ExternalID IS NULL)
-BEGIN
-	RAISERROR (15600, 17,-1, '[AddUserProfile].@ExternalID');   
-END
+
 BEGIN
 	INSERT INTO UserProfiles
-		(ExternalID,DisplayName,EmailAddress,FirstName,LastName
-		,PostalCode,IdentityProvider,ImageUrl,HasLoggedIn
-		,IsLocked,IsDisabled,LastModifiedOffset)
-	VALUES (@ExternalID,@DisplayName,@EmailAddress,@FirstName,@LastName
-	,@PostalCode,@IdentityProvider,@ImageUrl,@HasLoggedIn,@IsLocked
-	,@IsDisabled,@LastModifiedOffset);
+		(ExternalID,DisplayName,EmailAddress,FirstName,LastName,
+		PostalCode,IdentityProvider,Originator,ImageDevice,
+		ImageCloud,ImageHash,HasLoggedIn,IsLocked,IsDisabled,
+		IsDeleted)
+	VALUES (@ExternalID,@DisplayName,@EmailAddress,@FirstName,
+    @LastName,@PostalCode,@IdentityProvider,@Originator,
+	@ImageDevice,@ImageCloud,@ImageHash,@HasLoggedIn,
+    @IsLocked,@IsDisabled,@IsDeleted);
 
 	SET @UserProfileId = CAST(SCOPE_IDENTITY() AS INT);
 

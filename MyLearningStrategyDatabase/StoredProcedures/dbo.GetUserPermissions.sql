@@ -2,10 +2,6 @@
 	@PermissionsId INT NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
-IF (@Originator IS NULL)
-BEGIN
-	RAISERROR (15600, 17,-1, 'GetUserPermissions.@Originator');   
-END
 
 IF (@PermissionsId IS NULL)
 BEGIN

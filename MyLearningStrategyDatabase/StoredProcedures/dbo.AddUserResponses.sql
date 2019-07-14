@@ -14,18 +14,9 @@
 	@Hyperlink_3 VARCHAR(2083) NULL,
 	@Mnemonic VARCHAR(300) NULL,
 	@LastModifiedOffset DATETIMEOFFSET NULL,
-	@Originator UNIQUEIDENTIFIER
+	@Originator UNIQUEIDENTIFIER NULL
 AS
 	DECLARE @ResponseId INT 
-
-	IF (@QuestionId IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, '[dbo.AddUserResponses].@QuestionId');   
-	END
-	IF (@Originator IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, '[dbo.AddUserResponses].@Originator');   
-	END
 
 	IF ([dbo].[IsQuestionOriginator](@Originator,@QuestionId)=0)
 	BEGIN
@@ -63,6 +54,7 @@ AS
 			@Mnemonic, 
 			@LastModifiedOffset );
 
+		--SET @ResponseId = CAST(SCOPE_IDENTITY() AS INT)
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS ResponseId;
 	END
 RETURN @ResponseId

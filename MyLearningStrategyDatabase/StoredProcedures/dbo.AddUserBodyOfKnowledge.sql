@@ -1,23 +1,17 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserBodyOfKnowledge]
+	@UserProfileId INT,
 	@Name NVARCHAR (150),
 	@Acronym NVARCHAR (50) NULL,
 	@Keywords NVARCHAR(100) NULL,
 	@IsShared BIT NULL,
 	@HasBeenShared BIT NULL,
-	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 
 AS
-	DECLARE @UserProfileId INT
+
 	DECLARE @BodyOfKnowledgeId AS INT
 
-
-	IF (@Originator IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, '[AddUserBodyOfKnowledge].@Originator');   
-	END
-	SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
-	IF (@UserProfileId=0)
+	IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
 	END
@@ -29,16 +23,14 @@ AS
 			   ,Acronym
 			   ,Keywords
 			   ,IsShared
-			   ,HasBeenShared
-			   ,LastModifiedOffset)
+			   ,HasBeenShared)
 		 VALUES
 			   (@UserProfileId
 			   ,@Name
 			   ,@Acronym
 			   ,@Keywords
 			   ,@IsShared
-			   ,@HasBeenShared
-			   ,@LastModifiedOffset);
+			   ,@HasBeenShared);
 
 	SELECT CAST(SCOPE_IDENTITY() AS INT) AS BodyOfKnowledgeId;
 

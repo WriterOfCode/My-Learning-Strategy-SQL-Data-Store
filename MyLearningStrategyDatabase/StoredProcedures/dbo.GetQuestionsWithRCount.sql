@@ -1,15 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[GetQuestionsWithRCount]
-    @BodyOfKnowledgeId INT,
-	@Originator UNIQUEIDENTIFIER
+    @BodyOfKnowledgeId INT NULL,
+	@Originator UNIQUEIDENTIFIER NULL
 AS
-	IF (@BodyOfKnowledgeId IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, 'GetQuestionsWithRCount.@BodyOfKnowledgeId');   
-	END
-	IF (@Originator IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, 'GetQuestionsWithRCount.@Originator');   
-	END
+
 	IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   

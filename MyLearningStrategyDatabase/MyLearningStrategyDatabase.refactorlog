@@ -1,1 +1,178 @@
-﻿
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="f15e8d5d-506a-42ee-b2e6-2cb7e6401377" ChangeDateTime="07/13/2019 03:18:23">
+    <Property Name="ElementName" Value="[dbo].[Categories].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Categories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CategoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="df02ad07-0125-4e7b-aecb-e5a3396c6590" ChangeDateTime="07/13/2019 03:29:34">
+    <Property Name="ElementName" Value="[dbo].[CategoriesApplied].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CategoriesApplied]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CategoryAppliedId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9e49c290-b517-49e9-b9b0-16e9e499b67b" ChangeDateTime="07/13/2019 03:41:59">
+    <Property Name="ElementName" Value="[dbo].[Categories].[BodyOfKnowledgeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Categories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserProfileId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b983d815-39a6-4a0b-807b-4fa5c1a59db0" ChangeDateTime="07/13/2019 14:03:06">
+    <Property Name="ElementName" Value="[dbo].[FK_LibraryCategories_ToLibrary]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="" />
+    <Property Name="ParentElementType" Value="" />
+    <Property Name="NewName" Value="[FK_BokCategories_ToLibrary]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cea46f93-b353-41c6-8be9-8968a78887d2" ChangeDateTime="07/13/2019 14:03:34">
+    <Property Name="ElementName" Value="[dbo].[FK_BokCategories_ToLibrary]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[LibraryCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Categories_ToBok]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6a507265-d4ce-4866-8900-004a35fb2d53" ChangeDateTime="07/13/2019 14:04:17">
+    <Property Name="ElementName" Value="[dbo].[PK_LibraryCategories]" />
+    <Property Name="ElementType" Value="SqlPrimaryKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[LibraryCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[PK_BokCategories]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="54b7c63a-b900-4a8c-a548-c70020c2b9bd" ChangeDateTime="07/13/2019 14:04:31">
+    <Property Name="ElementName" Value="[dbo].[FK_LibraryCategories_ToBOK]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[LibraryCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Categories_ToBOK]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c1f60f25-aa7d-4b0d-84ab-1a1db96cb7d4" ChangeDateTime="07/14/2019 15:04:48">
+    <Property Name="ElementName" Value="[dbo].[UserProfiles].[LastModifiedOffset]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserProfiles]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModified" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="647da0c8-cd24-4645-ad07-ae08a9009735" ChangeDateTime="07/14/2019 15:06:58">
+    <Property Name="ElementName" Value="[dbo].[Responses].[LastModifiedOffset]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Responses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModified" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ee4f16c3-9e2f-4498-9b1e-8649c5b71a3a" ChangeDateTime="07/14/2019 15:07:06">
+    <Property Name="ElementName" Value="[dbo].[Questions].[LastModifiedOffset]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Questions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModified" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cebfee4b-1da9-49a5-b021-69d9ef6d3126" ChangeDateTime="07/14/2019 15:07:19">
+    <Property Name="ElementName" Value="[dbo].[QuestionCategories].[LastModifiedOffset]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[QuestionCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModified" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1928aaf9-af31-4ca1-9480-5d2476b82ef9" ChangeDateTime="07/14/2019 15:07:29">
+    <Property Name="ElementName" Value="[dbo].[LearningStrategies].[LastModifiedOffset]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LearningStrategies]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModified" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fb3fe6e1-d5ec-4252-8ba7-30782b76acd0" ChangeDateTime="07/14/2019 15:07:43">
+    <Property Name="ElementName" Value="[dbo].[LearningHistory].[LastModifiedOffset]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LearningHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModified" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2519947d-fba3-4e46-973d-2dbd9bba5b8d" ChangeDateTime="07/14/2019 15:07:54">
+    <Property Name="ElementName" Value="[dbo].[Categories].[LastModifiedOffset]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Categories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModified" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="60d5143c-ebbf-4c0e-9060-45ee5300c602" ChangeDateTime="07/14/2019 15:08:03">
+    <Property Name="ElementName" Value="[dbo].[BodyOfKnowledgeCategories].[LastModifiedOffset]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BodyOfKnowledgeCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModified" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f80b6495-1dd7-4662-aedc-fe6800294bb3" ChangeDateTime="07/14/2019 15:08:15">
+    <Property Name="ElementName" Value="[dbo].[BodyOfKnowledge].[LastModifiedOffset]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BodyOfKnowledge]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModified" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="204dc2e3-464b-48d1-ace8-b0dd4e0c3447" ChangeDateTime="07/14/2019 15:09:36">
+    <Property Name="ElementName" Value="[dbo].[BodyOfKnowledge].[LastModified]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BodyOfKnowledge]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModifiedOffset" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fc99380e-0f78-4949-a91f-f562b91a2d6f" ChangeDateTime="07/14/2019 15:09:44">
+    <Property Name="ElementName" Value="[dbo].[Categories].[LastModified]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Categories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModifiedOffset" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="579a0325-8956-43a8-a515-3dd0c70a0a2f" ChangeDateTime="07/14/2019 15:09:52">
+    <Property Name="ElementName" Value="[dbo].[LearningHistory].[LastModified]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LearningHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModifiedOffset" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="adfeb1ab-2d83-4791-a89d-b962fef8b402" ChangeDateTime="07/14/2019 15:10:00">
+    <Property Name="ElementName" Value="[dbo].[LearningStrategies].[LastModified]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LearningStrategies]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModifiedOffset" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b343135a-36f3-433f-8728-983e56fac1e3" ChangeDateTime="07/14/2019 15:10:07">
+    <Property Name="ElementName" Value="[dbo].[QuestionCategories].[LastModified]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[QuestionCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModifiedOffset" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="57e052a7-f11f-4f78-9f22-09020eb8dec8" ChangeDateTime="07/14/2019 15:10:13">
+    <Property Name="ElementName" Value="[dbo].[Questions].[LastModified]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Questions]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModifiedOffset" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="787e544b-93ce-412c-941d-b331dd7b50bd" ChangeDateTime="07/14/2019 15:10:20">
+    <Property Name="ElementName" Value="[dbo].[Responses].[LastModified]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Responses]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModifiedOffset" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="14b4e12d-2602-409c-95f3-fc24a9afe413" ChangeDateTime="07/14/2019 15:10:28">
+    <Property Name="ElementName" Value="[dbo].[UserProfiles].[LastModified]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserProfiles]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModifiedOffset" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c470371a-cc26-4d90-a3bc-9c2842c408eb" ChangeDateTime="07/14/2019 15:46:48">
+    <Property Name="ElementName" Value="[dbo].[BodyOfKnowledgeCategories].[LastModified]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BodyOfKnowledgeCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LastModifiedOffset" />
+  </Operation>
+</Operations>

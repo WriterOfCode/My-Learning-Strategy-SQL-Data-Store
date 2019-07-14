@@ -1,16 +1,27 @@
-﻿CREATE PROCEDURE [dbo].[DeleteUserQuestions]
-    @BodyOfKnowledgeId INT,
-	@QuestionId INT,
-	@Originator UNIQUEIDENTIFIER
+﻿CREATE PROCEDURE [dbo].[DeleteUserLearningHistory]
+	@StrategyHistoryId INT, 
+	@Originator uniqueidentifier
 AS
+    DECLARE @BodyOfKnowledgeId INT
 
-IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)=0)
+	SELECT @BodyOfKnowledgeId = MAX(ls.BodyOfKnowledgeId)
+	FROM LearningStrategies ls
+	join LearningHistory lp
+	on ls.StrategyId=lp.StrategyId
+	WHERE @StrategyHistoryId=@StrategyHistoryId
+
+	IF (@BodyOfKnowledgeId IS NULL)
+	BEGIN
+		RAISERROR (15600, 17,-1, '[DeleteUserLearningHistory].@BodyOfKnowledgeId');   
+	END
+
+	IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)=0)
+	BEGIN
+		RAISERROR (13538,14,-1, 'User is not the owner!');   
+	END
+	
 BEGIN
-	RAISERROR (13538,14,-1, 'User is not the owner!');   
-END
 
-
-BEGIN
 	-- SET XACT_ABORT ON will cause the transaction to be uncommittable  
 	-- when the constraint violation occurs.   
 	SET XACT_ABORT ON;  
@@ -20,19 +31,12 @@ BEGIN
 
 		--[dbo].[LearningHistoryProgress]
 		DELETE FROM [dbo].[LearningHistoryProgress]
-		WHERE QuestionId = @QuestionId
+		WHERE StrategyHistoryId =@StrategyHistoryId
 
-		--[dbo].[QuestionCategories]
-		DELETE FROM [dbo].[QuestionCategories]
-		WHERE QuestionId =@QuestionId
+		--[dbo].[LearningHistory]
+		DELETE FROM [dbo].[LearningHistory]
+		WHERE StrategyHistoryId =@StrategyHistoryId
 
-		DELETE FROM [dbo].[Responses]
-		WHERE QuestionId= @QuestionId
-
-		DELETE [dbo].[Questions]
-		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
-		AND QuestionId = @QuestionId
-			
 		-- If the DELETE statement succeeds, commit the transaction.  
 		COMMIT TRANSACTION;  
 	END TRY
@@ -57,6 +61,6 @@ BEGIN
 			COMMIT TRANSACTION;     
 		END;  
 	END CATCH;
-END
 
-RETURN 0
+END 
+return 	@StrategyHistoryId

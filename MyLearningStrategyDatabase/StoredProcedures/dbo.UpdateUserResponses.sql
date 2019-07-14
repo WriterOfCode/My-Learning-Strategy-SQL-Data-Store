@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateUserResponses]
-	@ResponseId INT NULL,
-	@QuestionId INT NULL, 
+	@ResponseId INT,
+	@QuestionId INT, 
 	@OrderBy INT NULL, 
 	@Response NVARCHAR(2083) NULL, 
 	@IsCorrect BIT NULL, 
@@ -19,11 +19,6 @@
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @rowsaffected INT 
-
-	IF (@QuestionId IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, '[dbo.UpdateUserResponses].@QuestionId');   
-	END
 	IF ([dbo].[IsQuestionOriginator](@Originator,@QuestionId)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   

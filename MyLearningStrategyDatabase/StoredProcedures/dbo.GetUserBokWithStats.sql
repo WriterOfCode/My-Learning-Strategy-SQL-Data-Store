@@ -1,19 +1,14 @@
-﻿CREATE PROCEDURE [dbo].[GetSubjectsWithStats]
+﻿CREATE PROCEDURE [dbo].[GetBokWithStats]
 		@BodyOfKnowledgeId INT NULL,
 		@Originator uniqueidentifier
 AS
-
-IF (@Originator IS NULL)
-BEGIN
-	RAISERROR (15600, 17,-1, 'GetSubjectsWithStats.@Originator');   
-END
 
 IF @BodyOfKnowledgeId IS NULL
 BEGIN
 	SELECT BOK.BodyOfKnowledgeId,BOK.Name,BOK.Acronym, BOK.Keywords,
 	BOK.IsShared, BOK.HasBeenShared, BOK.LastModifiedOffset, BOK.CloudRowId,
 	(SELECT COUNT(*) from Questions QC where QC.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId) AS QuestionsCount,
-	(SELECT COUNT(*) from AssessmentDefinitions AD where AD.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId) AS AssessmentsCount
+	(SELECT COUNT(*) from LearningStrategies AD where AD.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId) AS LearningStrategiesCount
 	FROM BodyOfKnowledge BOK
 	JOIN UserProfiles U ON U.UserProfileId = BOK.UserProfileId
 	WHERE U.Originator = @Originator;
@@ -28,7 +23,7 @@ ELSE
 		SELECT BOK.BodyOfKnowledgeId,BOK.Name,BOK.Acronym, BOK.Keywords,
 		BOK.IsShared, BOK.HasBeenShared, BOK.LastModifiedOffset, BOK.CloudRowId,
 		(SELECT COUNT(*) from Questions QC where QC.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId) AS QuestionsCount,
-		(SELECT COUNT(*) from AssessmentDefinitions AD where AD.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId) AS AssessmentsCount
+		(SELECT COUNT(*) from LearningStrategies AD where AD.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId) AS LearningStrategiesCount
 		FROM BodyOfKnowledge BOK
 		JOIN UserProfiles U ON U.UserProfileId = BOK.UserProfileId
 		WHERE U.Originator = @Originator

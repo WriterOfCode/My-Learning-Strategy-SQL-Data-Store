@@ -1,16 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[DeteUserResponses]
-    @QuestionId INT NULL,
-	@ResponseId INT NULL,
+    @QuestionId INT,
+	@ResponseId INT,
 	@Originator UNIQUEIDENTIFIER
 AS
-	IF (@QuestionId IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, '[DeteUserResponses].@QuestionId can not be null');   
-	END
-	IF (@Originator IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, '[DeteUserResponses].@Originator can not be null');   
-	END
 	IF ([dbo].[IsQuestionOriginator](@Originator,@QuestionId)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   

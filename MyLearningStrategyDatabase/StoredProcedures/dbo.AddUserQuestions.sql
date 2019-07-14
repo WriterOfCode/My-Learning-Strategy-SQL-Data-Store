@@ -1,6 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserQuestions]
     @BodyOfKnowledgeId INT, 
-    @AppliedTaxonomyId INT NULL, 
 	@OrderBy INT NULL, 
     @Question NVARCHAR(4000) NULL, 
 	@Image_1_Device NVARCHAR(256) NULL, 
@@ -27,7 +26,6 @@ AS
 	END
 	BEGIN
 	INSERT INTO Questions (	BodyOfKnowledgeId, 
-							AppliedTaxonomyId, 
 							OrderBy, 
 							Question, 
 							Image_1_Device, 
@@ -43,7 +41,6 @@ AS
 							LastModifiedOffset)
 	VALUES (
 			@BodyOfKnowledgeId, 
-			@AppliedTaxonomyId, 
 			@OrderBy, 
 			@Question, 
 			@Image_1_Device, 
@@ -58,7 +55,8 @@ AS
 			@Mnemonic, 
 			@LastModifiedOffset);
  
-	SELECT CAST(SCOPE_IDENTITY() AS INT) AS QuestionId;
+		--SET @QuestionId = CAST(SCOPE_IDENTITY() AS INT)
+		SELECT CAST(SCOPE_IDENTITY() AS INT) AS QuestionId;
 	END
 
 RETURN @QuestionId

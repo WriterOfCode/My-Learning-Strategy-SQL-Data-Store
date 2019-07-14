@@ -1,16 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserResponses]
 	@ResponseId INT NULL,
-    @QuestionId INT,
+    @QuestionId INT NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
-	IF (@QuestionId IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, 'GetUserResponses.@QuestionId can not be null');   
-	END
-	IF ([dbo].[IsQuestionOriginator](@Originator,@QuestionId)=0)
-	BEGIN
-		RAISERROR (13538,14,-1, 'User is not the owner!');   
-	END
+IF ([dbo].[IsQuestionOriginator](@Originator,@QuestionId)=0)
+BEGIN
+	RAISERROR (13538,14,-1, 'User is not the owner!');   
+END
 IF (@ResponseId IS NOT NULL AND @QuestionId IS NOT NULL)
 	BEGIN
 	SELECT ResponseId,

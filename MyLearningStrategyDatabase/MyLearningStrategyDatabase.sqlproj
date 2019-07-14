@@ -61,52 +61,32 @@
     <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Tables\AssessmentDefinitions.sql" />
-    <Build Include="Tables\AssessmentSortRule.sql" />
     <Build Include="Tables\BodyOfKnowledge.sql" />
     <Build Include="Tables\Questions.sql" />
     <Build Include="Tables\Responses.sql" />
-    <Build Include="Tables\Taxonomy.sql" />
-    <Build Include="Tables\TaxonomyApplied.sql" />
     <Build Include="Tables\UserPermissions.sql" />
     <Build Include="Tables\UserProfiles.sql" />
-    <Build Include="StoredProcedures\dbo.AddAssessmentSortRule.sql" />
-    <Build Include="StoredProcedures\dbo.AddUserAssessmentDefinitions.sql" />
     <Build Include="StoredProcedures\dbo.AddUserBodyOfKnowledge.sql" />
     <Build Include="StoredProcedures\dbo.AddUserPermissions.sql" />
     <Build Include="StoredProcedures\dbo.AddUserProfile.sql" />
     <Build Include="StoredProcedures\dbo.AddUserQuestions.sql" />
     <Build Include="StoredProcedures\dbo.AddUserResponses.sql" />
-    <Build Include="StoredProcedures\dbo.AddUserTaxonomy.sql" />
-    <Build Include="StoredProcedures\dbo.AddUserTaxonomyApplied.sql" />
-    <Build Include="StoredProcedures\dbo.DeleteAssessmentSortRule.sql" />
-    <Build Include="StoredProcedures\dbo.DeleteUserAssessmentDefinitions.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserBodyOfKnowledge.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserPermissions.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserProfile.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserQuestions.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserResponses.sql" />
-    <Build Include="StoredProcedures\dbo.DeleteUserTaxonomy.sql" />
-    <Build Include="StoredProcedures\dbo.DeleteUserTaxonomyApplied.sql" />
-    <Build Include="StoredProcedures\dbo.GetAssessmentSortRule.sql" />
-    <Build Include="StoredProcedures\dbo.GetUserAssessmentDefinitions.sql" />
     <Build Include="StoredProcedures\dbo.GetUserBodyOfKnowledge.sql" />
     <Build Include="StoredProcedures\dbo.GetUserByExternalID.sql" />
     <Build Include="StoredProcedures\dbo.GetUserPermissions.sql" />
     <Build Include="StoredProcedures\dbo.GetUserProfile.sql" />
     <Build Include="StoredProcedures\dbo.GetUserQuestions.sql" />
     <Build Include="StoredProcedures\dbo.GetUserResponses.sql" />
-    <Build Include="StoredProcedures\dbo.GetUserTaxonomy.sql" />
-    <Build Include="StoredProcedures\dbo.GetUserTaxonomyApplied.sql" />
-    <Build Include="StoredProcedures\dbo.UpdateAssessmentSortRule.sql" />
-    <Build Include="StoredProcedures\dbo.UpdateUserAssessmentDefinitions.sql" />
     <Build Include="StoredProcedures\dbo.UpdateUserBodyOfKnowledge.sql" />
     <Build Include="StoredProcedures\dbo.UpdateUserPermissions.sql" />
     <Build Include="StoredProcedures\dbo.UpdateUserProfile.sql" />
     <Build Include="StoredProcedures\dbo.UpdateUserQuestions.sql" />
     <Build Include="StoredProcedures\dbo.UpdateUserResponses.sql" />
-    <Build Include="StoredProcedures\dbo.UpdateUserTaxonomy.sql" />
-    <Build Include="StoredProcedures\dbo.UpdateUserTaxonomyApplied.sql" />
     <Build Include="dbo.BokWebApiCert.sql" />
     <Build Include="dbo.BokWebApiSymmetricKey.sql" />
     <Build Include="dbo.BokWebApiUser.sql" />
@@ -121,10 +101,32 @@
     <Build Include="dbo.SequenceForBase26.sql" />
     <PostDeploy Include="GrantUserRights.sql" />
     <Build Include="dbo.IsOriginatorAdmin.sql" />
-    <Build Include="StoredProcedures\dbo.GetSubjectsWithStats.sql">
+    <Build Include="StoredProcedures\dbo.GetUserBokWithStats.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Build>
     <Build Include="StoredProcedures\dbo.GetQuestionsWithRCount.sql" />
+    <Build Include="Tables\LearningStrategies.sql" />
+    <Build Include="Tables\Categories.sql" />
+    <Build Include="Tables\LearningHistory.sql" />
+    <Build Include="Tables\LearningHistoryProgress.sql" />
+    <Build Include="Tables\QuestionCategories.sql" />
+    <Build Include="Tables\BodyOfKnowledgeCategories.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserLearningStrategy.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserCatagory.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserLearningHistory.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserLearningHistoryProgress.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserLearningStrategy.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserQuestionsCategory.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserBokCatagory.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserBokCategories.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserBokCategories.sql" />
+    <Build Include="StoredProcedures\dbo.GetUsersCategories.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserCatagories.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserCategory.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserQuestionCategories.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserQuestionsCatagories.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserLearningStrategies.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserLearningHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="dbo.AlterDataPreInstall.sql">

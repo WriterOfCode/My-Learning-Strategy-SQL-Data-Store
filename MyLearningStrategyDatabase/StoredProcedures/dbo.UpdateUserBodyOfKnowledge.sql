@@ -2,7 +2,7 @@
 	@BodyOfKnowledgeId INT,
 	@Name NVARCHAR (50),
 	@Acronym NVARCHAR (20) NULL,
-	@Keywords NVARCHAR(MAX) NULL,
+	@Keywords NVARCHAR(100) NULL,
 	@IsShared BIT NULL,
 	@HasBeenShared BIT NULL,
 	@LastModifiedOffset DATETIMEOFFSET NULL,
@@ -11,15 +11,6 @@
 AS
 	DECLARE @rowsaffected INT 
 	DECLARE @UserProfileId INT
-
-	IF (@BodyOfKnowledgeId IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, '[UpdateUserBodyOfKnowledge].@BodyOfKnowledgeId')  
-	END
-	IF (@Originator IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, '[UpdateUserBodyOfKnowledge].@Originator')  
-	END
 
 	SET @UserProfileId = [dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)
 	IF (@UserProfileId=0)

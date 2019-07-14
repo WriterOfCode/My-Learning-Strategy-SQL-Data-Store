@@ -3,12 +3,6 @@
 		@Originator uniqueidentifier
 AS
 
-IF (@Originator IS NULL)
-BEGIN
-	RAISERROR (15600, 17,-1, 'GetUserBodyOfKnowledge.@Originator');   
-END
-
-
 IF @BodyOfKnowledgeId IS NULL
 BEGIN
 	SELECT BOK.BodyOfKnowledgeId,BOK.Name,BOK.Acronym, BOK.Keywords,

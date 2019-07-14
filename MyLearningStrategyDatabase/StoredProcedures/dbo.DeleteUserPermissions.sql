@@ -1,11 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteUserPermissions]
-	@UserProfileId INT NULL,
+	@UserProfileId INT,
 	@PermissionsId INT NULL
 AS
-IF (@UserProfileId IS NULL)
-BEGIN
-	RAISERROR (15600, 17,-1, '[DeleteUserPermissions].@UserProfileId');   
-END
 	IF (@PermissionsId IS NULL)
 		BEGIN
 			DELETE

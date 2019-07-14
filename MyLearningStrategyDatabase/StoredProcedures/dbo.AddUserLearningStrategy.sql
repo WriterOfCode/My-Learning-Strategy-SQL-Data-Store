@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[AddUserAssessmentDefinitions]
+﻿CREATE PROCEDURE [dbo].[AddUserLearningStrategy]
     @BodyOfKnowledgeId INT, 
     @Description NVARCHAR(256), 
     @SortRuleId INT, 
@@ -10,24 +10,17 @@
     @ResponseMin INT NULL, 
     @ResponseMinCorrect INT NULL, 
     @ResponseMaxCorrect INT NULL, 
-    @AppliedTaxonomyId INT NULL,
-	@Taxonomy BIT,
-	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator uniqueidentifier
 AS
-	DECLARE	@AssessmentDefinitionId INT; 
+	DECLARE	@StrategyId INT; 
 
-	IF (@BodyOfKnowledgeId IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, '[AddUserAssessmentDefinitions].@BodyOfKnowledgeId');   
-	END
 	IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
 	END
 	
 	BEGIN
-		INSERT INTO [dbo].[AssessmentDefinitions]
+		INSERT INTO [dbo].[LearningStrategies]
 			(BodyOfKnowledgeId, 
 			Description, 
 			SortRuleId, 
@@ -38,10 +31,7 @@ AS
 			ResponseMax, 
 			ResponseMin, 
 			ResponseMinCorrect, 
-			ResponseMaxCorrect, 
-			AppliedTaxonomyId,
-			Taxonomy,
-			LastModifiedOffset)
+			ResponseMaxCorrect)
 		VALUES (@BodyOfKnowledgeId, 
 				@Description, 
 				@SortRuleId, 
@@ -52,12 +42,8 @@ AS
 				@ResponseMax, 
 				@ResponseMin, 
 				@ResponseMinCorrect, 
-				@ResponseMaxCorrect, 
-				@AppliedTaxonomyId,
-				@Taxonomy,
-				@LastModifiedOffset);
+				@ResponseMaxCorrect);
 
-		SELECT CAST(SCOPE_IDENTITY() AS INT) AS AssessmentDefinitionId;
+		SELECT CAST(SCOPE_IDENTITY() AS INT) AS StrategyId;
 	END
-
-RETURN
+return 	@StrategyId

@@ -1,20 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteUserBodyOfKnowledge]
-	@BodyOfKnowledgeId INT  NULL,
+	@BodyOfKnowledgeId INT,
 	@Originator UNIQUEIDENTIFIER
 AS
-	DECLARE @UserProfileId INT
-	IF (@Originator IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, 'DeleteUserBodyOfKnowledge.@Originator');   
-	END
-
-	IF (@BodyOfKnowledgeId IS NULL)
-	BEGIN
-		RAISERROR (15600, 17,-1, 'DeleteUserBodyOfKnowledge.@BodyOfKnowledgeId');   
-	END
-
-	SET @UserProfileId = [dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)
-	IF (@UserProfileId=0)
+	IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
 	END
@@ -28,52 +16,46 @@ BEGIN
 
 	BEGIN TRY
 		BEGIN TRANSACTION;
-		--[dbo].[Responses]
-		DELETE FROM [dbo].[Responses] 
-		WHERE QuestionId in (
-		SELECT QuestionId from Questions q
-		WHERE q.BodyOfKnowledgeId = @BodyOfKnowledgeId);
 
-		--@QuestionId INT NULL,
-		--[dbo].[Questions]
-		DELETE from Questions
-		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId;
+		--[dbo].[LearningHistoryProgress]
+		DELETE FROM [dbo].[LearningHistoryProgress]
+		WHERE StrategyHistoryId IN (
+		SELECT DISTINCT lh.StrategyHistoryId
+		FROM [dbo].[LearningHistory] lh
+		join [dbo].[LearningStrategies] ls
+		on lh.StrategyId=ls.StrategyId
+		where ls.BodyOfKnowledgeId = @BodyOfKnowledgeId)
 
-		--[dbo].[AssessmentDefinitions]
-		DELETE FROM [dbo].[AssessmentDefinitions] 
-		WHERE BodyOfKnowledgeId=@BodyOfKnowledgeId
+		--[dbo].[LearningHistory]
+		DELETE FROM [dbo].[LearningHistory]
+		WHERE StrategyHistoryId IN (SELECT DISTINCT StrategyId 
+		FROM [dbo].[LearningStrategies]
+		WHERE [BodyOfKnowledgeId] = @BodyOfKnowledgeId)
 
-		--[dbo].[LearningPlanContentSelections]
-		DELETE FROM [dbo].[LearningPlanContentSelections]
-		WHERE LearningPlanDefinitionId IN (
-		SELECT LearningPlanDefinitionId 
-		FROM [dbo].[BodyOfKnowledge]
-		WHERE BodyOfKnowledgeId=@BodyOfKnowledgeId
-		)
-	
-		--[dbo].[LearningPlanContent]
-		DELETE FROM [dbo].[LearningPlanContent]
-		WHERE TableOfContentId IN (SELECT TableOfContentId
-		FROM [dbo].[LearningPlanTableOfContents]
-		WHERE BodyOfKnowledgeId=@BodyOfKnowledgeId
-		)
-		--[dbo].[LearningPlanTableOfContents]
-		DELETE FROM [dbo].[LearningPlanTableOfContents]
-		WHERE BodyOfKnowledgeId=@BodyOfKnowledgeId
+		--[dbo].[LearningStrategies]
+		DELETE FROM [dbo].[LearningStrategies]
+		WHERE [BodyOfKnowledgeId] = @BodyOfKnowledgeId;
 
-		--[dbo].[LearningPlanDefinitions]
-		DELETE FROM [dbo].[LearningPlanDefinitions]
-		WHERE BodyOfKnowledgeId=@BodyOfKnowledgeId
+		DELETE FROM [dbo].[Responses]
+		WHERE QuestionId IN (SELECT QuestionId 
+		FROM [dbo].[Questions] 
+		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId)
 
 
-		--[dbo].[Taxonomy]
-		DELETE FROM [dbo].[Taxonomy] 
-		WHERE BodyOfKnowledgeId=@BodyOfKnowledgeId
+		DELETE FROM [dbo].[QuestionCategories]
+		WHERE QuestionId IN (SELECT QuestionId 
+		FROM [dbo].[Questions] 
+		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId)
 
-		DELETE
-		FROM [BodyOfKnowledge]
-		WHERE UserProfileId = @UserProfileId
-			AND BodyOfKnowledgeId = @BodyOfKnowledgeId;
+		DELETE FROM [dbo].[Questions] 
+		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
+
+		--[dbo].[BodyOfKnowledgeCategories]
+		DELETE FROM [dbo].[BodyOfKnowledgeCategories]
+		WHERE BodyOfKnowledgeId  = @BodyOfKnowledgeId
+		--[dbo].[BodyOfKnowledge]
+		DELETE FROM [dbo].[BodyOfKnowledge]
+		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 
 		-- If the DELETE statement succeeds, commit the transaction.  
 		COMMIT TRANSACTION;  
@@ -99,5 +81,6 @@ BEGIN
 			COMMIT TRANSACTION;     
 		END;  
 	END CATCH;
-
 END 
+
+RETURN 0
