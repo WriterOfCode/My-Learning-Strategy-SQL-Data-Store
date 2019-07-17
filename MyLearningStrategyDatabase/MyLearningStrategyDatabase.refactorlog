@@ -175,4 +175,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="LastModifiedOffset" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="1d8917e2-8dc9-4607-90ca-1acc3f2b7f46" ChangeDateTime="07/15/2019 15:56:52">
+    <Property Name="ElementName" Value="[dbo].[GetQuestionsWithRCount]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[GetQuestionsWithStats]" />
+  </Operation>
 </Operations>

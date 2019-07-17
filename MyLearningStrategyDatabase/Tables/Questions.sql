@@ -2,7 +2,6 @@
 (
 	[QuestionId] INT IDENTITY (1, 1) NOT NULL , 
     [BodyOfKnowledgeId] INT NOT NULL, 
-    [AppliedTaxonomyId] INT NULL, 
 	[OrderBy] INT NOT NULL DEFAULT 1, 
     [Question] NVARCHAR(4000) NULL, 
 	[Image_1_Device] NVARCHAR(256) NULL, 
@@ -33,5 +32,3 @@ GO
 CREATE CLUSTERED INDEX [IX_Questions_BodyOfKnowledgeId] ON [dbo].[Questions] ([BodyOfKnowledgeId])
 
 GO
-
-CREATE INDEX [IX_Questions_AppliedTaxonomyId] ON [dbo].[Questions] ([BodyOfKnowledgeId],[AppliedTaxonomyId])
