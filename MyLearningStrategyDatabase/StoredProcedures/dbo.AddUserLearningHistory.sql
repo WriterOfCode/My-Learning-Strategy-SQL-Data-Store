@@ -1,13 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserLearningHistory]
 	@StrategyId INT, 
+	@BodyOfKnowledgeId INT,
 	@Originator uniqueidentifier
 AS
-    DECLARE @BodyOfKnowledgeId INT
 	DECLARE @StrategyHistoryId INT 
-
-	SELECT @BodyOfKnowledgeId = BodyOfKnowledgeId  
-	FROM LearningStrategies 
-	WHERE StrategyId=@StrategyId
 
 	IF (@BodyOfKnowledgeId IS NULL)
 	BEGIN
@@ -45,7 +41,8 @@ AS
 			ResponseMinCorrect, 
 			ResponseMaxCorrect
 		FROM [dbo].[LearningStrategies] LS
-		WHERE LS.StrategyId= @StrategyId;
+		WHERE LS.StrategyId= @StrategyId
+		AND BodyOfKnowledgeId=@BodyOfKnowledgeId;
 		
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS StrategyHistoryId;
 	END

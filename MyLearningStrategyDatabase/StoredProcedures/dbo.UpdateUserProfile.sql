@@ -38,7 +38,7 @@ END
 		IsLocked=@IsLocked,
 		IsDisabled=@IsDisabled,
 		IsDeleted=@IsDeleted,
-		LastModifiedOffset=@LastModifiedOffset
+		LastModifiedOffset=SYSDATETIMEOFFSET()
 	WHERE Originator =@Originator;
 	
 	SET @rowsaffected = @@ROWCOUNT

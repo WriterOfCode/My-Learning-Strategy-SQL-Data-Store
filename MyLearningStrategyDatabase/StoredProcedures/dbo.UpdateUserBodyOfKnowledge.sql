@@ -25,7 +25,7 @@ AS
 			Keywords=@Keywords,
 			IsShared=@IsShared,
 			HasBeenShared=@HasBeenShared,
-			LastModifiedOffset=@LastModifiedOffset
+			LastModifiedOffset=SYSDATETIMEOFFSET()
 		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 		AND UserProfileId=@UserProfileId
 		AND CloudRowId=@CloudRowId;

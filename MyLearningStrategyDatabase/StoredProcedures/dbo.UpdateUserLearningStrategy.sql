@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateUserLearningStrategy]
+	@StrategyId INT,
     @BodyOfKnowledgeId INT, 
     @Description NVARCHAR(256), 
     @SortRuleId INT, 
@@ -13,7 +14,6 @@
 	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
-	DECLARE	@StrategyId INT; 
 
 	IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)=0)
 	BEGIN
@@ -21,32 +21,20 @@ AS
 	END
 	
 	BEGIN
-		INSERT INTO [dbo].[LearningStrategies]
-			(BodyOfKnowledgeId, 
-			Description, 
-			SortRuleId, 
-			QuestionRandom, 
-			QuestionMax, 
-			QuestionMin, 
-			ResponseRandom, 
-			ResponseMax, 
-			ResponseMin, 
-			ResponseMinCorrect, 
-			ResponseMaxCorrect, 
-			LastModifiedOffset)
-		VALUES (@BodyOfKnowledgeId, 
-				@Description, 
-				@SortRuleId, 
-				@QuestionRandom, 
-				@QuestionMax, 
-				@QuestionMin, 
-				@ResponseRandom, 
-				@ResponseMax, 
-				@ResponseMin, 
-				@ResponseMinCorrect, 
-				@ResponseMaxCorrect, 
-				@LastModifiedOffset);
-
-		SELECT CAST(SCOPE_IDENTITY() AS INT) AS StrategyId;
+		UPDATE [dbo].[LearningStrategies]
+		SET Description=@Description, 
+			SortRuleId=@SortRuleId, 
+			QuestionRandom=@QuestionRandom, 
+			QuestionMax=@QuestionMax, 
+			QuestionMin=@QuestionMin, 
+			ResponseRandom=@ResponseRandom, 
+			ResponseMax=@ResponseMax, 
+			ResponseMin=@ResponseMin, 
+			ResponseMinCorrect=@ResponseMinCorrect, 
+			ResponseMaxCorrect=@ResponseMaxCorrect, 
+			LastModifiedOffset=SYSDATETIMEOFFSET()
+		WHERE StrategyId = @StrategyId 
+		AND BodyOfKnowledgeId=@BodyOfKnowledgeId
+			
 	END
 return 	@StrategyId

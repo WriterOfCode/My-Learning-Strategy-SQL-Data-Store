@@ -38,7 +38,7 @@ AS
 		Hyperlink_2=@Hyperlink_2, 
 		Hyperlink_3=@Hyperlink_3,
 		Mnemonic = @Mnemonic,
-		LastModifiedOffset=@LastModifiedOffset
+		LastModifiedOffset=SYSDATETIMEOFFSET()
 		WHERE ResponseId=@ResponseId
 		AND CloudRowId=@CloudRowId  
 		AND QuestionId=@QuestionId;

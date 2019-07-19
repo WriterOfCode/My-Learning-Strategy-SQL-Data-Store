@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteUserCategory]
-	@CategoryId INT NULL,
+	@CategoryId INT,
 	@UserProfileId INT,
 	@Originator UNIQUEIDENTIFIER
 AS
@@ -9,14 +9,25 @@ AS
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
 	END
 	    
-	IF ( @CategoryId IS NULL)
-		BEGIN
-			DELETE FROM [dbo].[Categories]
-			WHERE UserProfileId=@UserProfileId
-		END
-	ELSE
-		BEGIN
-			DELETE FROM [dbo].[Categories]
-			WHERE  UserProfileId=@UserProfileId AND CategoryId= @CategoryId
-		END
+	BEGIN
+			BEGIN TRANSACTION RESPONSE;
+			BEGIN TRY
+				DELETE FROM  [dbo].[BodyOfKnowledgeCategories]
+				WHERE  UserProfileId=@UserProfileId AND CategoryId= @CategoryId 
+
+				DELETE FROM  [dbo].[QuestionCategories]
+				WHERE  UserProfileId=@UserProfileId AND CategoryId= @CategoryId 
+
+				DELETE FROM [dbo].[Categories]
+				WHERE  UserProfileId=@UserProfileId AND CategoryId= @CategoryId
+			END TRY
+			BEGIN CATCH
+
+			IF @@TRANCOUNT>0
+				ROLLBACK TRANSACTION RESPONSE;
+			END CATCH;
+			IF @@TRANCOUNT>0
+				COMMIT TRANSACTION RESPONSE;
+	END
+
 RETURN 0

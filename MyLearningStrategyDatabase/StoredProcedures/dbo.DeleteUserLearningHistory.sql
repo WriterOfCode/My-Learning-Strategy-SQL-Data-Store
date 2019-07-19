@@ -1,14 +1,15 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteUserLearningHistory]
-	@StrategyHistoryId INT, 
+	@StrategyHistoryId INT NULL, 
+	@StrategyId INT NULL,
+	@BodyOfKnowledgeId INT NULL,
 	@Originator uniqueidentifier
 AS
-    DECLARE @BodyOfKnowledgeId INT
+    DECLARE @BodyOfKnowledge_Id INT
 
-	SELECT @BodyOfKnowledgeId = MAX(ls.BodyOfKnowledgeId)
-	FROM LearningStrategies ls
-	join LearningHistory lp
-	on ls.StrategyId=lp.StrategyId
-	WHERE @StrategyHistoryId=@StrategyHistoryId
+	IF (@StrategyHistoryId IS NULL AND @StrategyId IS NULL AND @BodyOfKnowledgeId IS NULL)
+	BEGIN
+		RAISERROR (15600, 17,-1, '[DeleteUserLearningHistory].@BodyOfKnowledgeId');   
+	END
 
 	IF (@BodyOfKnowledgeId IS NULL)
 	BEGIN
@@ -27,18 +28,52 @@ BEGIN
 	SET XACT_ABORT ON;  
 
 	BEGIN TRY
-		BEGIN TRANSACTION;
+		IF (@StrategyHistoryId IS NOT NULL )
+		BEGIN 
+				BEGIN TRANSACTION;
+				--[dbo].[LearningHistoryProgress]
+				DELETE FROM [dbo].[LearningHistoryProgress]
+				WHERE StrategyHistoryId = @StrategyHistoryId
 
-		--[dbo].[LearningHistoryProgress]
-		DELETE FROM [dbo].[LearningHistoryProgress]
-		WHERE StrategyHistoryId =@StrategyHistoryId
+				--[dbo].[LearningHistory]
+				DELETE FROM [dbo].[LearningHistory]
+				WHERE StrategyHistoryId =@StrategyHistoryId
+				COMMIT TRANSACTION;  
+		END
+		ELSE IF(@StrategyId IS NOT NULL )
+		BEGIN 
+				BEGIN TRANSACTION;
+				--[dbo].[LearningHistoryProgress]
+				DELETE FROM [dbo].[LearningHistoryProgress]
+				WHERE StrategyHistoryId IN (SELECT StrategyHistoryId
+				FROM LearningHistory 
+				WHERE StrategyId=@StrategyId 
+				AND BodyOfKnowledgeId=@BodyOfKnowledgeId)
+				
 
-		--[dbo].[LearningHistory]
-		DELETE FROM [dbo].[LearningHistory]
-		WHERE StrategyHistoryId =@StrategyHistoryId
+				--[dbo].[LearningHistory]
+				DELETE FROM [dbo].[LearningHistory]
+				WHERE StrategyId=@StrategyId
 
-		-- If the DELETE statement succeeds, commit the transaction.  
-		COMMIT TRANSACTION;  
+				COMMIT TRANSACTION;  
+		END 
+		ELSE
+		BEGIN
+				BEGIN TRANSACTION;
+				--[dbo].[LearningHistoryProgress]
+				DELETE FROM [dbo].[LearningHistoryProgress]
+				WHERE StrategyHistoryId IN (SELECT StrategyHistoryId
+				FROM LearningHistory 
+				WHERE BodyOfKnowledgeId=@BodyOfKnowledgeId)
+				
+
+				--[dbo].[LearningHistory]
+				DELETE FROM [dbo].[LearningHistory]
+				WHERE  BodyOfKnowledgeId=@BodyOfKnowledgeId
+
+				COMMIT TRANSACTION;  
+		END
+
 	END TRY
 	BEGIN CATCH  
 		-- Execute error retrieval routine.  

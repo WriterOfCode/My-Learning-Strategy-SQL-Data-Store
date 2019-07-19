@@ -2,7 +2,6 @@
     @QuestionId INT NULL, 
     @CategoryId INT NULL,
 	@UserProfileId INT NULL,
-	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER NULL
 AS
 	IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)

@@ -16,5 +16,5 @@
 	[LearningRunDate] DATETIME NOT NULL DEFAULT SYSDATETIME(),
     [LastModifiedOffset] DATETIMEOFFSET NULL DEFAULT SYSDATETIMEOFFSET(), 
     [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
-    CONSTRAINT [PK_LearningHistory] PRIMARY KEY ([StrategyId], [StrategyHistoryId]), 
+    CONSTRAINT [PK_LearningHistory] PRIMARY KEY ([BodyOfKnowledgeId], [StrategyHistoryId], [StrategyId]), 
 )

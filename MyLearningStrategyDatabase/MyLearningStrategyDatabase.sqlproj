@@ -22,6 +22,8 @@
     <SqlServerVerification>False</SqlServerVerification>
     <IncludeCompositeObjects>True</IncludeCompositeObjects>
     <TargetDatabaseSet>True</TargetDatabaseSet>
+    <EnableFullTextSearch>True</EnableFullTextSearch>
+    <CompatibilityMode>140</CompatibilityMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -127,6 +129,8 @@
     <Build Include="StoredProcedures\dbo.GetUserQuestionsCatagories.sql" />
     <Build Include="StoredProcedures\dbo.GetUserLearningStrategies.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserLearningHistory.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserLearningStrategy.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserLearningHistory.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="dbo.AlterDataPreInstall.sql">

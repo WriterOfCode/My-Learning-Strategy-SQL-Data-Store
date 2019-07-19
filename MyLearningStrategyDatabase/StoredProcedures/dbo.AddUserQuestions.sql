@@ -62,7 +62,7 @@ AS
 			@Hyperlink_2, 
 			@Hyperlink_3,
 			@Mnemonic, 
-			@LastModifiedOffset);
+			SYSDATETIMEOFFSET());
  
 		--SET @QuestionId = CAST(SCOPE_IDENTITY() AS INT)
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS QuestionId;

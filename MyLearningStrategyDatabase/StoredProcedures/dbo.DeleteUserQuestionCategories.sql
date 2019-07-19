@@ -1,10 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteUserQuestionCategories]
-    @BodyOfKnowledgeId INT NULL,
 	@QuestionId INT,
 	@CategoryId INT NULL,
+	@UserProfileId INT,
 	@Originator UNIQUEIDENTIFIER
 AS
-	IF ([dbo].[IsBokOriginator](@Originator, @BodyOfKnowledgeId)=0)
+	IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
 	END
@@ -13,11 +13,13 @@ AS
 		BEGIN
 			DELETE FROM [dbo].[QuestionCategories]
 			WHERE QuestionId = @QuestionId 
+			AND UserProfileId = @UserProfileId
 		END
 	ELSE
 		BEGIN
 			DELETE FROM [dbo].[QuestionCategories]
-			WHERE QuestionId =@QuestionId  AND CategoryId=@CategoryId
+			WHERE QuestionId = @QuestionId 
+			AND UserProfileId = @UserProfileId
+			AND CategoryId = @CategoryId
 		END
-
 RETURN 0
