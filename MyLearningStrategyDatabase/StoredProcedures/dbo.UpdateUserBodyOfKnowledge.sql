@@ -3,10 +3,11 @@
 	@Name NVARCHAR (50),
 	@Acronym NVARCHAR (20) NULL,
 	@Keywords NVARCHAR(100) NULL,
+	@ImageDevice NVARCHAR(256) NULL, 
+	@ImageCloud NVARCHAR(2083) NULL,
+	@ImageHash INT NULL, 
 	@IsShared BIT NULL,
 	@HasBeenShared BIT NULL,
-	@LastModifiedOffset DATETIMEOFFSET NULL,
-	@CloudRowId UNIQUEIDENTIFIER,
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @rowsaffected INT 
@@ -23,12 +24,14 @@ AS
 		SET Name=@Name,
 			Acronym=@Acronym,
 			Keywords=@Keywords,
+			ImageDevice=@ImageDevice,
+			ImageCloud=@ImageCloud,
+			ImageHash=@ImageHash,
 			IsShared=@IsShared,
 			HasBeenShared=@HasBeenShared,
 			LastModifiedOffset=SYSDATETIMEOFFSET()
 		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 		AND UserProfileId=@UserProfileId
-		AND CloudRowId=@CloudRowId;
 		SET @rowsaffected = @@ROWCOUNT
 	END
 RETURN @rowsaffected

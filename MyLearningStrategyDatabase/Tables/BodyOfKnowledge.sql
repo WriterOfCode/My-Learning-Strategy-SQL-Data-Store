@@ -10,7 +10,6 @@
 	[ImageHash] INT NULL, 
     [IsShared] BIT NULL DEFAULT 0, 
     [HasBeenShared] BIT NULL DEFAULT 0, 
-	[CategoryAppliedId] INT NULL, 
 	[LastModifiedOffset] DATETIMEOFFSET NULL DEFAULT SYSDATETIMEOFFSET(), 
     [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
     CONSTRAINT [FK_BodyOfKnowledge_UserProfiles] FOREIGN KEY ([UserProfileId]) REFERENCES [UserProfiles]([UserProfileId]), 

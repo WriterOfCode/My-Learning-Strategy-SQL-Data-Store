@@ -6,15 +6,14 @@
 	@LastName    NVARCHAR (256) NULL,
 	@PostalCode NCHAR(10) NULL, 
 	@IdentityProvider NVARCHAR(2083) NULL, 
-	@Originator  UNIQUEIDENTIFIER, 
 	@ImageDevice NVARCHAR(256) NULL, 
 	@ImageCloud NVARCHAR(2083) NULL,
 	@ImageHash INT NULL, 
 	@HasLoggedIn BIT NULL,
 	@IsLocked    BIT NULL, 
 	@IsDisabled  BIT NULL, 
-	@IsDeleted BIT NULL, 
-	@LastModifiedOffset DATETIMEOFFSET NULL
+	@IsDeleted BIT NULL,
+	@Originator  UNIQUEIDENTIFIER
 AS	
 
 DECLARE @rowsaffected INT 

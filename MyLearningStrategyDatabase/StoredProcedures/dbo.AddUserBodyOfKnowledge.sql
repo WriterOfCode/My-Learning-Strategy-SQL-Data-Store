@@ -3,10 +3,12 @@
 	@Name NVARCHAR (150),
 	@Acronym NVARCHAR (50) NULL,
 	@Keywords NVARCHAR(100) NULL,
+	@ImageDevice NVARCHAR(256) NULL, 
+	@ImageCloud NVARCHAR(2083) NULL,
+	@ImageHash INT NULL, 
 	@IsShared BIT NULL,
 	@HasBeenShared BIT NULL,
 	@Originator UNIQUEIDENTIFIER
-
 AS
 
 	DECLARE @BodyOfKnowledgeId AS INT
@@ -23,12 +25,18 @@ AS
 			   ,Acronym
 			   ,Keywords
 			   ,IsShared
+			   ,ImageDevice
+			   ,ImageCloud
+			   ,ImageHash
 			   ,HasBeenShared)
 		 VALUES
 			   (@UserProfileId
 			   ,@Name
 			   ,@Acronym
 			   ,@Keywords
+			   ,@ImageDevice
+			   ,@ImageCloud
+			   ,@ImageHash
 			   ,@IsShared
 			   ,@HasBeenShared);
 
