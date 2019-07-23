@@ -44,6 +44,6 @@ AS
 				@ResponseMinCorrect, 
 				@ResponseMaxCorrect);
 
-		SELECT CAST(SCOPE_IDENTITY() AS INT) AS StrategyId;
+		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
 	END
-return 	@StrategyId
+return

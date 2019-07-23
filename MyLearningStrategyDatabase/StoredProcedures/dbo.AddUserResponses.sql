@@ -40,7 +40,6 @@ AS
 			@Hyperlink_1, @Hyperlink_2, @Hyperlink_3,
 			@Mnemonic, SYSDATETIMEOFFSET());
 
-		--SET @ResponseId = CAST(SCOPE_IDENTITY() AS INT)
-		SELECT CAST(SCOPE_IDENTITY() AS INT) AS ResponseId;
+		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
 	END
-RETURN @ResponseId
+RETURN

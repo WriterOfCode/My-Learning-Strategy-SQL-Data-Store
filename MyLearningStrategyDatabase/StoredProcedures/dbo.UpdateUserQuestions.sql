@@ -1,7 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateUserQuestions]
 	@QuestionId INT,
     @BodyOfKnowledgeId INT, 
-    @AppliedTaxonomyId INT NULL, 
 	@OrderBy INT NULL, 
     @Question NVARCHAR(4000) NULL, 
 	@Image_1_Device NVARCHAR(256) NULL, 
@@ -17,8 +16,6 @@
     @Hyperlink_2 VARCHAR(2083) NULL, 
     @Hyperlink_3 VARCHAR(2083) NULL,
 	@Mnemonic VARCHAR(300) NULL,
-	@LastModifiedOffset DATETIMEOFFSET NULL,
-	@CloudRowId  UNIQUEIDENTIFIER,
 	@Originator UNIQUEIDENTIFIER
 
 AS
@@ -47,7 +44,6 @@ AS
 		Mnemonic=@Mnemonic,
 		LastModifiedOffset=SYSDATETIMEOFFSET()
 	WHERE QuestionId=@QuestionId
-		AND CloudRowId=@CloudRowId
 		AND BodyOfKnowledgeId=@BodyOfKnowledgeId;
 		
 		SET @rowsaffected = @@ROWCOUNT

@@ -106,7 +106,7 @@
     <Build Include="StoredProcedures\dbo.GetUserBokWithStats.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Build>
-    <Build Include="StoredProcedures\dbo.GetQuestionsWithStats.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserQuestionsWithStats.sql" />
     <Build Include="Tables\LearningStrategies.sql" />
     <Build Include="Tables\Categories.sql" />
     <Build Include="Tables\LearningHistory.sql" />

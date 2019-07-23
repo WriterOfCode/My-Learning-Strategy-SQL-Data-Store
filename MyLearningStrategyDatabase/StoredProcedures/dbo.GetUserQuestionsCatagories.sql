@@ -1,12 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserQuestionsCatagories]
 	@QuestionId INT,
 	@CategoryId INT NULL,
-	@Originator UNIQUEIDENTIFIER
+	@UserProfileId INT
 AS
-	IF ([dbo].[IsQuestionOriginator](@Originator,@QuestionId)=0)
-	BEGIN
-		RAISERROR (13538,14,-1, 'User is not the owner!');   
-	END
+
 	IF  @CategoryId IS NULL
 	BEGIN
 		SELECT  qc.QuestionId, qc.CategoryId, qc.UserProfileId, qc.LastModifiedOffset, qc.CloudRowId,
@@ -15,6 +12,7 @@ AS
 		JOIN [dbo].[Categories] c 
 		on c.CategoryId=qc.CategoryId and c.UserProfileId=qc.UserProfileId
 		WHERE  qc.QuestionId=@QuestionId
+		and  c.UserProfileId=@UserProfileId
 	END
 	ELSE
 	BEGIN
@@ -24,5 +22,7 @@ AS
 		JOIN [dbo].[Categories] c 
 		on c.CategoryId=qc.CategoryId and c.UserProfileId=qc.UserProfileId
 		WHERE qc.QuestionId=@QuestionId
+		and  c.CategoryId=@CategoryId
+		and  c.UserProfileId=@UserProfileId
 	END
 RETURN 0

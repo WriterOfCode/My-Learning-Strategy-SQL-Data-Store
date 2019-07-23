@@ -1,22 +1,21 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserProfile]
 	@ExternalID  NVARCHAR (450),
 	@DisplayName  NVARCHAR (256) NULL,
-	@EmailAddress       NVARCHAR (500) NULL,
-	@FirstName   NVARCHAR (256) NULL,
-	@LastName    NVARCHAR (256) NULL,
-	@PostalCode NCHAR(10) NULL, 
+	@EmailAddress NVARCHAR (500) NULL,
+	@FirstName    NVARCHAR (256) NULL,
+	@LastName     NVARCHAR (256) NULL,
+	@PostalCode   NCHAR(10) NULL, 
 	@IdentityProvider NVARCHAR(2083) NULL, 
-	@ImageDevice NVARCHAR(256) NULL, 
-	@ImageCloud NVARCHAR(2083) NULL,
-	@ImageHash INT NULL, 
+	@ImageDevice  NVARCHAR(256) NULL, 
+	@ImageCloud   NVARCHAR(2083) NULL,
+	@ImageHash   INT NULL, 
 	@HasLoggedIn BIT NULL,
 	@IsLocked    BIT NULL, 
 	@IsDisabled  BIT NULL, 
-	@IsDeleted BIT NULL
+	@IsDeleted   BIT NULL
 AS	
 
 DECLARE @UserProfileId INT
-
 
 BEGIN
 
@@ -54,8 +53,7 @@ BEGIN
 				t.IsDeleted = s.IsDeleted
 	WHEN NOT MATCHED BY TARGET 
 		THEN INSERT(ExternalID,DisplayName,EmailAddress,FirstName,LastName,
-		PostalCode,IdentityProvider,
-		ImageDevice,ImageCloud,ImageHash,HasLoggedIn,
+		PostalCode,IdentityProvider,ImageDevice,ImageCloud,ImageHash,HasLoggedIn,
 		IsLocked,IsDisabled,IsDeleted)
 		VALUES (@ExternalID,@DisplayName,@EmailAddress,@FirstName,
 		@LastName,@PostalCode,@IdentityProvider,

@@ -10,9 +10,6 @@
 	@HasBeenShared BIT NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
-
-	DECLARE @BodyOfKnowledgeId AS INT
-
 	IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
@@ -24,10 +21,10 @@ AS
 			   ,Name
 			   ,Acronym
 			   ,Keywords
-			   ,IsShared
 			   ,ImageDevice
 			   ,ImageCloud
 			   ,ImageHash
+			   ,IsShared
 			   ,HasBeenShared)
 		 VALUES
 			   (@UserProfileId
@@ -40,7 +37,7 @@ AS
 			   ,@IsShared
 			   ,@HasBeenShared);
 
-	SELECT CAST(SCOPE_IDENTITY() AS INT) AS BodyOfKnowledgeId;
+	SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
 
 	END
-RETURN @BodyOfKnowledgeId
+RETURN

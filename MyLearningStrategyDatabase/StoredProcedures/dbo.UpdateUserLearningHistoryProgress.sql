@@ -18,8 +18,6 @@ MERGE LearningHistoryProgress t
 			AND t.QuestionId=s.QuestionId)
 WHEN MATCHED
     THEN UPDATE SET 
-		--t.AnsweredIncorrectlyCount = t.AnsweredIncorrectlyCount + s.AnsweredIncorrectlyCount,
-		--t.AnsweredCorrectlyCount = t.AnsweredCorrectlyCount + s.AnsweredCorrectlyCount
 		t.AnsweredIncorrectlyCount =@AnsweredIncorrectlyCount,
 		t.AnsweredCorrectlyCount = @AnsweredCorrectlyCount
 WHEN NOT MATCHED BY TARGET 
@@ -31,7 +29,4 @@ WHEN NOT MATCHED BY TARGET
 			s.StrategyHistoryId, s.QuestionId, 
 			s.AnsweredIncorrectlyCount, 
 			s.AnsweredCorrectlyCount);
-
-		--SET @ResponseId = CAST(SCOPE_IDENTITY() AS INT)
-		SELECT CAST(SCOPE_IDENTITY() AS INT) AS ResponseId;
-RETURN 0
+RETURN

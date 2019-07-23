@@ -7,7 +7,7 @@
 	@Originator UNIQUEIDENTIFIER
 AS
 
-	DECLARE @CategoryId INT;
+	--DECLARE @CategoryId INT;
 	IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
@@ -17,8 +17,7 @@ AS
 		INSERT INTO [dbo].[Categories](UserProfileId,CategoryName,ImageDevice,ImageCloud,ImageHash )
 		VALUES (@UserProfileId,@CategoryName,@ImageDevice,@ImageCloud,@ImageHash);
  
- 		--SET @CategoryId = CAST(SCOPE_IDENTITY() AS INT)
-		SELECT CAST(SCOPE_IDENTITY() AS INT) AS CategoryId;
+ 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
 	END
 
-RETURN @CategoryId
+RETURN

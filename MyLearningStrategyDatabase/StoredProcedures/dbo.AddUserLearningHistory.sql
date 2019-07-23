@@ -3,7 +3,6 @@
 	@BodyOfKnowledgeId INT,
 	@Originator uniqueidentifier
 AS
-	DECLARE @StrategyHistoryId INT 
 
 	IF (@BodyOfKnowledgeId IS NULL)
 	BEGIN
@@ -44,6 +43,6 @@ AS
 		WHERE LS.StrategyId= @StrategyId
 		AND BodyOfKnowledgeId=@BodyOfKnowledgeId;
 		
-		SELECT CAST(SCOPE_IDENTITY() AS INT) AS StrategyHistoryId;
+		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
 	END
-return 	@StrategyHistoryId
+return

@@ -5,9 +5,11 @@
 	@ImageDevice NVARCHAR(256) NULL, 
 	@ImageCloud NVARCHAR(2083) NULL,
 	@ImageHash INT NULL, 
-	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
+
+DECLARE @rowsaffected INT
+
 	IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
@@ -17,4 +19,6 @@ AS
 		ImageCloud=@ImageCloud,ImageHash=@ImageHash,
 		LastModifiedOffset=SYSDATETIMEOFFSET()
 		WHERE UserProfileId=@UserProfileId and CategoryId=@CategoryId
-RETURN
+
+	SET @rowsaffected = @@ROWCOUNT
+RETURN @rowsaffected

@@ -1,14 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserQuestionsCategory]
-    @QuestionId INT NULL, 
-    @CategoryId INT NULL,
-	@UserProfileId INT NULL,
-	@Originator UNIQUEIDENTIFIER NULL
-AS
-	IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)
-	BEGIN
-		RAISERROR (13538,14,-1, 'User is not the owner!');   
-	END
+    @QuestionId INT, 
+    @CategoryId INT,
+	@UserProfileId INT
 
+AS
 	BEGIN
 		INSERT INTO [dbo].[QuestionCategories]
 		(QuestionId,CategoryId,UserProfileId )

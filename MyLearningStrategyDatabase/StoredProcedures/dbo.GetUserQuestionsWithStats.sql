@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetQuestionsWithStats]
+﻿CREATE PROCEDURE [dbo].[GetUserQuestionsWithStats]
     @BodyOfKnowledgeId INT NULL,
 	@Originator UNIQUEIDENTIFIER NULL
 AS

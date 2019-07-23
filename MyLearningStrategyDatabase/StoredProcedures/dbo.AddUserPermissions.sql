@@ -13,8 +13,7 @@ AS
 		INSERT INTO [dbo].[UserPermissions] (UserProfileId,ClaimType,ClaimValue)
 		VALUES (@UserProfileId,@ClaimType,@ClaimValue)
 
-		--SET @PermissionsId = CAST(SCOPE_IDENTITY() AS INT)
-		SELECT CAST(SCOPE_IDENTITY() AS INT) AS PermissionsId;
+		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
 	END
 
-RETURN @PermissionsId
+RETURN

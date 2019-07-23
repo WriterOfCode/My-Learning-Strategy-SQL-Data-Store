@@ -15,6 +15,8 @@
 	@Originator UNIQUEIDENTIFIER
 AS
 
+DECLARE @rowsaffected INT 
+
 	IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
@@ -35,6 +37,8 @@ AS
 			LastModifiedOffset=SYSDATETIMEOFFSET()
 		WHERE StrategyId = @StrategyId 
 		AND BodyOfKnowledgeId=@BodyOfKnowledgeId
+
+		SET @rowsaffected = @@ROWCOUNT
 			
 	END
-return 	@StrategyId
+return 	@rowsaffected
