@@ -1,13 +1,11 @@
 ﻿CREATE PROCEDURE [dbo].[GetUsersCategories]
 	@CategoryId INT NULL,
-	@UserProfileId INT,
 	@Originator UNIQUEIDENTIFIER
 AS
+	DECLARE @UserProfileId INT
 
-	IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)
-	BEGIN
-		RAISERROR (13538,14,-1, 'User is not the owner!');   
-	END
+	SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
+
 	IF @CategoryId IS NULL
 	BEGIN
 		SELECT CategoryId,UserProfileId,CategoryName,
