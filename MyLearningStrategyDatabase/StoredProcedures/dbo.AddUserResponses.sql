@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserResponses]
-	@QuestionId INT NULL, 
+	@QuestionId INT, 
 	@OrderBy INT NULL, 
 	@Response NVARCHAR(2083) NULL, 
 	@IsCorrect BIT NULL, 
@@ -17,7 +17,7 @@
 	@Hyperlink_3 VARCHAR(2083) NULL,
 	@Mnemonic VARCHAR(300) NULL,
 	@LastModifiedOffset DATETIMEOFFSET NULL,
-	@Originator UNIQUEIDENTIFIER NULL
+	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @ResponseId INT 
 
