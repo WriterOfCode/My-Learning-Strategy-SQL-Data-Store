@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserBokCategories]
     @BodyOfKnowledgeId INT,
 	@CategoryId INT NULL,
-	@UserProfileId INT
+	@Originator UNIQUEIDENTIFIER
 AS
 	--IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId )=0)
 	--BEGIN
@@ -17,7 +17,8 @@ AS
 			JOIN [dbo].[Categories] c on c.CategoryId = bokc.CategoryId AND c.UserProfileId = bokc.UserProfileId
 			JOIN [dbo].[UserProfiles] u on u.UserProfileId = bokc.UserProfileId
 			WHERE   bokc.BodyOfKnowledgeId=@BodyOfKnowledgeId
-			AND u.UserProfileId = @UserProfileId
+			AND u.Originator = @Originator
+
 		END
 	ELSE
 		BEGIN
@@ -29,7 +30,7 @@ AS
 			JOIN [dbo].[Categories] c on c.CategoryId = bokc.CategoryId AND c.UserProfileId = bokc.UserProfileId
 			JOIN [dbo].[UserProfiles] u on u.UserProfileId = bokc.UserProfileId
 			WHERE   bokc.BodyOfKnowledgeId=@BodyOfKnowledgeId 
-			AND u.UserProfileId = @UserProfileId
+			AND u.Originator = @Originator
 			AND c.CategoryId=@CategoryId
 		END
 	

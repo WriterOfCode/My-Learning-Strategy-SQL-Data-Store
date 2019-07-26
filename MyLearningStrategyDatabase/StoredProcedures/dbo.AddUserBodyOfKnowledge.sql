@@ -1,5 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserBodyOfKnowledge]
-	@UserProfileId INT,
 	@Name NVARCHAR (150),
 	@Acronym NVARCHAR (50) NULL,
 	@Keywords NVARCHAR(100) NULL,
@@ -10,11 +9,8 @@
 	@HasBeenShared BIT NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
-	IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)
-	BEGIN
-		RAISERROR (13538,14,-1, 'User is not the owner!');   
-	END
-
+	DECLARE @UserProfileId INT
+	SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
 	BEGIN
 	INSERT INTO [dbo].[BodyOfKnowledge]
 			   (UserProfileId

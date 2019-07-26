@@ -1,8 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteUserQuestionCategories]
 	@QuestionId INT,
 	@CategoryId INT NULL,
-	@UserProfileId INT
+	@Originator UNIQUEIDENTIFIER
 AS
+	DECLARE @UserProfileId INT
+	SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
 
 	IF (@CategoryId IS NULL)
 		BEGIN

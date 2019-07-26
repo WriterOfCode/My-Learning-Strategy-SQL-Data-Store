@@ -1,10 +1,11 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteUserBokCategories]
     @BodyOfKnowledgeId INT, 
     @CategoryId INT NULL,
-	@UserProfileId INT
+	@Originator uniqueidentifier
 AS
+	DECLARE @UserProfileId INT
+	SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
 
-	    
 	IF (@CategoryId IS NULL)
 		BEGIN
 			DELETE FROM [dbo].[BodyOfKnowledgeCategories]

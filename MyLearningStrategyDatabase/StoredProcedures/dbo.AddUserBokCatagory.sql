@@ -1,9 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserBokCatagory]
     @BodyOfKnowledgeId INT, 
     @CategoryId INT,
-	@UserProfileId INT
+	@Originator uniqueidentifier
 AS
 	BEGIN
+		DECLARE @UserProfileId INT
+		SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
+
 		INSERT INTO [dbo].[BodyOfKnowledgeCategories]
 		(BodyOfKnowledgeId,CategoryId,UserProfileId )
 		VALUES (@BodyOfKnowledgeId,@CategoryId,@UserProfileId);

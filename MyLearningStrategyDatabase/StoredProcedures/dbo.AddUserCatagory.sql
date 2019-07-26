@@ -1,5 +1,4 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserCatagory]
-	@UserProfileId INT,
 	@CategoryName NVARCHAR(100),
 	@ImageDevice NVARCHAR(256) NULL, 
 	@ImageCloud NVARCHAR(2083) NULL,
@@ -8,10 +7,8 @@
 AS
 
 	--DECLARE @CategoryId INT;
-	IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)
-	BEGIN
-		RAISERROR (13538,14,-1, 'User is not the owner!');   
-	END
+	DECLARE @UserProfileId INT
+	SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
 
 	BEGIN
 		INSERT INTO [dbo].[Categories](UserProfileId,CategoryName,ImageDevice,ImageCloud,ImageHash )
