@@ -15,7 +15,6 @@
     @Hyperlink_2 VARCHAR(2083) NULL, 
     @Hyperlink_3 VARCHAR(2083) NULL,
 	@Mnemonic VARCHAR(300) NULL,
-	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @QuestionId AS INT
@@ -43,8 +42,7 @@ AS
 							Hyperlink_1, 
 							Hyperlink_2, 
 							Hyperlink_3,
-							Mnemonic,
-							LastModifiedOffset)
+							Mnemonic)
 	VALUES (
 			@BodyOfKnowledgeId, 
 			@OrderBy, 
@@ -61,8 +59,7 @@ AS
 			@Hyperlink_1, 
 			@Hyperlink_2, 
 			@Hyperlink_3,
-			@Mnemonic, 
-			SYSDATETIMEOFFSET());
+			@Mnemonic);
  
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
 	END

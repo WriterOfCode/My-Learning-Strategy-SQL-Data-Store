@@ -7,7 +7,6 @@ RETURNS INT
 AS
 BEGIN
 	DECLARE @bokCount INT
-	DECLARE @adminCount INT
 
 	--INSERT INTO @bokCount
 	SELECT @bokCount = COUNT(*)
@@ -15,11 +14,5 @@ BEGIN
 	WHERE UserProfileId = @UserProfileId
 	AND Originator = @Originator;
 
-	--INSERT INTO @adminCount
-	SELECT @adminCount = COUNT(*)
-	FROM [dbo].[UserPermissions]
-	WHERE UserProfileId = @UserProfileId
-	AND ClaimType LIKE 'Admin%'
-
-	RETURN @bokCount + @adminCount
+	RETURN @bokCount
 END

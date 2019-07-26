@@ -102,7 +102,6 @@
     <Build Include="dbo.SeedBaseTwentySix.sql" />
     <Build Include="dbo.SequenceForBase26.sql" />
     <PostDeploy Include="GrantUserRights.sql" />
-    <Build Include="dbo.IsOriginatorAdmin.sql" />
     <Build Include="StoredProcedures\dbo.GetUserBokWithStats.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Build>

@@ -16,7 +16,6 @@
 	@Hyperlink_2 VARCHAR(2083) NULL, 
 	@Hyperlink_3 VARCHAR(2083) NULL,
 	@Mnemonic VARCHAR(300) NULL,
-	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @ResponseId INT 
@@ -32,13 +31,13 @@ AS
 				Image_2_Device, Image_2_Cloud, Image_2_Hash,
 				Image_3_Device, Image_3_Cloud, Image_3_Hash,
 				Hyperlink_1, Hyperlink_2, Hyperlink_3,
-				Mnemonic, LastModifiedOffset)
+				Mnemonic)
 		VALUES (@QuestionId, @OrderBy, @Response, @IsCorrect,
 			@Image_1_Device, @Image_1_Cloud, @Image_1_Hash, 
 			@Image_2_Device, @Image_2_Cloud, @Image_2_Hash,
 			@Image_3_Device, @Image_3_Cloud, @Image_3_Hash,  
 			@Hyperlink_1, @Hyperlink_2, @Hyperlink_3,
-			@Mnemonic, SYSDATETIMEOFFSET());
+			@Mnemonic);
 
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
 	END

@@ -15,11 +15,5 @@ BEGIN
 	WHERE UserProfileId = @UserProfileId
 	AND BodyOfKnowledgeId = @BodyOfKnowledgeId;
 
-	--INSERT INTO @adminCount
-	SELECT @adminCount = COUNT(*)
-	FROM [dbo].[UserPermissions]
-	WHERE UserProfileId = @UserProfileId
-	AND ClaimType LIKE 'Admin%'
-
 	RETURN @bokCount + @adminCount
 END
