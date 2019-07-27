@@ -25,8 +25,8 @@ AS
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
 	END
 	BEGIN 
-		INSERT INTO [dbo].[Responses] (QuestionId, 
-				OrderBy, Response, IsCorrect,  
+		INSERT INTO [dbo].[Responses] ( 
+				QuestionId, OrderBy, Response, IsCorrect,  
 				Image_1_Device, Image_1_Cloud, Image_1_Hash,
 				Image_2_Device, Image_2_Cloud, Image_2_Hash,
 				Image_3_Device, Image_3_Cloud, Image_3_Hash,
