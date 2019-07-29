@@ -26,7 +26,7 @@ DECLARE @rowsaffected INT
 	BEGIN
 		UPDATE [dbo].[LearningStrategies]
 		SET Name=@Name, 
-			Description=@Description, 
+			Description=ISNULL(@Description,@Name), 
 			SortRuleId=@SortRuleId, 
 			QuestionRandom=@QuestionRandom, 
 			QuestionMax=@QuestionMax, 

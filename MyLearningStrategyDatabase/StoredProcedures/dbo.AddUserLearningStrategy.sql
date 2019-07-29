@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserLearningStrategy]
     @BodyOfKnowledgeId INT, 
-	@Name NVARCHAR(150) NULL, 
+	@Name NVARCHAR(150) , 
     @Description NVARCHAR(256), 
     @SortRuleId INT, 
     @QuestionRandom BIT, 
@@ -36,7 +36,7 @@ AS
 			ResponseMaxCorrect)
 		VALUES (@Name,
 				@BodyOfKnowledgeId, 
-				@Description, 
+				ISNULL(@Description,@Name), 
 				@SortRuleId, 
 				@QuestionRandom, 
 				@QuestionMax, 
