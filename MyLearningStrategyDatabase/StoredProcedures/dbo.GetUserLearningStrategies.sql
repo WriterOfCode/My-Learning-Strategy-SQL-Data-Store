@@ -11,7 +11,7 @@ END
 	IF @StrategyId IS NULL
 	BEGIN
 		SELECT 	StrategyId, 
-			BodyOfKnowledgeId,Description,SortRuleId, 
+			BodyOfKnowledgeId,Name,Description,SortRuleId, 
 			QuestionRandom,QuestionMax,QuestionMin, 
 			ResponseRandom , ResponseMax, ResponseMin, 
 			ResponseMinCorrect,ResponseMaxCorrect,
@@ -22,7 +22,7 @@ END
 	ELSE
 	BEGIN
 		SELECT 	StrategyId, 
-			BodyOfKnowledgeId,Description,SortRuleId, 
+			BodyOfKnowledgeId,Name,Description,SortRuleId, 
 			QuestionRandom,QuestionMax,QuestionMin, 
 			ResponseRandom , ResponseMax, ResponseMin, 
 			ResponseMinCorrect,ResponseMaxCorrect,

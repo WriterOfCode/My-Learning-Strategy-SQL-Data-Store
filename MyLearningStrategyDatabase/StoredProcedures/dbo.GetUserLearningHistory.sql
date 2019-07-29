@@ -10,7 +10,7 @@ AS
 	END
 	IF (@StrategyHistoryId IS NOT NULL)
 		BEGIN 
-			SELECT StrategyHistoryId,StrategyId,BodyOfKnowledgeId,Description,SortRuleId,QuestionRandom,
+			SELECT StrategyHistoryId,StrategyId,BodyOfKnowledgeId,Name,Description,SortRuleId,QuestionRandom,
 			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,
 			ResponseMaxCorrect,LearningRunDate,LastModifiedOffset,CloudRowId,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredCorrectly,
@@ -20,7 +20,7 @@ AS
 		END
 	ELSE IF (@StrategyId IS NOT NULL)
 		BEGIN 
-			SELECT StrategyHistoryId,StrategyId,BodyOfKnowledgeId,Description,SortRuleId,QuestionRandom,
+			SELECT StrategyHistoryId,StrategyId,BodyOfKnowledgeId,Name,Description,SortRuleId,QuestionRandom,
 			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,
 			ResponseMaxCorrect,LearningRunDate,LastModifiedOffset,CloudRowId,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredCorrectly,
@@ -30,7 +30,7 @@ AS
 		END
 	ELSE
 		BEGIN 
-			SELECT StrategyHistoryId,StrategyId,BodyOfKnowledgeId,Description,SortRuleId,QuestionRandom,
+			SELECT StrategyHistoryId,StrategyId,BodyOfKnowledgeId,Name,Description,SortRuleId,QuestionRandom,
 			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,
 			ResponseMaxCorrect,LearningRunDate,LastModifiedOffset,CloudRowId,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredCorrectly,
