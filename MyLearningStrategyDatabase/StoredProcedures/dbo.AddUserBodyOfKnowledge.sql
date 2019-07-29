@@ -9,7 +9,7 @@
 	@HasBeenShared BIT NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
-	DECLARE @IdentityValue INT
+	DECLARE @BodyOfKnowledgeId INT
 	DECLARE @UserProfileId INT
 	SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
 	BEGIN
@@ -34,12 +34,12 @@ AS
 			   ,@IsShared
 			   ,@HasBeenShared);
 
-	SET @IdentityValue = CAST(SCOPE_IDENTITY() AS INT);
+	SET @BodyOfKnowledgeId = CAST(SCOPE_IDENTITY() AS INT);
 
 	INSERT INTO [dbo].[LearningStrategies](BodyOfKnowledgeId, Name)
-	VALUES (@IdentityValue, @Name)
+	VALUES (@BodyOfKnowledgeId, @Name)
 
-	SELECT @IdentityValue AS BodyOfKnowledgeId
+	SELECT @BodyOfKnowledgeId AS BodyOfKnowledgeId
 
 	END
 RETURN
