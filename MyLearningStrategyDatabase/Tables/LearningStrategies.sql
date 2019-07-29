@@ -3,7 +3,7 @@
 	[StrategyId] INT IDENTITY (1, 1) NOT NULL , 
     [BodyOfKnowledgeId] INT NOT NULL, 
 	[Name] NVARCHAR(150) NOT NULL,
-    [Description] NVARCHAR(256) NULL, 
+    [Description] NVARCHAR(256) NOT NULL,
     [SortRuleId] INT NULL DEFAULT 0, 
     [QuestionRandom] BIT NULL DEFAULT 0, 
     [QuestionMax] INT NULL DEFAULT 0, 
