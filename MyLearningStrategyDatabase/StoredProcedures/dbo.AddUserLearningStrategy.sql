@@ -1,5 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserLearningStrategy]
     @BodyOfKnowledgeId INT, 
+	@Name NVARCHAR(150) NULL, 
     @Description NVARCHAR(256), 
     @SortRuleId INT, 
     @QuestionRandom BIT, 
@@ -21,7 +22,8 @@ AS
 	
 	BEGIN
 		INSERT INTO [dbo].[LearningStrategies]
-			(BodyOfKnowledgeId, 
+			(Name,
+			BodyOfKnowledgeId, 
 			Description, 
 			SortRuleId, 
 			QuestionRandom, 
@@ -32,7 +34,8 @@ AS
 			ResponseMin, 
 			ResponseMinCorrect, 
 			ResponseMaxCorrect)
-		VALUES (@BodyOfKnowledgeId, 
+		VALUES (@Name,
+				@BodyOfKnowledgeId, 
 				@Description, 
 				@SortRuleId, 
 				@QuestionRandom, 

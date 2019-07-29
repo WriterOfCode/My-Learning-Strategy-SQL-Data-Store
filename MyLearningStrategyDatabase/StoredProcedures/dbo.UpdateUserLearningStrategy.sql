@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateUserLearningStrategy]
 	@StrategyId INT,
     @BodyOfKnowledgeId INT, 
+	@Name NVARCHAR(150) NULL, 
     @Description NVARCHAR(256), 
     @SortRuleId INT, 
     @QuestionRandom BIT, 
@@ -24,7 +25,8 @@ DECLARE @rowsaffected INT
 	
 	BEGIN
 		UPDATE [dbo].[LearningStrategies]
-		SET Description=@Description, 
+		SET Name=@Name, 
+			Description=@Description, 
 			SortRuleId=@SortRuleId, 
 			QuestionRandom=@QuestionRandom, 
 			QuestionMax=@QuestionMax, 

@@ -16,6 +16,7 @@ AS
 	BEGIN
 		INSERT INTO [dbo].[LearningHistory]
 		(StrategyId,
+			Name,
 			BodyOfKnowledgeId, 
 			Description, 
 			SortRuleId, 
@@ -28,6 +29,7 @@ AS
 			ResponseMinCorrect, 
 			ResponseMaxCorrect)
 		SELECT StrategyId,
+			Name,
 			BodyOfKnowledgeId, 
 			Description, 
 			SortRuleId, 

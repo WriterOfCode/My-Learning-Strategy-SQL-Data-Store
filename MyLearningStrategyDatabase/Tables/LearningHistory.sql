@@ -3,6 +3,7 @@
 	[StrategyHistoryId] INT IDENTITY (1, 1) NOT NULL , 
     [StrategyId] INT NOT NULL, 
 	[BodyOfKnowledgeId] INT NOT NULL, 
+	[Name] NVARCHAR(150) NULL, 
     [Description] NVARCHAR(256) NOT NULL, 
     [SortRuleId] INT NULL DEFAULT 0, 
     [QuestionRandom] BIT NULL DEFAULT 0, 
@@ -15,6 +16,6 @@
     [ResponseMaxCorrect] INT NULL DEFAULT 0, 
 	[LearningRunDate] DATETIME NOT NULL DEFAULT SYSDATETIME(),
     [LastModifiedOffset] DATETIMEOFFSET NULL DEFAULT SYSDATETIMEOFFSET(), 
-    [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
+    [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(),
     CONSTRAINT [PK_LearningHistory] PRIMARY KEY ([BodyOfKnowledgeId], [StrategyHistoryId], [StrategyId]), 
 )
