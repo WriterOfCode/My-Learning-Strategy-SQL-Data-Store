@@ -144,6 +144,8 @@
     <None Include="MyLearningStrategyDatabase.publish.xml" />
     <None Include="MyLearningStrategyDatabase_1.publish.xml" />
     <None Include="Snapshots\MyLearningStrategyDatabase_20190729_22-13-17.dacpac" />
-    <None Include="MyLearningStrategyDatabase_2.publish.xml" />
+    <None Include="MyLearningStrategyDatabase_2.publish.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
