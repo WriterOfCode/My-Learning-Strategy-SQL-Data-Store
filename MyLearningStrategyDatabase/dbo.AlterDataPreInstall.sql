@@ -6,3 +6,8 @@ UPDATE [dbo].[LearningStrategies]
 SET [Name] =''
 WHERE [Name] IS NULL;
 GO
+
+UPDATE [dbo].[BodyOfKnowledge]
+SET [Name] = ''
+WHERE [Name] IS NULL;
+GO
