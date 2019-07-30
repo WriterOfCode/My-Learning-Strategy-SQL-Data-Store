@@ -21,8 +21,67 @@ AS
 	END
 	
 	BEGIN
-		INSERT INTO [dbo].[LearningStrategies]
-			(Name,
+		--INSERT INTO [dbo].[LearningStrategies]
+		--	(Name,
+		--	BodyOfKnowledgeId, 
+		--	Description, 
+		--	SortRuleId, 
+		--	QuestionRandom, 
+		--	QuestionMax, 
+		--	QuestionMin, 
+		--	ResponseRandom, 
+		--	ResponseMax, 
+		--	ResponseMin, 
+		--	ResponseMinCorrect, 
+		--	ResponseMaxCorrect)
+		--VALUES (@Name,
+		--		@BodyOfKnowledgeId, 
+		--		ISNULL(@Description,@Name), 
+		--		@SortRuleId, 
+		--		@QuestionRandom, 
+		--		@QuestionMax, 
+		--		@QuestionMin, 
+		--		@ResponseRandom, 
+		--		@ResponseMax, 
+		--		@ResponseMin, 
+		--		@ResponseMinCorrect, 
+		--		@ResponseMaxCorrect);
+
+		--SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
+
+
+		
+
+
+		MERGE [dbo].[LearningStrategies] t
+		USING (select @Name AS Name,
+				@BodyOfKnowledgeId AS BodyOfKnowledgeId, 
+				ISNULL(@Description,@Name) AS Description, 
+				@SortRuleId AS SortRuleId, 
+				@QuestionRandom AS QuestionRandom, 
+				@QuestionMax AS QuestionMax, 
+				@QuestionMin AS QuestionMin, 
+				@ResponseRandom AS ResponseRandom, 
+				@ResponseMax AS ResponseMax, 
+				@ResponseMin AS ResponseMin, 
+				@ResponseMinCorrect AS ResponseMinCorrect, 
+				@ResponseMaxCorrect AS ResponseMaxCorrect) s
+		ON (t.BodyOfKnowledgeId=s.BodyOfKnowledgeId)
+	WHEN MATCHED
+		THEN UPDATE SET t.Name = s.Name,
+				t.BodyOfKnowledgeId = s.BodyOfKnowledgeId, 
+				t.Description = s.Description, 
+				t.SortRuleId = s.SortRuleId,
+				t.QuestionRandom = s.QuestionRandom,
+				t.QuestionMax = s.QuestionMax,
+				t.QuestionMin = s.QuestionMin,
+				t.ResponseRandom = s.ResponseRandom,
+				t.ResponseMax = s.ResponseMax,
+				t.ResponseMin = s.ResponseMin,
+				t.ResponseMinCorrect = s.ResponseMinCorrect,
+				t.ResponseMaxCorrect = s.ResponseMaxCorrect
+	WHEN NOT MATCHED BY TARGET 
+		THEN INSERT(Name,
 			BodyOfKnowledgeId, 
 			Description, 
 			SortRuleId, 
@@ -46,7 +105,6 @@ AS
 				@ResponseMin, 
 				@ResponseMinCorrect, 
 				@ResponseMaxCorrect);
-
-		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
+		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue
 	END
 return
