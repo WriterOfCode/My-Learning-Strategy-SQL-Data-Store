@@ -182,4 +182,11 @@
     <Property Name="ParentElementType" Value="SqlSchema" />
     <Property Name="NewName" Value="[GetQuestionsWithStats]" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="ef6c5f7b-d95e-442f-8fdc-550427248426" ChangeDateTime="07/30/2019 01:44:10">
+    <Property Name="ElementName" Value="[dbo].[BodyOfKnowledge].[Acronym]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[BodyOfKnowledge]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Description" />
+  </Operation>
 </Operations>

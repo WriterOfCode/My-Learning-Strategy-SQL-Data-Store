@@ -61,6 +61,7 @@
     <Folder Include="Properties" />
     <Folder Include="StoredProcedures" />
     <Folder Include="Tables" />
+    <Folder Include="Snapshots" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\BodyOfKnowledge.sql" />
@@ -141,5 +142,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="MyLearningStrategyDatabase.publish.xml" />
+    <None Include="MyLearningStrategyDatabase_1.publish.xml" />
+    <None Include="Snapshots\MyLearningStrategyDatabase_20190729_22-13-17.dacpac" />
+    <None Include="MyLearningStrategyDatabase_2.publish.xml" />
   </ItemGroup>
 </Project>

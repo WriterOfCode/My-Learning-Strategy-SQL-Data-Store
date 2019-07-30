@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserBodyOfKnowledge]
 	@Name NVARCHAR (150),
-	@Acronym NVARCHAR (50) NULL,
+	@Description NVARCHAR (300) NULL,
 	@Keywords NVARCHAR(100) NULL,
 	@ImageDevice NVARCHAR(256) NULL, 
 	@ImageCloud NVARCHAR(2083) NULL,
@@ -16,7 +16,7 @@ AS
 	INSERT INTO [dbo].[BodyOfKnowledge]
 			   (UserProfileId
 			   ,Name
-			   ,Acronym
+			   ,Description
 			   ,Keywords
 			   ,ImageDevice
 			   ,ImageCloud
@@ -26,7 +26,7 @@ AS
 		 VALUES
 			   (@UserProfileId
 			   ,@Name
-			   ,@Acronym
+			   ,@Description
 			   ,@Keywords
 			   ,@ImageDevice
 			   ,@ImageCloud

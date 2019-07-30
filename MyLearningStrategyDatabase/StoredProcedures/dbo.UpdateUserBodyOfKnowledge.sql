@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateUserBodyOfKnowledge]
 	@BodyOfKnowledgeId INT,
 	@Name NVARCHAR (50),
-	@Acronym NVARCHAR (20) NULL,
+	@Description NVARCHAR (20) NULL,
 	@Keywords NVARCHAR(100) NULL,
 	@ImageDevice NVARCHAR(256) NULL, 
 	@ImageCloud NVARCHAR(2083) NULL,
@@ -22,7 +22,7 @@ AS
 	BEGIN
 		UPDATE [dbo].[BodyOfKnowledge]
 		SET Name=@Name,
-			Acronym=@Acronym,
+			Description=@Description,
 			Keywords=@Keywords,
 			ImageDevice=@ImageDevice,
 			ImageCloud=@ImageCloud,

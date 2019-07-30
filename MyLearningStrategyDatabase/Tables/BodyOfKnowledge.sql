@@ -3,7 +3,7 @@
 	[BodyOfKnowledgeId] INT NOT NULL IDENTITY, 
 	[UserProfileId] INT NOT NULL,
     [Name] NVARCHAR(150) NOT NULL, 
-    [Acronym] NVARCHAR(50) NULL, 
+    [Description] NVARCHAR(300) NULL, 
     [Keywords] NVARCHAR(100) NULL, 
 	[ImageDevice] NVARCHAR(256) NULL, 
 	[ImageCloud] NVARCHAR(2083) NULL,
