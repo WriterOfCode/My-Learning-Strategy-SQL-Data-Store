@@ -131,6 +131,7 @@
     <Build Include="StoredProcedures\dbo.DeleteUserLearningHistory.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserLearningStrategy.sql" />
     <Build Include="StoredProcedures\dbo.GetUserLearningHistory.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserLearningStrategiesWithStats.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="dbo.AlterDataPreInstall.sql">
