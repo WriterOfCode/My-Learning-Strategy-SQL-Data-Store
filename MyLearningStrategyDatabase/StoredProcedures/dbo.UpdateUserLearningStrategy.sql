@@ -12,7 +12,6 @@
     @ResponseMin INT NULL, 
     @ResponseMinCorrect INT NULL, 
     @ResponseMaxCorrect INT NULL, 
-	@LastModifiedOffset DATETIMEOFFSET NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 
