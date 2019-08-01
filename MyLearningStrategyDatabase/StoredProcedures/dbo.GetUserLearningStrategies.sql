@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserLearningStrategies]
-    @BodyOfKnowledgeId INT NULL,
+    @BodyOfKnowledgeId INT,
 	@StrategyId INT NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
