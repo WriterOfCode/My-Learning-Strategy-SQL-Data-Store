@@ -12,6 +12,7 @@
     @ResponseMin INT NULL, 
     @ResponseMinCorrect INT NULL, 
     @ResponseMaxCorrect INT NULL, 
+	@OnlyCorrect BIT,
 	@Originator UNIQUEIDENTIFIER
 AS
 
@@ -35,6 +36,7 @@ DECLARE @rowsaffected INT
 			ResponseMin=@ResponseMin, 
 			ResponseMinCorrect=@ResponseMinCorrect, 
 			ResponseMaxCorrect=@ResponseMaxCorrect, 
+			OnlyCorrect = @OnlyCorrect,
 			LastModifiedOffset=SYSDATETIMEOFFSET()
 		WHERE StrategyId = @StrategyId 
 		AND BodyOfKnowledgeId=@BodyOfKnowledgeId

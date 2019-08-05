@@ -11,6 +11,7 @@
     @ResponseMin INT NULL, 
     @ResponseMinCorrect INT NULL, 
     @ResponseMaxCorrect INT NULL, 
+	@OnlyCorrect BIT,
 	@Originator uniqueidentifier
 AS
 	DECLARE	@StrategyId INT; 
@@ -33,7 +34,8 @@ AS
 			ResponseMax, 
 			ResponseMin, 
 			ResponseMinCorrect, 
-			ResponseMaxCorrect)
+			ResponseMaxCorrect,
+			OnlyCorrect)
 		VALUES (@Name,
 				@BodyOfKnowledgeId, 
 				ISNULL(@Description,@Name), 
@@ -45,7 +47,8 @@ AS
 				@ResponseMax, 
 				@ResponseMin, 
 				@ResponseMinCorrect, 
-				@ResponseMaxCorrect);
+				@ResponseMaxCorrect,
+				@OnlyCorrect);
 
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
 

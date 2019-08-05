@@ -13,6 +13,7 @@
     [ResponseMin] INT NULL DEFAULT 0, 
     [ResponseMinCorrect] INT NULL DEFAULT 0, 
     [ResponseMaxCorrect] INT NULL DEFAULT 0, 
+	[OnlyCorrect] BIT NULL DEFAULT 1,
     [LastModifiedOffset] DATETIMEOFFSET NULL DEFAULT SYSDATETIMEOFFSET(), 
     [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
     CONSTRAINT [PK_LearningStrategies] PRIMARY KEY ([StrategyId], [BodyOfKnowledgeId]), 

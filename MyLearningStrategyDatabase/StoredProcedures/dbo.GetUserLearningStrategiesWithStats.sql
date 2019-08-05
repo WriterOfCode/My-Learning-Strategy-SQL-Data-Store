@@ -14,7 +14,7 @@ END
 			BodyOfKnowledgeId,Name,Description,SortRuleId, 
 			QuestionRandom,QuestionMax,QuestionMin, 
 			ResponseRandom , ResponseMax, ResponseMin, 
-			ResponseMinCorrect,ResponseMaxCorrect,
+			ResponseMinCorrect,ResponseMaxCorrect,OnlyCorrect,
 			LastModifiedOffset,CloudRowId,
 			(SELECT COUNT(*) FROM  [dbo].[Questions] q 
 				WHERE  q.BodyOfKnowledgeId =s.BodyOfKnowledgeId) As MaxQuestions,
@@ -29,7 +29,7 @@ END
 			BodyOfKnowledgeId,Name,Description,SortRuleId, 
 			QuestionRandom,QuestionMax,QuestionMin, 
 			ResponseRandom , ResponseMax, ResponseMin, 
-			ResponseMinCorrect,ResponseMaxCorrect,
+			ResponseMinCorrect,ResponseMaxCorrect,OnlyCorrect,
 			LastModifiedOffset,CloudRowId,
 			(SELECT COUNT(*) FROM  [dbo].[Questions] q 
 				WHERE  q.BodyOfKnowledgeId =s.BodyOfKnowledgeId) As MaxQuestions,

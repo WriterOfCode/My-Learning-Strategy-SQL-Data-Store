@@ -14,7 +14,7 @@ END
 			BodyOfKnowledgeId,Name,Description,SortRuleId, 
 			QuestionRandom,QuestionMax,QuestionMin, 
 			ResponseRandom , ResponseMax, ResponseMin, 
-			ResponseMinCorrect,ResponseMaxCorrect,
+			ResponseMinCorrect,ResponseMaxCorrect,OnlyCorrect,
 			LastModifiedOffset,CloudRowId
 		FROM [dbo].[LearningStrategies]
 		WHERE BodyOfKnowledgeId=@BodyOfKnowledgeId
@@ -25,7 +25,7 @@ END
 			BodyOfKnowledgeId,Name,Description,SortRuleId, 
 			QuestionRandom,QuestionMax,QuestionMin, 
 			ResponseRandom , ResponseMax, ResponseMin, 
-			ResponseMinCorrect,ResponseMaxCorrect,
+			ResponseMinCorrect,ResponseMaxCorrect,OnlyCorrect,
 			LastModifiedOffset,CloudRowId
 		FROM [dbo].[LearningStrategies]
 		WHERE BodyOfKnowledgeId=@BodyOfKnowledgeId

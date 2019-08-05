@@ -27,7 +27,8 @@ AS
 			ResponseMax, 
 			ResponseMin, 
 			ResponseMinCorrect, 
-			ResponseMaxCorrect)
+			ResponseMaxCorrect,
+			OnlyCorrect)
 		SELECT StrategyId,
 			Name,
 			BodyOfKnowledgeId, 
@@ -40,7 +41,8 @@ AS
 			ResponseMax, 
 			ResponseMin, 
 			ResponseMinCorrect, 
-			ResponseMaxCorrect
+			ResponseMaxCorrect,
+			OnlyCorrect
 		FROM [dbo].[LearningStrategies] LS
 		WHERE LS.StrategyId= @StrategyId
 		AND BodyOfKnowledgeId=@BodyOfKnowledgeId;

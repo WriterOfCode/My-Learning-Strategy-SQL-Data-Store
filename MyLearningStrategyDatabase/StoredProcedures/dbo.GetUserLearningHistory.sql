@@ -11,7 +11,7 @@ AS
 	IF (@StrategyHistoryId IS NOT NULL)
 		BEGIN 
 			SELECT StrategyHistoryId,StrategyId,BodyOfKnowledgeId,Name,Description,SortRuleId,QuestionRandom,
-			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,
+			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,OnlyCorrect,
 			ResponseMaxCorrect,LearningRunDate,LastModifiedOffset,CloudRowId,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredCorrectly,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredIncorrectly,
@@ -21,7 +21,7 @@ AS
 	ELSE IF (@StrategyId IS NOT NULL)
 		BEGIN 
 			SELECT StrategyHistoryId,StrategyId,BodyOfKnowledgeId,Name,Description,SortRuleId,QuestionRandom,
-			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,
+			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,OnlyCorrect,
 			ResponseMaxCorrect,LearningRunDate,LastModifiedOffset,CloudRowId,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredCorrectly,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredIncorrectly,
@@ -31,7 +31,7 @@ AS
 	ELSE
 		BEGIN 
 			SELECT StrategyHistoryId,StrategyId,BodyOfKnowledgeId,Name,Description,SortRuleId,QuestionRandom,
-			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,
+			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,OnlyCorrect,
 			ResponseMaxCorrect,LearningRunDate,LastModifiedOffset,CloudRowId,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredCorrectly,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredIncorrectly,
