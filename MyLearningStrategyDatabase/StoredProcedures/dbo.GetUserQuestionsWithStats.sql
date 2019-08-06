@@ -31,7 +31,10 @@ AS
 			(SELECT COUNT(*) from Responses RC where RC.QuestionId = Q.QuestionId) AS ResponseCount,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP
 				JOIN LearningHistory LH ON LH.StrategyHistoryId = LP.StrategyHistoryId 
-				WHERE LH.BodyOfKnowledgeId = Q.BodyOfKnowledgeId and LP.QuestionId=Q.QuestionId) AS AnsweredCorrectlyCount
+				WHERE LH.BodyOfKnowledgeId = Q.BodyOfKnowledgeId and LP.QuestionId=Q.QuestionId) AS AnsweredCorrectly,
+			(SELECT isnull(SUM(LP.AnsweredIncorrectlyCount),0) FROM LearningHistoryProgress LP
+				JOIN LearningHistory LH ON LH.StrategyHistoryId = LP.StrategyHistoryId 
+				WHERE LH.BodyOfKnowledgeId = Q.BodyOfKnowledgeId and LP.QuestionId=Q.QuestionId) AS AnsweredIncorrectly
 		FROM [Questions] Q
 		WHERE  BodyOfKnowledgeId = @BodyOfKnowledgeId;
 	END
