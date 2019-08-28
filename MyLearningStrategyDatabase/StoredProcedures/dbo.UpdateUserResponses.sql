@@ -15,7 +15,6 @@
 	@Hyperlink_3 VARCHAR(2083) NULL,
 	@Mnemonic VARCHAR(300) NULL,
 	@LastModifiedOffset DATETIMEOFFSET NULL,
-	@CloudRowId  UNIQUEIDENTIFIER,
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @rowsaffected INT 
@@ -40,7 +39,6 @@ AS
 		Mnemonic = @Mnemonic,
 		LastModifiedOffset=SYSDATETIMEOFFSET()
 		WHERE ResponseId=@ResponseId
-		AND CloudRowId=@CloudRowId  
 		AND QuestionId=@QuestionId;
 
 		SET @rowsaffected = @@ROWCOUNT
