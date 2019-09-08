@@ -8,5 +8,6 @@
 	[ImageHash] INT NULL, 
 	[LastModifiedOffset] DATETIMEOFFSET NULL DEFAULT SYSDATETIMEOFFSET(), 
     [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
-    CONSTRAINT [PK_Categories] PRIMARY KEY ([CategoryId], [UserProfileId]), 
+    [Originator] UNIQUEIDENTIFIER NULL, 
+    CONSTRAINT [PK_Categories] PRIMARY KEY ([CategoryId], [UserProfileId])
 )

@@ -189,4 +189,60 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Description" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="32bb080c-a354-4c6e-809d-fcdd64fb460d" ChangeDateTime="09/02/2019 17:39:41">
+    <Property Name="ElementName" Value="[dbo].[CloudRowImageMedia].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CloudRowImageMedia]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CloudRowId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a5b3c3e4-0af7-4c73-b402-414b03827828" ChangeDateTime="09/02/2019 18:04:08">
+    <Property Name="ElementName" Value="[dbo].[Categories].[OriginatorId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Categories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Originator" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6f211584-3787-4594-bcd0-02f0029beed3" ChangeDateTime="09/02/2019 20:04:55">
+    <Property Name="ElementName" Value="[dbo].[CategoriesBodyOfKnowledge].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CategoriesBodyOfKnowledge]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CloudRowId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="922037f7-3339-451a-8f03-87d477140c6b" ChangeDateTime="09/02/2019 20:05:26">
+    <Property Name="ElementName" Value="[dbo].[CategoriesBodyOfKnowledge].[Bo]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[CategoriesBodyOfKnowledge]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BokCloudRowId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2a75e450-5e29-48f4-aa9e-929f29c0dc7d" ChangeDateTime="09/02/2019 20:20:49">
+    <Property Name="ElementName" Value="[dbo].[Media].[ImageDevice]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Media]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MediaDevice" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7e3bb1a6-d032-43e8-9d65-a9c787f8f38f" ChangeDateTime="09/02/2019 20:20:53">
+    <Property Name="ElementName" Value="[dbo].[Media].[ImageCloud]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Media]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="vCloud" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="48887ad4-dad5-465d-9abd-5902daafe5aa" ChangeDateTime="09/02/2019 20:20:58">
+    <Property Name="ElementName" Value="[dbo].[Media].[vCloud]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Media]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MediaCloud" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5f0d38aa-7ba2-4216-a45d-5e773abf5296" ChangeDateTime="09/02/2019 20:21:04">
+    <Property Name="ElementName" Value="[dbo].[Media].[ImageHash]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Media]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Hash" />
+  </Operation>
 </Operations>

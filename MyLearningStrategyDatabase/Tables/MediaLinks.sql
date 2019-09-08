@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[MediaLinks]
+(
+    [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID() , 
+	[LinkedCloudRowId] UNIQUEIDENTIFIER NOT NULL, 
+	[MediaDevice] NVARCHAR(256) NULL, 
+	[MediaCloud] NVARCHAR(2083) NULL, 
+	[Hash] INT NULL, 
+	[LastModifiedOffset] DATETIMEOFFSET NULL DEFAULT SYSDATETIMEOFFSET(),
+    CONSTRAINT [PK_ImageMedia] PRIMARY KEY ([CloudRowId])
+)
