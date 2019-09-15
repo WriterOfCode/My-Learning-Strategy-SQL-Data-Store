@@ -133,7 +133,6 @@
     <Build Include="StoredProcedures\dbo.GetUserLearningHistory.sql" />
     <Build Include="StoredProcedures\dbo.GetUserLearningStrategiesWithStats.sql" />
     <Build Include="StoredProcedures\dbo.GetUserResponsesByBok.sql" />
-    <Build Include="Tables\MediaLinks.sql" />
     <Build Include="Tables\CategoriesBodyOfKnowledge.sql" />
     <Build Include="Tables\CategoriesQuestions.sql" />
   </ItemGroup>
