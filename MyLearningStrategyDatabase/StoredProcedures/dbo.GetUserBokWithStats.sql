@@ -13,6 +13,7 @@ BEGIN
 	--JOIN UserProfiles U ON U.UserProfileId = BOK.UserProfileId
 	--WHERE U.Originator = @Originator;
 	SELECT BOK.BodyOfKnowledgeId,BOK.UserProfileId,BOK.Name,BOK.Description, BOK.Keywords,
+	BOK.ImageDevice, BOK.ImageCloud,BOK.ImageHash, 
 	BOK.IsShared, BOK.HasBeenShared, BOK.LastModifiedOffset, BOK.CloudRowId,
 	(SELECT COUNT(*) from Questions QC where QC.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId) AS QuestionsCount,
 	(SELECT COUNT(*) from LearningStrategies AD where AD.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId) AS LearningStrategiesCount,
@@ -33,6 +34,7 @@ ELSE
 
 		SELECT BOK.BodyOfKnowledgeId,BOK.UserProfileId,BOK.Name,BOK.Description, BOK.Keywords,
 		BOK.IsShared, BOK.HasBeenShared, BOK.LastModifiedOffset, BOK.CloudRowId,
+		BOK.ImageDevice, BOK.ImageCloud,BOK.ImageHash, 
 		(SELECT COUNT(*) from Questions QC where QC.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId) AS QuestionsCount,
 		(SELECT COUNT(*) from LearningStrategies AD where AD.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId) AS LearningStrategiesCount,
 		(SELECT COUNT(*) from LearningHistory AD where AD.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId) AS LearningHistoryCount,

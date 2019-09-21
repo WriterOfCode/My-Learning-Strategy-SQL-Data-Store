@@ -6,6 +6,7 @@ AS
 IF @BodyOfKnowledgeId IS NULL
 BEGIN
 	SELECT BOK.BodyOfKnowledgeId,BOK.UserProfileId,BOK.Name,BOK.Description, BOK.Keywords,
+	BOK.ImageDevice, BOK.ImageCloud,BOK.ImageHash, 
 	BOK.IsShared, BOK.HasBeenShared, BOK.LastModifiedOffset, BOK.CloudRowId
 	FROM BodyOfKnowledge BOK
 	JOIN UserProfiles U ON U.UserProfileId = BOK.UserProfileId
@@ -19,6 +20,7 @@ ELSE
 		END
 
 		SELECT TOP 1 BOK.BodyOfKnowledgeId,BOK.UserProfileId,BOK.Name,BOK.Description, BOK.Keywords, 
+		BOK.ImageDevice, BOK.ImageCloud,BOK.ImageHash, 
 		BOK.IsShared, BOK.HasBeenShared, BOK.LastModifiedOffset, BOK.CloudRowId
 		FROM [BodyOfKnowledge] BOK
 		JOIN UserProfiles U ON U.UserProfileId = BOK.UserProfileId
