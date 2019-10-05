@@ -107,34 +107,36 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Build>
     <Build Include="StoredProcedures\dbo.GetUserQuestionsWithStats.sql" />
-    <Build Include="Tables\LearningStrategies.sql" />
     <Build Include="Tables\Categories.sql" />
     <Build Include="Tables\LearningHistory.sql" />
     <Build Include="Tables\LearningHistoryProgress.sql" />
     <Build Include="Tables\QuestionCategories.sql" />
     <Build Include="Tables\BodyOfKnowledgeCategories.sql" />
-    <Build Include="StoredProcedures\dbo.AddUserLearningStrategy.sql" />
     <Build Include="StoredProcedures\dbo.AddUserCatagory.sql" />
     <Build Include="StoredProcedures\dbo.AddUserLearningHistory.sql" />
     <Build Include="StoredProcedures\dbo.UpdateUserLearningHistoryProgress.sql" />
-    <Build Include="StoredProcedures\dbo.UpdateUserLearningStrategy.sql" />
     <Build Include="StoredProcedures\dbo.AddUserQuestionsCategory.sql" />
     <Build Include="StoredProcedures\dbo.AddUserBokCatagory.sql" />
     <Build Include="StoredProcedures\dbo.GetUserBokCategories.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserBokCategories.sql" />
-    <Build Include="StoredProcedures\dbo.GetUsersCategories.sql" />
     <Build Include="StoredProcedures\dbo.UpdateUserCatagories.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserCategory.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserQuestionCategories.sql" />
     <Build Include="StoredProcedures\dbo.GetUserQuestionsCatagories.sql" />
-    <Build Include="StoredProcedures\dbo.GetUserLearningStrategies.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserLearningHistory.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserLearningStrategy.sql" />
     <Build Include="StoredProcedures\dbo.GetUserLearningHistory.sql" />
-    <Build Include="StoredProcedures\dbo.GetUserLearningStrategiesWithStats.sql" />
     <Build Include="StoredProcedures\dbo.GetUserResponsesByBok.sql" />
     <Build Include="Tables\CategoriesBodyOfKnowledge.sql" />
     <Build Include="Tables\CategoriesQuestions.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserDefaultSubject.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserLearningHistoryWithStats.sql" />
+    <Build Include="Tables\Strategies.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserStrategy.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserStrategies.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserStrategy.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserStrategy.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserCategories.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="dbo.AlterDataPreInstall.sql">

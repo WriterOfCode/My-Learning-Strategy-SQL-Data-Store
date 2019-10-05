@@ -19,7 +19,8 @@ MERGE LearningHistoryProgress t
 WHEN MATCHED
     THEN UPDATE SET 
 		t.AnsweredIncorrectlyCount =@AnsweredIncorrectlyCount,
-		t.AnsweredCorrectlyCount = @AnsweredCorrectlyCount
+		t.AnsweredCorrectlyCount = @AnsweredCorrectlyCount,
+		t.NumberOfTimes = t.NumberOfTimes + 1
 WHEN NOT MATCHED BY TARGET 
     THEN INSERT(LearningHistoryProgressId,
 			StrategyHistoryId, QuestionId, 

@@ -1,7 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserLearningHistory]
 	@StrategyHistoryId INT NULL , 
 	@StrategyId INT NULL ,
-	@BodyOfKnowledgeId INT NULL
+	@BodyOfKnowledgeId INT NULL,
+	@UserProfileId INT NULL
 AS
 
 	IF 	(@StrategyHistoryId IS NULL AND @StrategyId IS NULL AND @BodyOfKnowledgeId IS NULL)
@@ -10,33 +11,55 @@ AS
 	END
 	IF (@StrategyHistoryId IS NOT NULL)
 		BEGIN 
-			SELECT StrategyHistoryId,StrategyId,BodyOfKnowledgeId,Name,Description,SortRuleId,QuestionRandom,
-			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,OnlyCorrect,
-			ResponseMaxCorrect,LearningRunDate,LastModifiedOffset,CloudRowId,
-			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredCorrectly,
-			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredIncorrectly,
-			(SELECT COUNT(*) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS Answered
-			FROM LearningHistory LH WHERE StrategyHistoryId=@StrategyHistoryId
+			SELECT LH.StrategyHistoryId, LH.StrategyId, LH.BodyOfKnowledgeId, LH.Name, BOK.Name,
+			LH.Description, LH.SortRuleId, LH.QuestionRandom, LH.QuestionMax, 
+			LH.QuestionMin, LH.ResponseRandom, LH.ResponseMax, LH.ResponseMin, 
+			LH.ResponseMinCorrect, LH.ResponseMaxCorrect, LH.OnlyCorrect,
+			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate,
+			LH.NumberOfTimesTried, LH.LastQuestionId, LH.LastModifiedOffset, 
+			LH.CloudRowId 
+			FROM LearningHistory LH 
+			JOIN BodyOfKnowledge BOK ON LH.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId
+			WHERE StrategyHistoryId=@StrategyHistoryId
 		END
 	ELSE IF (@StrategyId IS NOT NULL)
 		BEGIN 
-			SELECT StrategyHistoryId,StrategyId,BodyOfKnowledgeId,Name,Description,SortRuleId,QuestionRandom,
-			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,OnlyCorrect,
-			ResponseMaxCorrect,LearningRunDate,LastModifiedOffset,CloudRowId,
-			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredCorrectly,
-			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredIncorrectly,
-			(SELECT COUNT(*) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS Answered
-			FROM LearningHistory LH WHERE StrategyId=@StrategyId
+			SELECT LH.StrategyHistoryId, LH.StrategyId, LH.BodyOfKnowledgeId, LH.Name,
+			LH.Description, LH.SortRuleId, LH.QuestionRandom, LH.QuestionMax, 
+			LH.QuestionMin, LH.ResponseRandom, LH.ResponseMax, LH.ResponseMin, 
+			LH.ResponseMinCorrect, LH.ResponseMaxCorrect, LH.OnlyCorrect,
+			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate,
+			LH.NumberOfTimesTried, LH.LastQuestionId, LH.LastModifiedOffset, 
+			LH.CloudRowId 
+			FROM LearningHistory LH 
+			JOIN BodyOfKnowledge BOK ON LH.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId
+			WHERE StrategyId=@StrategyId
 		END
-	ELSE
+	ELSE IF (@BodyOfKnowledgeId IS NOT NULL)
 		BEGIN 
-			SELECT StrategyHistoryId,StrategyId,BodyOfKnowledgeId,Name,Description,SortRuleId,QuestionRandom,
-			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,OnlyCorrect,
-			ResponseMaxCorrect,LearningRunDate,LastModifiedOffset,CloudRowId,
-			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredCorrectly,
-			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredIncorrectly,
-			(SELECT COUNT(*) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS Answered
-			FROM LearningHistory LH WHERE LH.BodyOfKnowledgeId=@BodyOfKnowledgeId
+			SELECT LH.StrategyHistoryId, LH.StrategyId, LH.BodyOfKnowledgeId, LH.Name,
+			LH.Description, LH.SortRuleId, LH.QuestionRandom, LH.QuestionMax, 
+			LH.QuestionMin, LH.ResponseRandom, LH.ResponseMax, LH.ResponseMin, 
+			LH.ResponseMinCorrect, LH.ResponseMaxCorrect, LH.OnlyCorrect,
+			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate,
+			LH.NumberOfTimesTried, LH.LastQuestionId, LH.LastModifiedOffset, 
+			LH.CloudRowId 
+			FROM LearningHistory LH 
+			JOIN BodyOfKnowledge BOK ON LH.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId
+			WHERE LH.BodyOfKnowledgeId=@BodyOfKnowledgeId
+		END
+	ELSE 
+		BEGIN
+			SELECT LH.StrategyHistoryId, LH.StrategyId, LH.BodyOfKnowledgeId, LH.Name, 
+			LH.Description, LH.SortRuleId, LH.QuestionRandom, LH.QuestionMax, 
+			LH.QuestionMin, LH.ResponseRandom, LH.ResponseMax, LH.ResponseMin, 
+			LH.ResponseMinCorrect, LH.ResponseMaxCorrect, LH.OnlyCorrect,
+			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate,
+			LH.NumberOfTimesTried, LH.LastQuestionId, LH.LastModifiedOffset, 
+			LH.CloudRowId 
+			FROM LearningHistory LH
+			JOIN Strategies LS ON LS.StrategyId = LH.StrategyId
+			JOIN BodyOfKnowledge BOK ON LH.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId
+			WHERE LS.UserProfileId=@UserProfileId
 		END
 RETURN 0
-

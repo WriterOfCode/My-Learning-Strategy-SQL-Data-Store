@@ -36,9 +36,6 @@ AS
 
 	SET @BodyOfKnowledgeId = CAST(SCOPE_IDENTITY() AS INT);
 
-	INSERT INTO [dbo].[LearningStrategies](BodyOfKnowledgeId, Name,Description)
-	VALUES (@BodyOfKnowledgeId, @Name, @Name)
-
 	SELECT @BodyOfKnowledgeId AS BodyOfKnowledgeId
 
 	END

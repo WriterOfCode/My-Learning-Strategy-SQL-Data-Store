@@ -77,13 +77,6 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="LastModified" />
   </Operation>
-  <Operation Name="Rename Refactor" Key="1928aaf9-af31-4ca1-9480-5d2476b82ef9" ChangeDateTime="07/14/2019 15:07:29">
-    <Property Name="ElementName" Value="[dbo].[LearningStrategies].[LastModifiedOffset]" />
-    <Property Name="ElementType" Value="SqlSimpleColumn" />
-    <Property Name="ParentElementName" Value="[dbo].[LearningStrategies]" />
-    <Property Name="ParentElementType" Value="SqlTable" />
-    <Property Name="NewName" Value="LastModified" />
-  </Operation>
   <Operation Name="Rename Refactor" Key="fb3fe6e1-d5ec-4252-8ba7-30782b76acd0" ChangeDateTime="07/14/2019 15:07:43">
     <Property Name="ElementName" Value="[dbo].[LearningHistory].[LastModifiedOffset]" />
     <Property Name="ElementType" Value="SqlSimpleColumn" />
@@ -130,13 +123,6 @@
     <Property Name="ElementName" Value="[dbo].[LearningHistory].[LastModified]" />
     <Property Name="ElementType" Value="SqlSimpleColumn" />
     <Property Name="ParentElementName" Value="[dbo].[LearningHistory]" />
-    <Property Name="ParentElementType" Value="SqlTable" />
-    <Property Name="NewName" Value="LastModifiedOffset" />
-  </Operation>
-  <Operation Name="Rename Refactor" Key="adfeb1ab-2d83-4791-a89d-b962fef8b402" ChangeDateTime="07/14/2019 15:10:00">
-    <Property Name="ElementName" Value="[dbo].[LearningStrategies].[LastModified]" />
-    <Property Name="ElementType" Value="SqlSimpleColumn" />
-    <Property Name="ParentElementName" Value="[dbo].[LearningStrategies]" />
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="LastModifiedOffset" />
   </Operation>

@@ -31,7 +31,7 @@ AS
 			OnlyCorrect)
 		SELECT StrategyId,
 			Name,
-			BodyOfKnowledgeId, 
+			@BodyOfKnowledgeId, 
 			Description, 
 			SortRuleId, 
 			QuestionRandom, 
@@ -43,10 +43,9 @@ AS
 			ResponseMinCorrect, 
 			ResponseMaxCorrect,
 			OnlyCorrect
-		FROM [dbo].[LearningStrategies] LS
+		FROM [dbo].[Strategies] LS
 		WHERE LS.StrategyId= @StrategyId
-		AND BodyOfKnowledgeId=@BodyOfKnowledgeId;
-		
+
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
 	END
 return

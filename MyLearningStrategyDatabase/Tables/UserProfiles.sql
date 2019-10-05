@@ -24,3 +24,7 @@ CREATE UNIQUE CLUSTERED INDEX [IX_UserProfiles_Originator] ON [dbo].[UserProfile
 GO
 
 CREATE INDEX [IX_UserProfiles_ExternalId] ON [dbo].[UserProfiles] ([ExternalID],[UserProfileId])
+
+GO
+
+CREATE INDEX [IX_UserProfiles_OnOriginator] ON [dbo].[UserProfiles] ([Originator])

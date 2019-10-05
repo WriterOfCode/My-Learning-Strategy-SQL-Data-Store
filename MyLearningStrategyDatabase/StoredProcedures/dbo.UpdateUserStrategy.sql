@@ -1,6 +1,6 @@
-﻿CREATE PROCEDURE [dbo].[UpdateUserLearningStrategy]
+﻿CREATE PROCEDURE [dbo].[UpdateUserStrategy]
 	@StrategyId INT,
-    @BodyOfKnowledgeId INT, 
+    @UserProfileId INT, 
 	@Name NVARCHAR(150) NULL, 
     @Description NVARCHAR(256), 
     @SortRuleId INT, 
@@ -13,18 +13,19 @@
     @ResponseMinCorrect INT NULL, 
     @ResponseMaxCorrect INT NULL, 
 	@OnlyCorrect BIT,
+	@RecycleIncorrectlyAnswered BIT,
 	@Originator UNIQUEIDENTIFIER
 AS
 
 DECLARE @rowsaffected INT 
 
-	IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)=0)
+	IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
 	END
-	
+
 	BEGIN
-		UPDATE [dbo].[LearningStrategies]
+		UPDATE [dbo].[Strategies]
 		SET Name=@Name, 
 			Description=ISNULL(@Description,@Name), 
 			SortRuleId=@SortRuleId, 
@@ -37,9 +38,10 @@ DECLARE @rowsaffected INT
 			ResponseMinCorrect=@ResponseMinCorrect, 
 			ResponseMaxCorrect=@ResponseMaxCorrect, 
 			OnlyCorrect = @OnlyCorrect,
+			RecycleIncorrectlyAnswered = @RecycleIncorrectlyAnswered,
 			LastModifiedOffset=SYSDATETIMEOFFSET()
 		WHERE StrategyId = @StrategyId 
-		AND BodyOfKnowledgeId=@BodyOfKnowledgeId
+		AND UserProfileId=@UserProfileId
 
 		SET @rowsaffected = @@ROWCOUNT
 			

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetUsersCategories]
+﻿CREATE PROCEDURE [dbo].[GetUserCategories]
 	@CategoryId INT NULL,
 	@Originator UNIQUEIDENTIFIER
 AS

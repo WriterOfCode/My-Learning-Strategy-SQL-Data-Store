@@ -20,27 +20,18 @@ BEGIN
 		--[dbo].[LearningHistoryProgress]
 		DELETE FROM [dbo].[LearningHistoryProgress]
 		WHERE StrategyHistoryId IN (
-		SELECT DISTINCT lh.StrategyHistoryId
-		FROM [dbo].[LearningHistory] lh
-		join [dbo].[LearningStrategies] ls
-		on lh.StrategyId=ls.StrategyId
-		where ls.BodyOfKnowledgeId = @BodyOfKnowledgeId)
+		SELECT DISTINCT StrategyHistoryId
+		FROM [dbo].[LearningHistory]
+		where BodyOfKnowledgeId = @BodyOfKnowledgeId)
 
 		--[dbo].[LearningHistory]
 		DELETE FROM [dbo].[LearningHistory]
-		WHERE StrategyHistoryId IN (SELECT DISTINCT StrategyId 
-		FROM [dbo].[LearningStrategies]
-		WHERE [BodyOfKnowledgeId] = @BodyOfKnowledgeId)
-
-		--[dbo].[LearningStrategies]
-		DELETE FROM [dbo].[LearningStrategies]
-		WHERE [BodyOfKnowledgeId] = @BodyOfKnowledgeId;
+		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
 
 		DELETE FROM [dbo].[Responses]
 		WHERE QuestionId IN (SELECT QuestionId 
 		FROM [dbo].[Questions] 
 		WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId)
-
 
 		DELETE FROM [dbo].[QuestionCategories]
 		WHERE QuestionId IN (SELECT QuestionId 

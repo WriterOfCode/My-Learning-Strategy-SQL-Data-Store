@@ -62,24 +62,9 @@ BEGIN
 
 	SET @UserProfileId = CAST(SCOPE_IDENTITY() AS INT);
 
-
-
-
 	if (@UserProfileId is not null)
 	BEGIN
-		IF NOT EXISTS (SELECT 1 FROM BodyOfKnowledge where UserProfileId = @UserProfileId)
-		BEGIN
-			DECLARE @IdentityValue INT
-			BEGIN
-			INSERT INTO [dbo].[BodyOfKnowledge](UserProfileId,Name)
-				 VALUES (@UserProfileId ,'Default');
-
-			SET @IdentityValue = CAST(SCOPE_IDENTITY() AS INT);
-
-			INSERT INTO [dbo].[LearningStrategies](BodyOfKnowledgeId, Name)
-			VALUES (@IdentityValue,'Default')
-			END
-		END
+		Execute AddUserDefaultSubject @UserProfileId
 
 		SELECT Originator
 		FROM UserProfiles UP 
