@@ -1,34 +1,30 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserStrategies]
 	@StrategyId INT NULL,
-	@UserProfileId INT,
 	@Originator UNIQUEIDENTIFIER
 AS
-	IF ([dbo].[IsOriginatorUsers](@UserProfileId, @Originator)=0)
-	BEGIN
-		RAISERROR (13538,14,-1, 'User is not the owner!');   
-	END
-
 	IF @StrategyId IS NULL
 	BEGIN
-		SELECT 	StrategyId, 
-			UserProfileId,Name,Description,SortRuleId, 
-			QuestionRandom,QuestionMax,QuestionMin, 
-			ResponseRandom , ResponseMax, ResponseMin, 
-			ResponseMinCorrect,ResponseMaxCorrect,OnlyCorrect,
-			LastModifiedOffset,CloudRowId
-		FROM [dbo].[Strategies]
-		WHERE UserProfileId=@UserProfileId
+		SELECT 	S.StrategyId, 
+			S.UserProfileId,S.Name,S.Description,S.SortRuleId, 
+			S.QuestionRandom,S.QuestionMax,S.QuestionMin, 
+			S.ResponseRandom , S.ResponseMax, S.ResponseMin, 
+			S.ResponseMinCorrect,S.ResponseMaxCorrect,S.OnlyCorrect,
+			S.LastModifiedOffset,S.CloudRowId
+		FROM [dbo].[Strategies] S
+		JOIN UserProfiles UP ON UP.UserProfileId=S.UserProfileId
+        WHERE UP.Originator = @Originator
 	END
 	ELSE
 	BEGIN
-		SELECT 	StrategyId, 
-			UserProfileId,Name,Description,SortRuleId, 
-			QuestionRandom,QuestionMax,QuestionMin, 
-			ResponseRandom , ResponseMax, ResponseMin, 
-			ResponseMinCorrect,ResponseMaxCorrect,OnlyCorrect,
-			LastModifiedOffset,CloudRowId
-		FROM [dbo].[Strategies]
-		WHERE UserProfileId=@UserProfileId
-		AND StrategyId=@StrategyId
+		SELECT 	S.StrategyId, 
+			S.UserProfileId,S.Name,S.Description,S.SortRuleId, 
+			S.QuestionRandom,S.QuestionMax,S.QuestionMin, 
+			S.ResponseRandom , S.ResponseMax, S.ResponseMin, 
+			S.ResponseMinCorrect,S.ResponseMaxCorrect,S.OnlyCorrect,
+			S.LastModifiedOffset,S.CloudRowId
+		FROM [dbo].[Strategies] S
+		JOIN UserProfiles UP ON UP.UserProfileId=S.UserProfileId
+        WHERE UP.Originator = @Originator
+		AND S.StrategyId=@StrategyId
 	END
 RETURN 0
