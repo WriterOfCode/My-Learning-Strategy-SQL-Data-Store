@@ -1,59 +1,127 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserResponses]
 	@ResponseId INT NULL,
-    @QuestionId INT,
+	@BodyOfKnowledgeId INT NULL,
+    @QuestionId INT NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
-IF ([dbo].[IsQuestionOriginator](@Originator,@QuestionId)=0)
+
+IF (@BodyOfKnowledgeId IS NULL AND @QuestionId IS NULL AND @ResponseId IS NULL )
 BEGIN
-	RAISERROR (13538,14,-1, 'User is not the owner!');   
-END
-IF (@ResponseId IS NOT NULL AND @QuestionId IS NOT NULL)
-	BEGIN
-	SELECT ResponseId,
-		QuestionId,
-		OrderBy,
-		Response,
-		IsCorrect,
-		Image_1_Device, 
-		Image_1_Cloud, 
-		Image_1_Hash,
-		Image_2_Device, 
-		Image_2_Cloud, 
-		Image_2_Hash,
-		Image_3_Device, 
-		Image_3_Cloud, 
-		Image_3_Hash,
-		Hyperlink_1,
-		Hyperlink_2,
-		Hyperlink_3,
-		LastModifiedOffset,
-		CloudRowId
-	  FROM [dbo].[Responses]
-	  WHERE ResponseId= @ResponseId
-	  AND QuestionId= @QuestionId
-	END 
-ELSE IF (@QuestionId IS NOT NULL)
+	SELECT r.ResponseId
+			,r.QuestionId
+			,r.OrderBy
+			,r.IsCorrect
+			,r.Response
+			,r.Image_1_Device
+			,r.Image_1_Cloud
+			,r.Image_1_Hash
+			,r.Image_2_Device
+			,r.Image_2_Cloud
+			,r.Image_2_Hash
+			,r.Image_3_Device
+			,r.Image_3_Cloud
+			,r.Image_3_Hash
+			,r.Hyperlink_1
+			,r.Hyperlink_2
+			,r.Hyperlink_3
+			,r.Mnemonic
+			,r.LastModifiedOffset
+			,r.CloudRowId
+		FROM dbo.Responses r
+		join Questions q on r.QuestionId = q.QuestionId
+		join BodyOfKnowledge b on b.BodyOfKnowledgeId = q.BodyOfKnowledgeId
+		join UserProfiles u on b.UserProfileId = u.UserProfileId
+		WHERE  u.Originator = @Originator
+END 
+ELSE IF (@BodyOfKnowledgeId IS NOT NULL AND @QuestionId IS NULL AND @ResponseId IS NULL )
 BEGIN
-  SELECT ResponseId,
-		QuestionId,
-		OrderBy,
-		Response,
-		IsCorrect,
-		Image_1_Device, 
-		Image_1_Cloud, 
-		Image_1_Hash,
-		Image_2_Device, 
-		Image_2_Cloud, 
-		Image_2_Hash,
-		Image_3_Device, 
-		Image_3_Cloud, 
-		Image_3_Hash,
-		Hyperlink_1,
-		Hyperlink_2,
-		Hyperlink_3,
-		LastModifiedOffset,
-		CloudRowId
-  FROM [dbo].[Responses]
-  WHERE QuestionId= @QuestionId
+	SELECT r.ResponseId
+			,r.QuestionId
+			,r.OrderBy
+			,r.IsCorrect
+			,r.Response
+			,r.Image_1_Device
+			,r.Image_1_Cloud
+			,r.Image_1_Hash
+			,r.Image_2_Device
+			,r.Image_2_Cloud
+			,r.Image_2_Hash
+			,r.Image_3_Device
+			,r.Image_3_Cloud
+			,r.Image_3_Hash
+			,r.Hyperlink_1
+			,r.Hyperlink_2
+			,r.Hyperlink_3
+			,r.Mnemonic
+			,r.LastModifiedOffset
+			,r.CloudRowId
+		FROM dbo.Responses r
+		join Questions q on r.QuestionId = q.QuestionId
+		join BodyOfKnowledge b on b.BodyOfKnowledgeId = q.BodyOfKnowledgeId
+		join UserProfiles u on b.UserProfileId = u.UserProfileId
+		WHERE  u.Originator = @Originator
+	    AND b.BodyOfKnowledgeId = @BodyOfKnowledgeId
 END
+ELSE IF (@QuestionId IS NOT NULL AND @ResponseId IS NULL )
+BEGIN
+	SELECT r.ResponseId
+			,r.QuestionId
+			,r.OrderBy
+			,r.IsCorrect
+			,r.Response
+			,r.Image_1_Device
+			,r.Image_1_Cloud
+			,r.Image_1_Hash
+			,r.Image_2_Device
+			,r.Image_2_Cloud
+			,r.Image_2_Hash
+			,r.Image_3_Device
+			,r.Image_3_Cloud
+			,r.Image_3_Hash
+			,r.Hyperlink_1
+			,r.Hyperlink_2
+			,r.Hyperlink_3
+			,r.Mnemonic
+			,r.LastModifiedOffset
+			,r.CloudRowId
+		FROM dbo.Responses r
+		join Questions q on r.QuestionId = q.QuestionId
+		join BodyOfKnowledge b on b.BodyOfKnowledgeId = q.BodyOfKnowledgeId
+		join UserProfiles u on b.UserProfileId = u.UserProfileId
+		WHERE  u.Originator = @Originator
+		AND R.QuestionId= @QuestionId
+END
+ELSE
+BEGIN
+
+	SELECT r.ResponseId
+			,r.QuestionId
+			,r.OrderBy
+			,r.IsCorrect
+			,r.Response
+			,r.Image_1_Device
+			,r.Image_1_Cloud
+			,r.Image_1_Hash
+			,r.Image_2_Device
+			,r.Image_2_Cloud
+			,r.Image_2_Hash
+			,r.Image_3_Device
+			,r.Image_3_Cloud
+			,r.Image_3_Hash
+			,r.Hyperlink_1
+			,r.Hyperlink_2
+			,r.Hyperlink_3
+			,r.Mnemonic
+			,r.LastModifiedOffset
+			,r.CloudRowId
+		FROM dbo.Responses r
+		join Questions q on r.QuestionId = q.QuestionId
+		join BodyOfKnowledge b on b.BodyOfKnowledgeId = q.BodyOfKnowledgeId
+		join UserProfiles u on b.UserProfileId = u.UserProfileId
+		WHERE  u.Originator = @Originator
+	    AND R.ResponseId= @ResponseId
+END 
+
+
+
 RETURN 0
