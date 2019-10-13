@@ -1,61 +1,88 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserQuestions]
-    @BodyOfKnowledgeId INT,
+    @BodyOfKnowledgeId INT NULL,
 	@QuestionId INT NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
-	IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)=0)
+
+IF @QuestionId IS NULL AND @BodyOfKnowledgeId IS NULL
 	BEGIN
-		RAISERROR (13538,14,-1, 'User is not the owner!');   
+		SELECT q.QuestionId,
+				q.BodyOfKnowledgeId,
+				q.OrderBy,
+				q.Question,		
+				q.Image_1_Device, 
+				q.Image_1_Cloud, 
+				q.Image_1_Hash,
+				q.Image_2_Device, 
+				q.Image_2_Cloud, 
+				q.Image_2_Hash,
+				q.Image_3_Device, 
+				q.Image_3_Cloud, 
+				q.Image_3_Hash,
+				q.Hyperlink_1,
+				q.Hyperlink_2,
+				q.Hyperlink_3,
+				q.LastModifiedOffset,
+				q.CloudRowId,
+				q.Mnemonic
+		  FROM Questions q
+		  Join BodyOfKnowledge k on q.BodyOfKnowledgeId = k.BodyOfKnowledgeId
+		  JOIN UserProfiles u on u.UserProfileId = k.UserProfileId
+		  WHERE u.Originator = @Originator;
 	END
---BodyOfKnowledgeId @QuestionId
---BodyOfKnowledgeId
-IF @QuestionId IS NULL
+ELSE IF @QuestionId IS NULL
 	BEGIN 
-		SELECT QuestionId,
-				BodyOfKnowledgeId,
-				OrderBy,
-				Question,		
-				Image_1_Device, 
-				Image_1_Cloud, 
-				Image_1_Hash,
-				Image_2_Device, 
-				Image_2_Cloud, 
-				Image_2_Hash,
-				Image_3_Device, 
-				Image_3_Cloud, 
-				Image_3_Hash,
-				Hyperlink_1,
-				Hyperlink_2,
-				Hyperlink_3,
-				LastModifiedOffset,
-				CloudRowId,
-				Mnemonic
-		  FROM [Questions]
-		  WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId;
+		SELECT q.QuestionId,
+				q.BodyOfKnowledgeId,
+				q.OrderBy,
+				q.Question,		
+				q.Image_1_Device, 
+				q.Image_1_Cloud, 
+				q.Image_1_Hash,
+				q.Image_2_Device, 
+				q.Image_2_Cloud, 
+				q.Image_2_Hash,
+				q.Image_3_Device, 
+				q.Image_3_Cloud, 
+				q.Image_3_Hash,
+				q.Hyperlink_1,
+				q.Hyperlink_2,
+				q.Hyperlink_3,
+				q.LastModifiedOffset,
+				q.CloudRowId,
+				q.Mnemonic
+		  FROM Questions q
+		  Join BodyOfKnowledge k on q.BodyOfKnowledgeId = k.BodyOfKnowledgeId
+		  JOIN UserProfiles u on u.UserProfileId = k.UserProfileId
+		  WHERE k.BodyOfKnowledgeId = @BodyOfKnowledgeId
+		  and u.Originator = @Originator;
 	END
-	ELSE
+ELSE 
 	BEGIN 
-			SELECT QuestionId,
-				BodyOfKnowledgeId,
-				OrderBy,
-				Question,		
-				Image_1_Device, 
-				Image_1_Cloud, 
-				Image_1_Hash,
-				Image_2_Device, 
-				Image_2_Cloud, 
-				Image_2_Hash,
-				Image_3_Device, 
-				Image_3_Cloud, 
-				Image_3_Hash,
-				Hyperlink_1,
-				Hyperlink_2,
-				Hyperlink_3,
-				LastModifiedOffset,
-				CloudRowId,
-				Mnemonic
-		  FROM [Questions]
-		  WHERE BodyOfKnowledgeId = @BodyOfKnowledgeId
-		  AND QuestionId = @QuestionId;
+		SELECT q.QuestionId,
+				q.BodyOfKnowledgeId,
+				q.OrderBy,
+				q.Question,		
+				q.Image_1_Device, 
+				q.Image_1_Cloud, 
+				q.Image_1_Hash,
+				q.Image_2_Device, 
+				q.Image_2_Cloud, 
+				q.Image_2_Hash,
+				q.Image_3_Device, 
+				q.Image_3_Cloud, 
+				q.Image_3_Hash,
+				q.Hyperlink_1,
+				q.Hyperlink_2,
+				q.Hyperlink_3,
+				q.LastModifiedOffset,
+				q.CloudRowId,
+				q.Mnemonic
+		  FROM Questions q
+		  Join BodyOfKnowledge k on q.BodyOfKnowledgeId = k.BodyOfKnowledgeId
+		  JOIN UserProfiles u on u.UserProfileId = k.UserProfileId
+		  WHERE k.BodyOfKnowledgeId = @BodyOfKnowledgeId
+		  AND q.QuestionId = @QuestionId
+		  and u.Originator = @Originator;
 	END 
 RETURN 

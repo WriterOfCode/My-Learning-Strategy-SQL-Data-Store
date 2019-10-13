@@ -3,14 +3,9 @@
 	@Originator UNIQUEIDENTIFIER NULL
 AS
 
-	IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)=0)
-	BEGIN
-		RAISERROR (13538,14,-1, 'User is not the owner!');   
-	END
---BodyOfKnowledgeId @QuestionId
 	BEGIN
 		SELECT QuestionId,
-			BodyOfKnowledgeId,
+			Q.BodyOfKnowledgeId,
 			OrderBy,
 			Question,
 			Image_1_Device, 
@@ -25,8 +20,8 @@ AS
 			Hyperlink_1,
 			Hyperlink_2,
 			Hyperlink_3,
-			LastModifiedOffset,
-			CloudRowId,
+			Q.LastModifiedOffset,
+			Q.CloudRowId,
 			Mnemonic,
 			(SELECT COUNT(*) from Responses RC where RC.QuestionId = Q.QuestionId) AS ResponseCount,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP
@@ -36,7 +31,9 @@ AS
 				JOIN LearningHistory LH ON LH.StrategyHistoryId = LP.StrategyHistoryId 
 				WHERE LH.BodyOfKnowledgeId = Q.BodyOfKnowledgeId and LP.QuestionId=Q.QuestionId) AS AnsweredIncorrectly
 		FROM [Questions] Q
-		WHERE  BodyOfKnowledgeId = @BodyOfKnowledgeId;
+		  Join BodyOfKnowledge k
+		  on Q.BodyOfKnowledgeId = k.BodyOfKnowledgeId
+		  WHERE k.BodyOfKnowledgeId = @BodyOfKnowledgeId;
 	END
 
 RETURN 0

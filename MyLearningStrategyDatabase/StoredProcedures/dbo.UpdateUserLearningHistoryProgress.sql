@@ -18,8 +18,8 @@ MERGE LearningHistoryProgress t
 			AND t.QuestionId=s.QuestionId)
 WHEN MATCHED
     THEN UPDATE SET 
-		t.AnsweredIncorrectlyCount =@AnsweredIncorrectlyCount,
-		t.AnsweredCorrectlyCount = @AnsweredCorrectlyCount,
+		t.AnsweredIncorrectlyCount =t.AnsweredIncorrectlyCount + s.AnsweredIncorrectlyCount,
+		t.AnsweredCorrectlyCount = t.AnsweredCorrectlyCount + s.AnsweredCorrectlyCount,
 		t.NumberOfTimes = t.NumberOfTimes + 1
 WHEN NOT MATCHED BY TARGET 
     THEN INSERT(LearningHistoryProgressId,

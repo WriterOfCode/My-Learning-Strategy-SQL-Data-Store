@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserQuestionsCatagories]
 	@QuestionId INT,
 	@CategoryId INT NULL,
-	@UserProfileId INT
+	@Originator UNIQUEIDENTIFIER
 AS
 
 	IF  @CategoryId IS NULL
@@ -11,8 +11,10 @@ AS
 		FROM [dbo].[QuestionCategories] qc
 		JOIN [dbo].[Categories] c 
 		on c.CategoryId=qc.CategoryId and c.UserProfileId=qc.UserProfileId
+		JOIN [dbo].[UserProfiles] u
+		on u.UserProfileId=c.UserProfileId
 		WHERE  qc.QuestionId=@QuestionId
-		and  c.UserProfileId=@UserProfileId
+		and  u.Originator=@Originator;
 	END
 	ELSE
 	BEGIN
@@ -21,8 +23,10 @@ AS
 		FROM [dbo].[QuestionCategories] qc
 		JOIN [dbo].[Categories] c 
 		on c.CategoryId=qc.CategoryId and c.UserProfileId=qc.UserProfileId
+		JOIN [dbo].[UserProfiles] u
+		on u.UserProfileId=c.UserProfileId
 		WHERE qc.QuestionId=@QuestionId
 		and  c.CategoryId=@CategoryId
-		and  c.UserProfileId=@UserProfileId
+		and  u.Originator=@Originator;
 	END
 RETURN 0

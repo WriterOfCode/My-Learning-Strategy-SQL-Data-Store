@@ -1,13 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteUserLearningStrategy]
 	@StrategyId INT NULL , 
-    @UserProfileId INT NULL,
 	@Originator UNIQUEIDENTIFIER NULL
 AS
 
-IF ([dbo].[IsOriginatorUsers](@UserProfileId, @Originator)=0)
-BEGIN
-	RAISERROR (13538,14,-1, 'User is not the owner!');   
-END
+
+DECLARE @UserProfileId INT
+SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
+
 IF (@StrategyId IS NULL)
 	BEGIN
 	DELETE FROM [dbo].[Strategies]

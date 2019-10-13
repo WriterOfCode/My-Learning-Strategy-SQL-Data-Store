@@ -6,10 +6,12 @@ RETURNS INT
 AS
 BEGIN
 	DECLARE @UserProfileId INT
+ 
 
-	SELECT @UserProfileId = ISNULL(MAX(UP.UserProfileId), 0 )
-	FROM UserProfiles UP 
-	WHERE UP.Originator = @Originator
+	SELECT @UserProfileId = UserProfileId
+	FROM UserProfiles 
+	WHERE Originator = @Originator;
+
 
 	RETURN @UserProfileId
 END
