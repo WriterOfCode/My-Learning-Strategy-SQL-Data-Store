@@ -9,7 +9,7 @@ AS
 	BEGIN
 		RAISERROR (15600,-1,-1, 'Missing pramiters');
 	END
-	IF (@StrategyHistoryId IS NOT NULL)
+	IF 	(@StrategyHistoryId IS NOT NULL AND @StrategyId IS NOT NULL AND @BodyOfKnowledgeId IS NOT NULL)
 		BEGIN 
 			SELECT LH.StrategyHistoryId,LH.StrategyId, LH.BodyOfKnowledgeId,LH.Name, 
 			BOK.Name AS BodyOfKnowledgeName,
@@ -25,11 +25,13 @@ AS
 			FROM LearningHistory LH 
 			JOIN BodyOfKnowledge BOK ON LH.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId
 			JOIN UserProfiles u on u.UserProfileId = BOK.UserProfileId
-			WHERE StrategyHistoryId=@StrategyHistoryId
+			WHERE LH.StrategyHistoryId=@StrategyHistoryId
+			AND LH.StrategyId=@StrategyId
+			AND LH.BodyOfKnowledgeId=@BodyOfKnowledgeId
 			AND u.Originator = @Originator
 
 		END
-	ELSE IF (@StrategyId IS NOT NULL)
+	ELSE IF (@StrategyHistoryId IS NULL AND @StrategyId IS NOT NULL AND @BodyOfKnowledgeId IS NOT NULL)
 		BEGIN 
 			SELECT LH.StrategyHistoryId,LH.StrategyId,LH.BodyOfKnowledgeId,LH.Name,LH.Description,SortRuleId,QuestionRandom, BOK.Name AS BodyOfKnowledgeName,
 			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,OnlyCorrect,
@@ -39,7 +41,10 @@ AS
 			(SELECT COUNT(*) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS Answered
 			FROM LearningHistory LH 
 			JOIN BodyOfKnowledge BOK ON LH.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId
-			WHERE StrategyId=@StrategyId
+			JOIN UserProfiles u on u.UserProfileId = BOK.UserProfileId
+			WHERE LH.StrategyId=@StrategyId
+			AND LH.BodyOfKnowledgeId=@BodyOfKnowledgeId
+			AND u.Originator = @Originator
 		END
 	ELSE
 		BEGIN 
@@ -51,6 +56,8 @@ AS
 			(SELECT COUNT(*) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS Answered
 			FROM LearningHistory LH 
 			JOIN BodyOfKnowledge BOK ON LH.BodyOfKnowledgeId = BOK.BodyOfKnowledgeId
+			JOIN UserProfiles u on u.UserProfileId = BOK.UserProfileId
 			WHERE LH.BodyOfKnowledgeId=@BodyOfKnowledgeId
+			AND u.Originator = @Originator
 		END
 RETURN 0
