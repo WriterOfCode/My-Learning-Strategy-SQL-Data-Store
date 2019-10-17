@@ -89,6 +89,7 @@ BEGIN
 		join BodyOfKnowledge b on b.BodyOfKnowledgeId = q.BodyOfKnowledgeId
 		join UserProfiles u on b.UserProfileId = u.UserProfileId
 		WHERE  u.Originator = @Originator
+	    AND b.BodyOfKnowledgeId = @BodyOfKnowledgeId
 		AND R.QuestionId= @QuestionId
 END
 ELSE
@@ -119,6 +120,8 @@ BEGIN
 		join BodyOfKnowledge b on b.BodyOfKnowledgeId = q.BodyOfKnowledgeId
 		join UserProfiles u on b.UserProfileId = u.UserProfileId
 		WHERE  u.Originator = @Originator
+	    AND b.BodyOfKnowledgeId = @BodyOfKnowledgeId
+		AND R.QuestionId= @QuestionId
 	    AND R.ResponseId= @ResponseId
 END 
 
