@@ -7,9 +7,7 @@ AS
 	IF (@StrategyId IS NOT NULL AND @BodyOfKnowledgeId IS NOT NULL AND @StrategyHistoryId IS NOT NULL)
 		BEGIN 
 			SELECT LH.StrategyHistoryId, LH.StrategyId, LH.BodyOfKnowledgeId, LH.Name, 
-			LH.Description, LH.SortRuleId, LH.QuestionRandom, LH.QuestionMax, 
-			LH.QuestionMin, LH.ResponseRandom, LH.ResponseMax, LH.ResponseMin, 
-			LH.ResponseMinCorrect, LH.ResponseMaxCorrect, LH.OnlyCorrect,
+			LH.Description, LH.SortRuleId, LH.QuestionSelection, LH.ResponseSelection, 
 			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate,
 			LH.NumberOfTimesTried, LH.LastQuestionId, LH.LastModifiedOffset, 
 			LH.CloudRowId 
@@ -25,9 +23,7 @@ AS
 	ELSE IF (@StrategyId IS NOT NULL AND @BodyOfKnowledgeId IS NOT NULL)
 		BEGIN 
 			SELECT LH.StrategyHistoryId, LH.StrategyId, LH.BodyOfKnowledgeId, LH.Name,
-			LH.Description, LH.SortRuleId, LH.QuestionRandom, LH.QuestionMax, 
-			LH.QuestionMin, LH.ResponseRandom, LH.ResponseMax, LH.ResponseMin, 
-			LH.ResponseMinCorrect, LH.ResponseMaxCorrect, LH.OnlyCorrect,
+			LH.Description, LH.SortRuleId, LH.QuestionSelection, LH.ResponseSelection, 
 			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate,
 			LH.NumberOfTimesTried, LH.LastQuestionId, LH.LastModifiedOffset, 
 			LH.CloudRowId 
@@ -41,9 +37,7 @@ AS
 	ELSE IF (@BodyOfKnowledgeId IS NOT NULL)
 		BEGIN 
 			SELECT LH.StrategyHistoryId, LH.StrategyId, LH.BodyOfKnowledgeId, LH.Name,
-			LH.Description, LH.SortRuleId, LH.QuestionRandom, LH.QuestionMax, 
-			LH.QuestionMin, LH.ResponseRandom, LH.ResponseMax, LH.ResponseMin, 
-			LH.ResponseMinCorrect, LH.ResponseMaxCorrect, LH.OnlyCorrect,
+			LH.Description, LH.SortRuleId,LH.QuestionSelection, LH.ResponseSelection, 
 			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate,
 			LH.NumberOfTimesTried, LH.LastQuestionId, LH.LastModifiedOffset, 
 			LH.CloudRowId 
@@ -56,9 +50,7 @@ AS
 	ELSE 
 		BEGIN
 			SELECT LH.StrategyHistoryId, LH.StrategyId, LH.BodyOfKnowledgeId, LH.Name, 
-			LH.Description, LH.SortRuleId, LH.QuestionRandom, LH.QuestionMax, 
-			LH.QuestionMin, LH.ResponseRandom, LH.ResponseMax, LH.ResponseMin, 
-			LH.ResponseMinCorrect, LH.ResponseMaxCorrect, LH.OnlyCorrect,
+			LH.Description, LH.SortRuleId, LH.QuestionSelection, LH.ResponseSelection, 
 			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate,
 			LH.NumberOfTimesTried, LH.LastQuestionId, LH.LastModifiedOffset, 
 			LH.CloudRowId 

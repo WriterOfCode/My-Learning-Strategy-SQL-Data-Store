@@ -6,9 +6,7 @@ AS
 	BEGIN
 		SELECT 	S.StrategyId, 
 			S.UserProfileId,S.Name,S.Description,S.SortRuleId, 
-			S.QuestionRandom,S.QuestionMax,S.QuestionMin, 
-			S.ResponseRandom , S.ResponseMax, S.ResponseMin, 
-			S.ResponseMinCorrect,S.ResponseMaxCorrect,S.OnlyCorrect,
+			S.QuestionSelection,S.ResponseSelection,
 			S.LastModifiedOffset,S.CloudRowId
 		FROM [dbo].[Strategies] S
 		JOIN UserProfiles UP ON UP.UserProfileId=S.UserProfileId
@@ -17,10 +15,8 @@ AS
 	ELSE
 	BEGIN
 		SELECT 	S.StrategyId, 
-			S.UserProfileId,S.Name,S.Description,S.SortRuleId, 
-			S.QuestionRandom,S.QuestionMax,S.QuestionMin, 
-			S.ResponseRandom , S.ResponseMax, S.ResponseMin, 
-			S.ResponseMinCorrect,S.ResponseMaxCorrect,S.OnlyCorrect,
+			S.UserProfileId,S.Name,S.Description,S.SortRuleId,
+			S.QuestionSelection,S.ResponseSelection,
 			S.LastModifiedOffset,S.CloudRowId
 		FROM [dbo].[Strategies] S
 		JOIN UserProfiles UP ON UP.UserProfileId=S.UserProfileId

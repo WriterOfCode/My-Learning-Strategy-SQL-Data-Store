@@ -4,15 +4,8 @@
 	@Name NVARCHAR(150) NULL, 
     @Description NVARCHAR(256), 
     @SortRuleId INT, 
-    @QuestionRandom BIT, 
-    @QuestionMax INT NULL, 
-    @QuestionMin INT NULL, 
-    @ResponseRandom BIT NULL, 
-    @ResponseMax INT NULL, 
-    @ResponseMin INT NULL, 
-    @ResponseMinCorrect INT NULL, 
-    @ResponseMaxCorrect INT NULL, 
-	@OnlyCorrect BIT,
+    @QuestionSelection INT NULL, 
+    @ResponseSelection INT NULL, 
 	@RecycleIncorrectlyAnswered BIT,
 	@Originator UNIQUEIDENTIFIER
 AS
@@ -27,23 +20,15 @@ DECLARE @rowsaffected INT
 	BEGIN
 		UPDATE [dbo].[Strategies]
 		SET Name=@Name, 
+			UserProfileId=@UserProfileId, 
 			Description=ISNULL(@Description,@Name), 
 			SortRuleId=@SortRuleId, 
-			QuestionRandom=@QuestionRandom, 
-			QuestionMax=@QuestionMax, 
-			QuestionMin=@QuestionMin, 
-			ResponseRandom=@ResponseRandom, 
-			ResponseMax=@ResponseMax, 
-			ResponseMin=@ResponseMin, 
-			ResponseMinCorrect=@ResponseMinCorrect, 
-			ResponseMaxCorrect=@ResponseMaxCorrect, 
-			OnlyCorrect = @OnlyCorrect,
+			QuestionSelection=@QuestionSelection, 
+			ResponseSelection=@ResponseSelection,
 			RecycleIncorrectlyAnswered = @RecycleIncorrectlyAnswered,
 			LastModifiedOffset=SYSDATETIMEOFFSET()
 		WHERE StrategyId = @StrategyId 
 		AND UserProfileId=@UserProfileId
-
 		SET @rowsaffected = @@ROWCOUNT
-			
 	END
 return 	@rowsaffected

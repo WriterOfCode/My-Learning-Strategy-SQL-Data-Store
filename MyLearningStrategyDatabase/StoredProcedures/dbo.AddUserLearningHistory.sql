@@ -19,30 +19,18 @@ AS
 			Name,
 			BodyOfKnowledgeId, 
 			Description, 
-			SortRuleId, 
-			QuestionRandom, 
-			QuestionMax, 
-			QuestionMin, 
-			ResponseRandom, 
-			ResponseMax, 
-			ResponseMin, 
-			ResponseMinCorrect, 
-			ResponseMaxCorrect,
-			OnlyCorrect)
+			SortRuleId,
+			QuestionSelection,
+			ResponseSelection,
+			RecycleIncorrectlyAnswered)
 		SELECT StrategyId,
 			Name,
 			@BodyOfKnowledgeId, 
 			Description, 
-			SortRuleId, 
-			QuestionRandom, 
-			QuestionMax, 
-			QuestionMin, 
-			ResponseRandom, 
-			ResponseMax, 
-			ResponseMin, 
-			ResponseMinCorrect, 
-			ResponseMaxCorrect,
-			OnlyCorrect
+			SortRuleId,  
+			QuestionSelection,
+			ResponseSelection,
+			RecycleIncorrectlyAnswered
 		FROM [dbo].[Strategies] LS
 		WHERE LS.StrategyId= @StrategyId
 

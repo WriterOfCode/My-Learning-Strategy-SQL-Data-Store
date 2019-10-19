@@ -11,11 +11,9 @@ AS
 	END
 	IF 	(@StrategyHistoryId IS NOT NULL AND @StrategyId IS NOT NULL AND @BodyOfKnowledgeId IS NOT NULL)
 		BEGIN 
-			SELECT LH.StrategyHistoryId,LH.StrategyId, LH.BodyOfKnowledgeId,LH.Name, 
-			BOK.Name AS BodyOfKnowledgeName,
-			LH.Description,SortRuleId,QuestionRandom, LH.QuestionMax,
-			LH.QuestionMin,	LH.ResponseRandom, LH.ResponseMax, LH.ResponseMin,
-			LH.ResponseMinCorrect,LH.ResponseMaxCorrect, LH.OnlyCorrect,
+			SELECT LH.StrategyHistoryId,LH.StrategyId, LH.BodyOfKnowledgeId,
+			LH.Name, BOK.Name AS BodyOfKnowledgeName,LH.Description,
+			SortRuleId,LH.QuestionSelection, LH.ResponseSelection, 
 			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate, 
 			LH.NumberOfTimesTried,LH.LastQuestionId, LH.LastModifiedOffset, 
 			LH.CloudRowId,
@@ -33,9 +31,9 @@ AS
 		END
 	ELSE IF (@StrategyHistoryId IS NULL AND @StrategyId IS NOT NULL AND @BodyOfKnowledgeId IS NOT NULL)
 		BEGIN 
-			SELECT LH.StrategyHistoryId,LH.StrategyId,LH.BodyOfKnowledgeId,LH.Name,LH.Description,SortRuleId,QuestionRandom, BOK.Name AS BodyOfKnowledgeName,
-			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,OnlyCorrect,
-			ResponseMaxCorrect, FirstLearningRunDate, LH.LastModifiedOffset, LH.CloudRowId,LastQuestionId,NumberOfTimesTried,
+			SELECT LH.StrategyHistoryId,LH.StrategyId,LH.BodyOfKnowledgeId,LH.Name,LH.Description,
+			 BOK.Name AS BodyOfKnowledgeName,SortRuleId,LH.QuestionSelection, LH.ResponseSelection, 
+			FirstLearningRunDate, LH.LastModifiedOffset, LH.CloudRowId,LastQuestionId,NumberOfTimesTried,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredCorrectly,
 			(SELECT isnull(SUM(LP.AnsweredIncorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredIncorrectly,
 			(SELECT COUNT(*) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS Answered
@@ -48,9 +46,8 @@ AS
 		END
 	ELSE
 		BEGIN 
-			SELECT LH.StrategyHistoryId,LH.StrategyId,LH.BodyOfKnowledgeId,LH.Name,LH.Description,LH.SortRuleId,LH.QuestionRandom, BOK.Name AS BodyOfKnowledgeName,
-			QuestionMax,QuestionMin,ResponseRandom,ResponseMax,ResponseMin,ResponseMinCorrect,OnlyCorrect,
-			LH.ResponseMaxCorrect,LH.FirstLearningRunDate,LH.LastModifiedOffset,LH.CloudRowId,LastQuestionId,NumberOfTimesTried,
+			SELECT LH.StrategyHistoryId,LH.StrategyId,LH.BodyOfKnowledgeId,LH.Name,LH.Description,LH.SortRuleId, BOK.Name AS BodyOfKnowledgeName,
+			LH.QuestionSelection, LH.ResponseSelection, LH.FirstLearningRunDate,LH.LastModifiedOffset,LH.CloudRowId,LastQuestionId,NumberOfTimesTried,
 			(SELECT isnull(SUM(LP.AnsweredCorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredCorrectly,
 			(SELECT isnull(SUM(LP.AnsweredIncorrectlyCount),0) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS AnsweredIncorrectly,
 			(SELECT COUNT(*) FROM LearningHistoryProgress LP WHERE LH.StrategyHistoryId = LP.StrategyHistoryId) AS Answered
