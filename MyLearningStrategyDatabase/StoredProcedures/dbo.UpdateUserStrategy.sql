@@ -12,11 +12,11 @@ AS
 
 DECLARE @rowsaffected INT 
 
-	IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)
-	BEGIN
-		RAISERROR (13538,14,-1, 'User is not the owner!');   
-	END
-
+	--IF ([dbo].[IsOriginatorUsers](@UserProfileId,@Originator)=0)
+	--BEGIN
+	--	RAISERROR (13538,14,-1, 'User is not the owner!');   
+	--END
+	SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
 	BEGIN
 		UPDATE [dbo].[Strategies]
 		SET Name=@Name, 
