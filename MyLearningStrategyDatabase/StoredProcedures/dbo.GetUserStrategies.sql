@@ -4,7 +4,7 @@
 AS
 	IF @StrategyId IS NULL
 	BEGIN
-		SELECT 	S.StrategyId, @Originator as Originator,
+		SELECT 	S.StrategyId, UP.Originator,
 			S.UserProfileId,S.Name,S.Description,S.SortRuleId, 
 			S.QuestionSelection,S.ResponseSelection,
 			S.LastModifiedOffset,S.CloudRowId
@@ -14,7 +14,7 @@ AS
 	END
 	ELSE
 	BEGIN
-		SELECT 	S.StrategyId, @Originator as Originator,
+		SELECT 	S.StrategyId, UP.Originator,
 			S.UserProfileId,S.Name,S.Description,S.SortRuleId,
 			S.QuestionSelection,S.ResponseSelection,
 			S.LastModifiedOffset,S.CloudRowId
