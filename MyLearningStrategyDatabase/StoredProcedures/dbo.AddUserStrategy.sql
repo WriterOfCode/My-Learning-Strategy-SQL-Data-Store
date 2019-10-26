@@ -5,13 +5,11 @@
     @SortRuleId INT, 
     @QuestionSelection INT NULL, 
     @ResponseSelection INT NULL, 
+	@OnlyCorrect BIT,
 	@RecycleIncorrectlyAnswered BIT, 
 	@Originator uniqueidentifier
 AS
 	DECLARE	@StrategyId INT; 
-
-
-
 
 	--IF ([dbo].[IsBokOriginator](@Originator,@UserProfileId)=0)
 	--BEGIN
@@ -26,6 +24,7 @@ AS
 			SortRuleId,  
 			QuestionSelection,
 			ResponseSelection,
+			OnlyCorrect,
 			RecycleIncorrectlyAnswered)
 		VALUES (@Name,
 				@UserProfileId, 
@@ -33,6 +32,7 @@ AS
 				@SortRuleId, 
 				@QuestionSelection, 
 				@ResponseSelection, 
+				@OnlyCorrect,
 				@RecycleIncorrectlyAnswered);
 
 		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;

@@ -1,11 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateUserStrategy]
 	@StrategyId INT,
     @UserProfileId INT, 
-	@Name NVARCHAR(150) NULL, 
-    @Description NVARCHAR(256), 
+	@Name NVARCHAR(150), 
+    @Description NVARCHAR(256) NULL, 
     @SortRuleId INT, 
-    @QuestionSelection INT NULL, 
-    @ResponseSelection INT NULL, 
+    @QuestionSelection INT, 
+    @ResponseSelection INT, 
+	@OnlyCorrect BIT,
 	@RecycleIncorrectlyAnswered BIT,
 	@Originator UNIQUEIDENTIFIER
 AS
@@ -25,10 +26,12 @@ DECLARE @rowsaffected INT
 			SortRuleId=@SortRuleId, 
 			QuestionSelection=@QuestionSelection, 
 			ResponseSelection=@ResponseSelection,
-			RecycleIncorrectlyAnswered = @RecycleIncorrectlyAnswered,
+			OnlyCorrect=@OnlyCorrect, 
+			RecycleIncorrectlyAnswered=@RecycleIncorrectlyAnswered,
 			LastModifiedOffset=SYSDATETIMEOFFSET()
-		WHERE StrategyId = @StrategyId 
-		AND UserProfileId=@UserProfileId
-		SET @rowsaffected = @@ROWCOUNT
+		WHERE StrategyId=@StrategyId 
+		AND UserProfileId=@UserProfileId;
+
+		SET @rowsaffected=@@ROWCOUNT
 	END
 return 	@rowsaffected

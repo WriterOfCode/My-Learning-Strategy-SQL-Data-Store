@@ -7,6 +7,7 @@
 	[SortRuleId] INT NOT NULL DEFAULT 0, 
 	[QuestionSelection] INT NOT NULL DEFAULT 0, 
 	[ResponseSelection] INT NOT NULL DEFAULT 0,  
+	[OnlyCorrect] BIT NOT NULL DEFAULT 0, 
 	[RecycleIncorrectlyAnswered] BIT NOT NULL DEFAULT 0, 
     [LastModifiedOffset] DATETIMEOFFSET NOT NULL DEFAULT SYSDATETIMEOFFSET(), 
     [CloudRowId] UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID(), 
