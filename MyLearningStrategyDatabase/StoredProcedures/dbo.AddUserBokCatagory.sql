@@ -10,5 +10,7 @@ AS
 		INSERT INTO [dbo].[BodyOfKnowledgeCategories]
 		(BodyOfKnowledgeId,CategoryId,UserProfileId )
 		VALUES (@BodyOfKnowledgeId,@CategoryId,@UserProfileId);
+
+		SELECT CAST(SCOPE_IDENTITY() AS INT) AS IdentiyValue;
 	END
 RETURN
