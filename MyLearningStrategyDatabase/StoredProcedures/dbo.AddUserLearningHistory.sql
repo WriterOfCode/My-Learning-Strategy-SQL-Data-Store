@@ -16,20 +16,23 @@ AS
 	BEGIN
 		INSERT INTO [dbo].[LearningHistory]
 		(StrategyId,
-			Name,
 			BodyOfKnowledgeId, 
+			Name,
 			Description, 
 			SortRuleId,
 			QuestionSelection,
 			ResponseSelection,
-			RecycleIncorrectlyAnswered)
+			OnlyCorrect,
+			RecycleIncorrectlyAnswered
+			)
 		SELECT StrategyId,
+			@BodyOfKnowledgeId as BodyOfKnowledgeId, 
 			Name,
-			@BodyOfKnowledgeId, 
 			Description, 
 			SortRuleId,  
 			QuestionSelection,
 			ResponseSelection,
+			OnlyCorrect,
 			RecycleIncorrectlyAnswered
 		FROM [dbo].[Strategies] LS
 		WHERE LS.StrategyId= @StrategyId

@@ -8,6 +8,7 @@ AS
 		BEGIN 
 			SELECT LH.StrategyHistoryId, LH.StrategyId, LH.BodyOfKnowledgeId, LH.Name, 
 			LH.Description, LH.SortRuleId, LH.QuestionSelection, LH.ResponseSelection, 
+			LH.OnlyCorrect,
 			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate,
 			LH.NumberOfTimesTried, LH.LastQuestionId, LH.LastModifiedOffset, 
 			LH.CloudRowId 
@@ -24,6 +25,7 @@ AS
 		BEGIN 
 			SELECT LH.StrategyHistoryId, LH.StrategyId, LH.BodyOfKnowledgeId, LH.Name,
 			LH.Description, LH.SortRuleId, LH.QuestionSelection, LH.ResponseSelection, 
+			LH.OnlyCorrect,
 			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate,
 			LH.NumberOfTimesTried, LH.LastQuestionId, LH.LastModifiedOffset, 
 			LH.CloudRowId 
@@ -37,7 +39,8 @@ AS
 	ELSE IF (@BodyOfKnowledgeId IS NOT NULL)
 		BEGIN 
 			SELECT LH.StrategyHistoryId, LH.StrategyId, LH.BodyOfKnowledgeId, LH.Name,
-			LH.Description, LH.SortRuleId,LH.QuestionSelection, LH.ResponseSelection, 
+			LH.Description, LH.SortRuleId,LH.QuestionSelection, LH.ResponseSelection,
+			LH.OnlyCorrect,
 			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate,
 			LH.NumberOfTimesTried, LH.LastQuestionId, LH.LastModifiedOffset, 
 			LH.CloudRowId 
@@ -51,6 +54,7 @@ AS
 		BEGIN
 			SELECT LH.StrategyHistoryId, LH.StrategyId, LH.BodyOfKnowledgeId, LH.Name, 
 			LH.Description, LH.SortRuleId, LH.QuestionSelection, LH.ResponseSelection, 
+			LH.OnlyCorrect,
 			LH.RecycleIncorrectlyAnswered, LH.FirstLearningRunDate,
 			LH.NumberOfTimesTried, LH.LastQuestionId, LH.LastModifiedOffset, 
 			LH.CloudRowId 

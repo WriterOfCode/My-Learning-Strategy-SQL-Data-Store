@@ -8,6 +8,7 @@
     [SortRuleId] INT NULL DEFAULT 0, 
 	[QuestionSelection] INT NOT NULL DEFAULT 0, 
 	[ResponseSelection] INT NOT NULL DEFAULT 0,  
+	[OnlyCorrect] BIT NOT NULL DEFAULT 0, 
 	[RecycleIncorrectlyAnswered] BIT NOT NULL DEFAULT 0, 
 	[FirstLearningRunDate] DATETIME NOT NULL DEFAULT SYSDATETIME(),
 	[NumberOfTimesTried] INT NOT NULL DEFAULT 0, 
