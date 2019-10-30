@@ -1,10 +1,10 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserQuestionsCatagories]
-	@QuestionId INT,
+	@QuestionId INT NULL,
 	@CategoryId INT NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 
-	IF  @CategoryId IS NULL
+	IF  @CategoryId IS NULL 
 	BEGIN
 		SELECT  qc.QuestionId, qc.CategoryId, qc.UserProfileId, qc.LastModifiedOffset, qc.CloudRowId,
 		c.ImageDevice,c.ImageCloud,c.ImageHash
@@ -13,8 +13,7 @@ AS
 		on c.CategoryId=qc.CategoryId and c.UserProfileId=qc.UserProfileId
 		JOIN [dbo].[UserProfiles] u
 		on u.UserProfileId=c.UserProfileId
-		WHERE  qc.QuestionId=@QuestionId
-		and  u.Originator=@Originator;
+		WHERE u.Originator=@Originator;
 	END
 	ELSE
 	BEGIN

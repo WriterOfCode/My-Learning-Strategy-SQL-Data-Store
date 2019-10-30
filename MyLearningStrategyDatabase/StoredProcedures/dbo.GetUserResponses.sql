@@ -124,7 +124,7 @@ BEGIN
 		join UserProfiles u on b.UserProfileId = u.UserProfileId
 		WHERE  u.Originator = @Originator;
 END
-IF (@Originator IS NOT NULL AND  @BodyOfKnowledgeId IS NULL AND @QuestionId IS NOT NULL AND @ResponseId IS NOT NULL )
+IF (@Originator IS NOT NULL AND  @BodyOfKnowledgeId IS NULL AND @QuestionId IS NULL AND @ResponseId IS NOT NULL )
 BEGIN
 	SELECT r.ResponseId
 			,r.QuestionId
@@ -151,7 +151,6 @@ BEGIN
 		join BodyOfKnowledge b on b.BodyOfKnowledgeId = q.BodyOfKnowledgeId
 		join UserProfiles u on b.UserProfileId = u.UserProfileId
 		WHERE  u.Originator = @Originator
-		AND R.QuestionId= @QuestionId
 	    AND R.ResponseId= @ResponseId;
 END 
 RETURN 0

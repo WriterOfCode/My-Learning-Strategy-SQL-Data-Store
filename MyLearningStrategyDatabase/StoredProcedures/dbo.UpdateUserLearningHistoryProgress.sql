@@ -20,7 +20,7 @@ WHEN MATCHED
     THEN UPDATE SET 
 		t.AnsweredIncorrectlyCount =t.AnsweredIncorrectlyCount + s.AnsweredIncorrectlyCount,
 		t.AnsweredCorrectlyCount = t.AnsweredCorrectlyCount + s.AnsweredCorrectlyCount,
-		t.NumberOfTimes = t.NumberOfTimes + 1
+		t.NumberOfTimes = t.NumberOfTimes
 WHEN NOT MATCHED BY TARGET 
     THEN INSERT(LearningHistoryProgressId,
 			StrategyHistoryId, QuestionId, 
