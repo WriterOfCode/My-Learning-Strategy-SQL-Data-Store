@@ -142,7 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="dbo.AlterDataPreInstall.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
     </PreDeploy>
   </ItemGroup>
   <ItemGroup>
