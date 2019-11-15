@@ -4,6 +4,8 @@
 		@NotHere INT
 AS
 
+IF @NotHere <10 
+BEGIN
 IF @BodyOfKnowledgeId IS NULL
 BEGIN
 	SELECT BOK.BodyOfKnowledgeId,BOK.UserProfileId,BOK.Name,BOK.Description, BOK.Keywords,
@@ -28,4 +30,5 @@ ELSE
 		WHERE U.Originator = @Originator
 		AND BOK.BodyOfKnowledgeId = @BodyOfKnowledgeId;
 	END 
+END
 RETURN 0
