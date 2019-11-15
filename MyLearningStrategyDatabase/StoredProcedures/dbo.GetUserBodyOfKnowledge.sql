@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserBodyOfKnowledge]
 		@BodyOfKnowledgeId INT NULL,
-		@Originator uniqueidentifier
+		@Originator uniqueidentifier,
+		@NotHere INT
 AS
 
 IF @BodyOfKnowledgeId IS NULL
