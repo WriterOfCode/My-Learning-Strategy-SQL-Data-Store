@@ -16,3 +16,11 @@
 --SET [Name] = 'Default'
 --WHERE [Name] IS NULL;
 --GO
+
+
+/****** Object:  Table [dbo].[CategoriesBodyOfKnowledge]    Script Date: 11/16/2019 11:33:23 PM ******/
+DROP TABLE [dbo].[CategoriesBodyOfKnowledge]
+GO
+
+DROP TABLE [dbo].[CategoriesQuestions]
+GO
