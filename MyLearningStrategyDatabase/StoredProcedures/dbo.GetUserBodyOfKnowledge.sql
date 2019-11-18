@@ -1,7 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserBodyOfKnowledge]
 		@BodyOfKnowledgeId INT NULL,
 		@Originator uniqueidentifier,
-		@NotHere INT
+		@NotHere INT,
+		@NOtHew2 int
 AS
 
 IF @NotHere <10 
