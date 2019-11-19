@@ -1,12 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserBodyOfKnowledge]
 		@BodyOfKnowledgeId INT NULL,
-		@Originator uniqueidentifier,
-		@NotHere INT,
-		@NOtHew2 int
+		@Originator uniqueidentifier
 AS
 
-IF @NotHere <10 
-BEGIN
+
 IF @BodyOfKnowledgeId IS NULL
 BEGIN
 	SELECT BOK.BodyOfKnowledgeId,BOK.UserProfileId,BOK.Name,BOK.Description, BOK.Keywords,
@@ -31,5 +28,5 @@ ELSE
 		WHERE U.Originator = @Originator
 		AND BOK.BodyOfKnowledgeId = @BodyOfKnowledgeId;
 	END 
-END
+
 RETURN 0
