@@ -19,8 +19,18 @@
 
 
 /****** Object:  Table [dbo].[CategoriesBodyOfKnowledge]    Script Date: 11/16/2019 11:33:23 PM ******/
-DROP TABLE [dbo].[CategoriesBodyOfKnowledge]
-GO
 
-DROP TABLE [dbo].[CategoriesQuestions]
+IF  EXISTS (SELECT * FROM sys.objects 
+	WHERE object_id = OBJECT_ID(N'[dbo].[CategoriesBodyOfKnowledge]') 
+	AND type in (N'U'))
+BEGIN
+	DROP TABLE [dbo].[CategoriesBodyOfKnowledge]
+END
+GO
+IF  EXISTS (SELECT * FROM sys.objects 
+	WHERE object_id = OBJECT_ID(N'[dbo].[CategoriesQuestions]') 
+	AND type in (N'U'))
+BEGIN
+	DROP TABLE [dbo].[CategoriesQuestions]
+END
 GO
