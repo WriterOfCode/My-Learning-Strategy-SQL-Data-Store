@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateUserBodyOfKnowledge]
 	@BodyOfKnowledgeId INT,
 	@Name NVARCHAR (50),
-	@Description NVARCHAR (20) NULL,
+	@Description NVARCHAR (300) NULL,
 	@Keywords NVARCHAR(100) NULL,
 	@ImageDevice NVARCHAR(256) NULL, 
 	@ImageCloud NVARCHAR(2083) NULL,
