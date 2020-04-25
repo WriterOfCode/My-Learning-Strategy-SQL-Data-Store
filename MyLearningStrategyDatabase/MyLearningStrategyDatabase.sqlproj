@@ -138,6 +138,12 @@
     <Build Include="StoredProcedures\dbo.GetUserLearningHistoryProgress.sql" />
     <Build Include="StoredProcedures\dbo.UpdateUserLearningHistory.sql" />
     <Build Include="StoredProcedures\dbo.GetUserSubjects.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserSubject.sql" />
+    <Build Include="StoredProcedures\dbo.AddUserSubjectCategory.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserSubject.sql" />
+    <Build Include="StoredProcedures\dbo.UpdateUserSubject.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserSubjectCategory.sql" />
+    <Build Include="StoredProcedures\dbo.GetUserSubjectCategories.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="dbo.AlterDataPreInstall.sql">
