@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserProfile]
 	@ExternalID NVARCHAR(450) NULL,
-	@Originator UNIQUEIDENTIFIER
+	@IdentityProvider NVARCHAR(2083) NULL, 
+	@Originator UNIQUEIDENTIFIER NULL
 AS
 IF (@ExternalID IS NULL AND @Originator IS NULL)
 BEGIN
@@ -17,7 +18,7 @@ IF (@Originator IS NOT NULL)
 		FROM UserProfiles 
 		WHERE Originator = @Originator;
 	END
-ELSE IF (@ExternalID IS NOT NULL)
+ELSE IF (@ExternalID IS NOT NULL AND @IdentityProvider IS NOT NULL)
 	BEGIN
 		SELECT UserProfileId,ExternalID,DisplayName,EmailAddress,
 			FirstName,LastName,PostalCode,IdentityProvider,
@@ -25,6 +26,7 @@ ELSE IF (@ExternalID IS NOT NULL)
 			HasLoggedIn,IsLocked,IsDisabled,IsDeleted,
 			LastModifiedOffset
 		FROM UserProfiles 
-		WHERE ExternalID = @ExternalID;
+		WHERE ExternalID = @ExternalID
+		AND IdentityProvider=@IdentityProvider;
 	END
 RETURN
