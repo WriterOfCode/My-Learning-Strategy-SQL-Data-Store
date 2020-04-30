@@ -49,7 +49,8 @@ BEGIN
 				t.HasLoggedIn = s.HasLoggedIn,
 				t.IsLocked = s.IsLocked,
 				t.IsDisabled = s.IsDisabled,
-				t.IsDeleted = s.IsDeleted
+				t.IsDeleted = s.IsDeleted,
+				t.LastModifiedOffset=SYSDATETIMEOFFSET()
 	WHEN NOT MATCHED BY TARGET 
 		THEN INSERT(ExternalID,DisplayName,EmailAddress,FirstName,LastName,
 		PostalCode,IdentityProvider,ImageDevice,ImageCloud,ImageHash,HasLoggedIn,
@@ -60,13 +61,14 @@ BEGIN
 		@IsLocked,@IsDisabled,@IsDeleted);
 END
 
-		SELECT UserProfileId,ExternalID,DisplayName,EmailAddress,
-			FirstName,LastName,PostalCode,IdentityProvider,
-			Originator,ImageDevice,ImageCloud,ImageHash,
-			HasLoggedIn,IsLocked,IsDisabled,IsDeleted,
-			LastModifiedOffset
-		FROM UserProfiles 
-		WHERE ExternalID = @ExternalID
-		AND IdentityProvider=@IdentityProvider;
+
+	SELECT UserProfileId,ExternalID,DisplayName,EmailAddress,
+		FirstName,LastName,PostalCode,IdentityProvider,
+		Originator,ImageDevice,ImageCloud,ImageHash,
+		HasLoggedIn,IsLocked,IsDisabled,IsDeleted,
+		LastModifiedOffset
+	FROM UserProfiles 
+	WHERE ExternalID = @ExternalID
+	AND IdentityProvider=@IdentityProvider;
 
 RETURN 
