@@ -5,7 +5,7 @@
 	@FirstName    NVARCHAR (256) NULL,
 	@LastName     NVARCHAR (256) NULL,
 	@PostalCode   NCHAR(10) NULL, 
-	@IdentityProvider NVARCHAR(2083) NULL, 
+	@IdentityProvider NVARCHAR(2083), 
 	@ImageDevice  NVARCHAR(256) NULL, 
 	@ImageCloud   NVARCHAR(2083) NULL,
 	@ImageHash   INT NULL, 
@@ -15,10 +15,9 @@
 	@IsDeleted   BIT NULL
 AS	
 
-DECLARE @UserProfileId INT
+DECLARE @Originator uniqueidentifier
 
 BEGIN
-
 	MERGE UserProfiles t
 		USING (select @ExternalID as ExternalID,
 				@DisplayName as DisplayName, 
@@ -59,26 +58,10 @@ BEGIN
 		@LastName,@PostalCode,@IdentityProvider,
 		@ImageDevice,@ImageCloud,@ImageHash,@HasLoggedIn,
 		@IsLocked,@IsDisabled,@IsDeleted);
-
-	SET @UserProfileId = CAST(SCOPE_IDENTITY() AS INT);
-
-	if (@UserProfileId is not null)
-	BEGIN
-		Execute AddUserDefaultSubject @UserProfileId
-
-		SELECT Originator
-		FROM UserProfiles UP 
-		WHERE UP.UserProfileId = @UserProfileId
-	END
-	ELSE
-	BEGIN
-		SELECT Originator
-		FROM UserProfiles UP 
-		WHERE UP.ExternalID= @ExternalID
-	END
-
-
-
-
 END
-RETURN
+
+	SELECT @Originator = Originator
+	FROM UserProfiles UP 
+	WHERE UP.ExternalID= @ExternalID 
+	AND IdentityProvider = @IdentityProvider
+RETURN 
