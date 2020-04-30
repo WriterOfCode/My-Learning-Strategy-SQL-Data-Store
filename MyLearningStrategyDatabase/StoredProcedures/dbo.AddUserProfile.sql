@@ -60,8 +60,13 @@ BEGIN
 		@IsLocked,@IsDisabled,@IsDeleted);
 END
 
-	SELECT @Originator = Originator
-	FROM UserProfiles UP 
-	WHERE UP.ExternalID= @ExternalID 
-	AND IdentityProvider = @IdentityProvider
+		SELECT UserProfileId,ExternalID,DisplayName,EmailAddress,
+			FirstName,LastName,PostalCode,IdentityProvider,
+			Originator,ImageDevice,ImageCloud,ImageHash,
+			HasLoggedIn,IsLocked,IsDisabled,IsDeleted,
+			LastModifiedOffset
+		FROM UserProfiles 
+		WHERE ExternalID = @ExternalID
+		AND IdentityProvider=@IdentityProvider;
+
 RETURN 
