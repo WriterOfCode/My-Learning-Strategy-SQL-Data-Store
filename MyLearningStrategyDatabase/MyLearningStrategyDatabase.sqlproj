@@ -102,7 +102,9 @@
     <Build Include="dbo.OriginatorToUserId.sql" />
     <Build Include="dbo.SeedBaseTwentySix.sql" />
     <Build Include="dbo.SequenceForBase26.sql" />
-    <PostDeploy Include="GrantUserRights.sql" />
+    <PostDeploy Include="GrantUserRights.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </PostDeploy>
     <Build Include="StoredProcedures\dbo.GetUserBokWithStats.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Build>
@@ -146,9 +148,9 @@
     <Build Include="StoredProcedures\dbo.GetUserSubjectCategories.sql" />
   </ItemGroup>
   <ItemGroup>
-    <PreDeploy Include="dbo.AlterDataPreInstall.sql">
+    <None Include="dbo.AlterDataPreInstall.sql">
       <CopyToOutputDirectory>DoNotCopy</CopyToOutputDirectory>
-    </PreDeploy>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="MyLearningStrategyDatabase.refactorlog" />
