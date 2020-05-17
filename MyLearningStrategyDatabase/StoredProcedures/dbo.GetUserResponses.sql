@@ -96,7 +96,7 @@ BEGIN
 		WHERE  u.Originator = @Originator
 	    AND b.BodyOfKnowledgeId = @BodyOfKnowledgeId
 END
-ELSE IF (@Originator IS NOT NULL AND  @BodyOfKnowledgeId IS NULL AND @QuestionId IS NULL AND @ResponseId IS NULL )
+ELSE IF (@Originator IS NOT NULL AND @QuestionId IS NOT NULL AND  @BodyOfKnowledgeId IS NULL  AND @ResponseId IS NULL )
 BEGIN
 	SELECT r.ResponseId
 			,r.QuestionId
@@ -122,9 +122,10 @@ BEGIN
 		join Questions q on r.QuestionId = q.QuestionId
 		join BodyOfKnowledge b on b.BodyOfKnowledgeId = q.BodyOfKnowledgeId
 		join UserProfiles u on b.UserProfileId = u.UserProfileId
-		WHERE  u.Originator = @Originator;
+		WHERE u.Originator = @Originator
+		AND r.QuestionId= @QuestionId;
 END
-IF (@Originator IS NOT NULL AND  @BodyOfKnowledgeId IS NULL AND @QuestionId IS NULL AND @ResponseId IS NOT NULL )
+IF (@Originator IS NOT NULL  AND @ResponseId IS NOT NULL AND  @BodyOfKnowledgeId IS NULL AND @QuestionId IS NULL)
 BEGIN
 	SELECT r.ResponseId
 			,r.QuestionId
