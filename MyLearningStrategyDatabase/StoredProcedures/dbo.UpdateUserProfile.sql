@@ -1,11 +1,11 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateUserProfile]
-	@ExternalID  NVARCHAR (450)NULL,
-	@DisplayName  NVARCHAR (256) NULL,
+	@ExternalID  NVARCHAR (450),
+	@DisplayName  NVARCHAR (256),
 	@EmailAddress       NVARCHAR (500) NULL,
 	@FirstName   NVARCHAR (256) NULL,
 	@LastName    NVARCHAR (256) NULL,
 	@PostalCode NCHAR(10) NULL, 
-	@IdentityProvider NVARCHAR(2083) NULL, 
+	@IdentityProvider NVARCHAR(2083), 
 	@ImageDevice NVARCHAR(256) NULL, 
 	@ImageCloud NVARCHAR(2083) NULL,
 	@ImageHash INT NULL, 
@@ -13,32 +13,31 @@
 	@IsLocked    BIT NULL, 
 	@IsDisabled  BIT NULL, 
 	@IsDeleted BIT NULL,
-	@Originator  UNIQUEIDENTIFIER
-AS	
+	@Originator  UNIQUEIDENTIFIER NULL
+AS
 
 DECLARE @rowsaffected INT 
-IF (@Originator IS NULL)
+
+IF NOT EXISTS (SELECT * FROM UserProfiles 
+	WHERE ExternalID = @ExternalID
+	AND IdentityProvider=@IdentityProvider)
 BEGIN
-	RAISERROR (15600, 17,-1, '[UpdateUserProfile].@Originator');   
+	 INSERT INTO UserProfiles (ExternalID,DisplayName,EmailAddress,FirstName,LastName,
+		PostalCode,IdentityProvider,ImageDevice,ImageCloud,ImageHash,HasLoggedIn,
+		IsLocked,IsDisabled,IsDeleted)
+		VALUES (@ExternalID,@DisplayName,@EmailAddress,@FirstName,
+		@LastName,@PostalCode,@IdentityProvider,
+		@ImageDevice,@ImageCloud,@ImageHash,@HasLoggedIn,
+		@IsLocked,@IsDisabled,@IsDeleted);
 END
 
-	UPDATE UserProfiles
-	SET ExternalID=@ExternalID,
-		DisplayName=@DisplayName,
-		EmailAddress=@EmailAddress,
-		FirstName=@FirstName,
-		LastName=@LastName,
-		PostalCode=@PostalCode,
-		IdentityProvider=@IdentityProvider,
-		ImageDevice=@ImageDevice,
-		ImageCloud=@ImageCloud,
-		ImageHash=@ImageHash,
-		HasLoggedIn=@HasLoggedIn,
-		IsLocked=@IsLocked,
-		IsDisabled=@IsDisabled,
-		IsDeleted=@IsDeleted,
-		LastModifiedOffset=SYSDATETIMEOFFSET()
-	WHERE Originator =@Originator;
-	
-	SET @rowsaffected = @@ROWCOUNT
-RETURN @rowsaffected
+	SELECT UserProfileId,ExternalID,DisplayName,EmailAddress,
+	FirstName,LastName,PostalCode,IdentityProvider,
+	Originator,ImageDevice,ImageCloud,ImageHash,
+	HasLoggedIn,IsLocked,IsDisabled,IsDeleted,
+	LastModifiedOffset
+	FROM UserProfiles 
+	WHERE ExternalID = @ExternalID
+	AND IdentityProvider=@IdentityProvider;
+
+RETURN
