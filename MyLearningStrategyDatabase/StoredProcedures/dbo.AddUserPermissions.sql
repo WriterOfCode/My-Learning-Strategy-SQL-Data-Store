@@ -8,7 +8,10 @@ AS
 	DECLARE @UserProfileId AS INT
 	
 	SET @UserProfileId=[dbo].[OriginatorToUserId](@Originator)
-
+	IF (@UserProfileId is null)
+	BEGIN
+		RAISERROR (13538,14,-1, 'User not found!');   
+	END
 	BEGIN
 		INSERT INTO [dbo].[UserPermissions] (UserProfileId,ClaimType,ClaimValue)
 		VALUES (@UserProfileId,@ClaimType,@ClaimValue)

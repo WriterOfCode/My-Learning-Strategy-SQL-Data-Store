@@ -10,12 +10,11 @@
 	@Originator uniqueidentifier
 AS
 	DECLARE	@StrategyId INT; 
-
-	--IF ([dbo].[IsBokOriginator](@Originator,@UserProfileId)=0)
-	--BEGIN
-	--	RAISERROR (13538,14,-1, 'User is not the owner!');   
-	--END
 	SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
+	IF (@UserProfileId is null)
+	BEGIN
+		RAISERROR (13538,14,-1, 'User not found!');   
+	END
 	BEGIN
 		INSERT INTO [dbo].[Strategies]
 			(Name,
