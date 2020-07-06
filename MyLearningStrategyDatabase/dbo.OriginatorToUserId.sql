@@ -12,6 +12,9 @@ BEGIN
 	FROM UserProfiles 
 	WHERE Originator = @Originator;
 
-
+	IF (@UserProfileId is null)
+	BEGIN
+		RAISERROR (13538,14,-1, 'User not found!');   
+	END
 	RETURN @UserProfileId
 END
