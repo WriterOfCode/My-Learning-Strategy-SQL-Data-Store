@@ -1,5 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateUserSubject]
 	@BodyOfKnowledgeId INT,
+	@UserProfileId INT,
 	@Name NVARCHAR (50),
 	@Description NVARCHAR (300) NULL,
 	@Keywords NVARCHAR(100) NULL,
@@ -11,10 +12,7 @@
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @rowsaffected INT 
-	DECLARE @UserProfileId INT
-
-	SET @UserProfileId = [dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)
-	IF (@UserProfileId=0)
+	IF ([dbo].[IsBokOriginator](@Originator,@BodyOfKnowledgeId)=0)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User is not the owner!');   
 	END

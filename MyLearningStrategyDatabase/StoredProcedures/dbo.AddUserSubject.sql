@@ -46,4 +46,4 @@ AS
 	SELECT @BodyOfKnowledgeId AS BodyOfKnowledgeId
 
 	END
-RETURN
+RETURN @BodyOfKnowledgeId
