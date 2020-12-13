@@ -38,9 +38,7 @@ AS
 			   ,@IsShared
 			   ,@HasBeenShared);
 
-	SET @BodyOfKnowledgeId = CAST(SCOPE_IDENTITY() AS INT);
-
-	SELECT @BodyOfKnowledgeId AS BodyOfKnowledgeId
+		SELECT CAST(SCOPE_IDENTIY() AS INT) AS BodyOfKnowledge;
 
 	END
-RETURN @BodyOfKnowledgeId
+--RETURN
