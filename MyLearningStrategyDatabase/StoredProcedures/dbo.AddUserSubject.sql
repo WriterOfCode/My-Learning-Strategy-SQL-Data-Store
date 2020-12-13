@@ -1,5 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserSubject]
-	@Name NVARCHAR (150),
+	@UserProfileId INT,
+	@Name NVARCHAR (50),
 	@Description NVARCHAR (300) NULL,
 	@Keywords NVARCHAR(100) NULL,
 	@ImageDevice NVARCHAR(256) NULL, 
@@ -10,12 +11,8 @@
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @BodyOfKnowledgeId INT
-	DECLARE @UserProfileId INT
-	
-	SELECT @UserProfileId = UserProfileId 
-	FROM UserProfiles WHERE Originator = @Originator;
 
-	IF (@UserProfileId is null)
+	IF NOT EXISTS (SELECT UserProfileId FROM UserProfiles WHERE Originator = @Originator)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User not found!');   
 	END
