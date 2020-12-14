@@ -1,6 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[AddUserSubject]
-	@UserProfileId INT,
-	@Name NVARCHAR (50),
+	@Name NVARCHAR (150),
 	@Description NVARCHAR (300) NULL,
 	@Keywords NVARCHAR(100) NULL,
 	@ImageDevice NVARCHAR(256) NULL, 
@@ -11,8 +10,9 @@
 	@Originator UNIQUEIDENTIFIER
 AS
 	DECLARE @BodyOfKnowledgeId INT
-
-	IF NOT EXISTS (SELECT UserProfileId FROM UserProfiles WHERE Originator = @Originator)
+	DECLARE @UserProfileId INT
+	SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
+	IF (@UserProfileId is null)
 	BEGIN
 		RAISERROR (13538,14,-1, 'User not found!');   
 	END
@@ -38,7 +38,9 @@ AS
 			   ,@IsShared
 			   ,@HasBeenShared);
 
-		SELECT CAST(SCOPE_IDENTIY() AS INT) AS BodyOfKnowledge;
+	SET @BodyOfKnowledgeId = CAST(SCOPE_IDENTITY() AS INT);
+
+	SELECT @BodyOfKnowledgeId AS BodyOfKnowledgeId
 
 	END
---RETURN
+RETURN
