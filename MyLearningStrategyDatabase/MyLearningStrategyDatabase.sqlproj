@@ -146,6 +146,11 @@
     <Build Include="StoredProcedures\dbo.UpdateUserSubject.sql" />
     <Build Include="StoredProcedures\dbo.DeleteUserSubjectCategory.sql" />
     <Build Include="StoredProcedures\dbo.GetUserSubjectCategories.sql" />
+    <Build Include="StoredProcedures\dbo.GetResponses.sql" />
+    <Build Include="StoredProcedures\dbo.GetQuestions.sql" />
+    <Build Include="StoredProcedures\dbo.GetSubjects.sql" />
+    <Build Include="StoredProcedures\dbo.GetSubjectCategories.sql" />
+    <Build Include="StoredProcedures\dbo.GetCategories.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo.AlterDataPreInstall.sql">
