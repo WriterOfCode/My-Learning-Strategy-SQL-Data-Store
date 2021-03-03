@@ -5,10 +5,13 @@
 AS
 	  IF (@CategoryId IS NULL AND @BodyOfKnowledgeId IS NULL) 
 		BEGIN
-			SELECT bokc.Id, bokc.BodyOfKnowledgeId, 
-			bokc.CategoryId, bokc.UserProfileId, 
-			bokc.LastModifiedOffset, bokc.CloudRowId,
-			c.CategoryName,c.ImageDevice, c.ImageCloud,c.ImageHash
+			SELECT 
+			bokc.BodyOfKnowledgeId, 
+			c.CategoryId as Id, 
+			c.CategoryName,
+			c.ImageDevice, 
+			c.ImageCloud,
+			c.ImageHash
 			FROM [dbo].[BodyOfKnowledgeCategories] bokc
 			JOIN [dbo].[Categories] c on c.CategoryId = bokc.CategoryId AND c.UserProfileId = bokc.UserProfileId
 			JOIN [dbo].[UserProfiles] u on u.UserProfileId = bokc.UserProfileId
@@ -16,10 +19,13 @@ AS
 		END
 	ELSE  IF (@CategoryId IS NULL) 
 		BEGIN
-			SELECT bokc.Id, bokc.BodyOfKnowledgeId, 
-			bokc.CategoryId, bokc.UserProfileId, 
-			bokc.LastModifiedOffset, bokc.CloudRowId,
-			c.CategoryName,c.ImageDevice, c.ImageCloud,c.ImageHash
+			SELECT
+			bokc.BodyOfKnowledgeId, 
+			c.CategoryId as Id, 
+			c.CategoryName,
+			c.ImageDevice, 
+			c.ImageCloud,
+			c.ImageHash
 			FROM [dbo].[BodyOfKnowledgeCategories] bokc
 			JOIN [dbo].[Categories] c on c.CategoryId = bokc.CategoryId AND c.UserProfileId = bokc.UserProfileId
 			JOIN [dbo].[UserProfiles] u on u.UserProfileId = bokc.UserProfileId
@@ -28,10 +34,13 @@ AS
 		END
 	ELSE 
 		BEGIN
-			SELECT bokc.Id, bokc.BodyOfKnowledgeId, 
-			bokc.CategoryId, bokc.UserProfileId, 
-			bokc.LastModifiedOffset, bokc.CloudRowId,
-			c.CategoryName,c.ImageDevice, c.ImageCloud,c.ImageHash
+			SELECT
+			bokc.BodyOfKnowledgeId, 
+			c.CategoryId as Id, 
+			c.CategoryName,
+			c.ImageDevice, 
+			c.ImageCloud,
+			c.ImageHash
 			FROM [dbo].[BodyOfKnowledgeCategories] bokc
 			JOIN [dbo].[Categories] c on c.CategoryId = bokc.CategoryId AND c.UserProfileId = bokc.UserProfileId
 			JOIN [dbo].[UserProfiles] u on u.UserProfileId = bokc.UserProfileId
