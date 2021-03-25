@@ -6,7 +6,7 @@
 	@Originator UNIQUEIDENTIFIER
 AS
 
-	DECLARE @IdentityValue INT;
+	DECLARE @CategoryId INT;
 	DECLARE @UserProfileId INT
 	SET @UserProfileId = [dbo].[OriginatorToUserId](@Originator)
 	IF (@UserProfileId is null)
@@ -16,8 +16,9 @@ AS
 	BEGIN
 		INSERT INTO [dbo].[Categories](UserProfileId,CategoryName,ImageDevice,ImageCloud,ImageHash )
 		VALUES (@UserProfileId,@CategoryName,@ImageDevice,@ImageCloud,@ImageHash);
- 
- 		SET @IdentityValue = CAST(SCOPE_IDENTITY() AS INT);
+ 	
+		SET @CategoryId = CAST(SCOPE_IDENTITY() AS INT);
+		SELECT @CategoryId AS CategoryId
 	END
 
-RETURN @IdentityValue
+RETURN
