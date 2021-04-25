@@ -151,6 +151,9 @@
     <Build Include="StoredProcedures\dbo.GetSubjects.sql" />
     <Build Include="StoredProcedures\dbo.GetSubjectCategories.sql" />
     <Build Include="StoredProcedures\dbo.GetCategories.sql" />
+    <Build Include="SplitString.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserQuestionsNotIn.sql" />
+    <Build Include="StoredProcedures\dbo.DeleteUserResponsesNotIn.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbo.AlterDataPreInstall.sql">
