@@ -1,11 +1,13 @@
 ﻿CREATE PROCEDURE [dbo].[DeteUserResponsesNotIn]
 	@ResponseIds NVARCHAR(MAX)
 AS
+	DECLARE @Character CHAR(1);
+	SET @Character = ",";
 	BEGIN
 		BEGIN TRANSACTION RESPONSE;
 		BEGIN TRY
 			DELETE FROM [dbo].[Responses]
-			WHERE ResponseId not in (SELECT Item FROM DBO.SPLITSTRING(@ResponseIds));
+			WHERE ResponseId not in (SELECT Item FROM DBO.SPLITSTRING(@ResponseIds,@Character));
 		END TRY
 		BEGIN CATCH
 

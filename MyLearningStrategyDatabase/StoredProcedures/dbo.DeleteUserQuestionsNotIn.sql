@@ -6,23 +6,24 @@ BEGIN
 	-- SET XACT_ABORT ON will cause the transaction to be uncommittable  
 	-- when the constraint violation occurs.   
 	SET XACT_ABORT ON;  
-
+	DECLARE @Character CHAR(1);
+	SET @Character = ",";
 	BEGIN TRY
 		BEGIN TRANSACTION;
-
+	
 		--[dbo].[LearningHistoryProgress]
 		DELETE FROM [dbo].[LearningHistoryProgress]
-		WHERE QuestionId not in (SELECT QuestionId FROM DBO.SPLITSTRING(@QuestionIds));
+		WHERE QuestionId not in (SELECT QuestionId FROM DBO.SPLITSTRING(@QuestionIds,@Character));
 
 		--[dbo].[QuestionCategories]
 		DELETE FROM [dbo].[QuestionCategories]
-		WHERE QuestionId  not in (SELECT QuestionId FROM DBO.SPLITSTRING(@QuestionIds));
+		WHERE QuestionId  not in (SELECT QuestionId FROM DBO.SPLITSTRING(@QuestionIds,@Character));
 
 		DELETE FROM [dbo].[Responses]
-		WHERE QuestionId  not in (SELECT QuestionId FROM DBO.SPLITSTRING(@QuestionIds));
+		WHERE QuestionId  not in (SELECT QuestionId FROM DBO.SPLITSTRING(@QuestionIds,@Character));
 
 		DELETE [dbo].[Questions]
-		WHERE QuestionId  not in (SELECT QuestionId FROM DBO.SPLITSTRING(@QuestionIds));
+		WHERE QuestionId  not in (SELECT QuestionId FROM DBO.SPLITSTRING(@QuestionIds,@Character));
 			
 		-- If the DELETE statement succeeds, commit the transaction.  
 		COMMIT TRANSACTION;  
