@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[DeteUserResponses]
     @QuestionId INT,
-	@ResponseId INT,
+	@ResponseId INT NULL,
 	@Originator UNIQUEIDENTIFIER
 AS
 	IF ([dbo].[IsQuestionOriginator](@Originator,@QuestionId)=0)
