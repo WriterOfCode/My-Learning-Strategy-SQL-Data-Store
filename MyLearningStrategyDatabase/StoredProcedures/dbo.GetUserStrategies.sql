@@ -4,7 +4,7 @@
 AS
 	IF @StrategyId IS NULL
 	BEGIN
-		SELECT 	S.StrategyId,
+		SELECT 	S.StrategyId as Id,
 			S.UserProfileId,S.Name,S.Description,S.SortRuleId, 
 			S.QuestionSelection,S.ResponseSelection,
 			S.OnlyCorrect,S.LastModifiedOffset,S.CloudRowId,
@@ -15,7 +15,7 @@ AS
 	END
 	ELSE
 	BEGIN
-		SELECT 	S.StrategyId, 
+		SELECT 	S.StrategyId as Id, 
 			S.UserProfileId,S.Name,S.Description,S.SortRuleId,
 			S.QuestionSelection,S.ResponseSelection,
 			S.OnlyCorrect,S.LastModifiedOffset,S.CloudRowId,
